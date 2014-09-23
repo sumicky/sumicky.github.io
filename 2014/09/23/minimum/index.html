@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>码农求职记</title>
+  <title>Minimum Path Sum | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="码农求职记">
-<meta property="og:url" content="http://yoursite.com/">
+  <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+Note: You can only move either down or right at an">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Minimum Path Sum">
+<meta property="og:url" content="http://yoursite.com/2014/09/23/minimum/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description">
+<meta property="og:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+Note: You can only move either down or right at an">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="码农求职记">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Minimum Path Sum">
+<meta name="twitter:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+Note: You can only move either down or right at an">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -137,9 +140,7 @@
 		</header>				
 	</div>
 </nav>
-      
-  
-    <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2014/09/23/minimum/" class="article-date">
@@ -156,8 +157,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/minimum/">Minimum Path Sum</a>
+    <h1 class="article-title" itemprop="name">
+      Minimum Path Sum
     </h1>
   
 
@@ -178,63 +179,59 @@
     </footer>
   </div>
   
-</article>
-
-
-
-
-
-
-  
-    <article id="post-interleaving" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/interleaving/" class="article-date">
-  	<time datetime="2014-09-23T13:17:11.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
     
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/interleaving/">Interleaving String</a>
-    </h1>
   
+    <a href="/2014/09/23/interleaving/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Interleaving String</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
-<p>For example,<br>Given:<br>s1 = “aabcc”,<br>s2 = “dbbca”,</p>
-<p>When s3 = “aadbbcbcac”, return true.<br>When s3 = “aadbbbaccc”, return false.</p>
-<figure class="highlight"><pre><div class="line">bool isInterleave(<span class="keyword">string</span> s1, <span class="keyword">string</span> s2, <span class="keyword">string</span> s3) {</div><div class="line">    <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;dp(s1.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="keyword">vector</span>&lt;bool&gt;(s2.<span class="keyword">size</span>()+<span class="number">1</span>,true));</div><div class="line">    <span class="comment">//从1开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.<span class="keyword">size</span>(); i++){</div><div class="line">        dp[i][<span class="number">0</span>] = (dp[i-<span class="number">1</span>][<span class="number">0</span>] && s1[i-<span class="number">1</span>] == s3[i-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">        dp[<span class="number">0</span>][j] = (dp[<span class="number">0</span>][j-<span class="number">1</span>] && s2[j-<span class="number">1</span>] == s3[j-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= s1.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">            dp[i][j] = (s1[i-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i-<span class="number">1</span>][j])</div><div class="line">                    || (s2[j-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i][j-<span class="number">1</span>]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s1.<span class="keyword">size</span>()][s2.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
   
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="minimum" data-title="Minimum Path Sum" data-url="http://yoursite.com/2014/09/23/minimum/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-  
-  
+
+
 
       <footer id="footer">
   <div class="outer">
