@@ -813,7 +813,7 @@ a {
   margin: 0 3px;
   background: #ddd;
   border: 1px solid #ccc;
-  font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+  font-family: "Courier New", Menlo, Monaco, "Andale Mono", "lucida console", monospace;
 }
 .article-entry blockquote {
   background: #ddd;
