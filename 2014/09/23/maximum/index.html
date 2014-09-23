@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Unique Paths | 码农求职记</title>
+  <title>Maximum Subarray | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+  <meta name="description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray [4,−1,2,1] has the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unique Paths">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/uniquePath/">
+<meta property="og:title" content="Maximum Subarray">
+<meta property="og:url" content="http://yoursite.com/2014/09/23/maximum/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta property="og:description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray [4,−1,2,1] has the">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unique Paths">
-<meta name="twitter:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta name="twitter:title" content="Maximum Subarray">
+<meta name="twitter:description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray [4,−1,2,1] has the">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -142,15 +142,15 @@ The robot can only move either down or right at any point in time. The robot is 
 		</header>				
 	</div>
 </nav>
-      <article id="post-uniquePath" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-maximum" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/uniquePath/" class="article-date">
-  	<time datetime="2014-09-21T22:04:54.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/09/23/maximum/" class="article-date">
+  	<time datetime="2014-09-23T15:46:33.000Z" itemprop="datePublished">9月 23 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
 
     </div>
   
@@ -160,7 +160,7 @@ The robot can only move either down or right at any point in time. The robot is 
         
   
     <h1 class="article-title" itemprop="name">
-      Unique Paths
+      Maximum Subarray
     </h1>
   
 
@@ -168,12 +168,11 @@ The robot can only move either down or right at any point in time. The robot is 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
-<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
-<p>How many possible unique paths are there?</p>
-<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
-<p>Note: m and n will be at most 100.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//dp 更合适</span></div><div class="line"><span class="keyword">int</span> uniquePaths(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">//dp f(m,n) = f(m,n-1) + f(m-1,n)</span></div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> || n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));<span class="comment">//初始化</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)  dp[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)  dp[<span class="number">0</span>][i] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
+        <p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+<p>For example, given the array [−2,1,−3,4,−1,2,1,−5,4],<br>the contiguous subarray [4,−1,2,1] has the largest sum = 6.</p>
+<p>click to show more practice.</p>
+<p>More practice:<br>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxSubArray(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> maxSum = INT_MIN;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">sum</span> += A[i];</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &gt; maxSum) maxSum = <span class="keyword">sum</span>;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &lt; <span class="number">0</span>) <span class="keyword">sum</span> = <span class="number">0</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxSum;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -187,18 +186,18 @@ The robot can only move either down or right at any point in time. The robot is 
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/uniquePath2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/23/palindrome2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Unique Paths II
+          Palindrome Partitioning II
         
       </div>
     </a>
   
   
-    <a href="/2014/09/22/palindrome/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Palindrome Partitioning</div>
+    <a href="/2014/09/23/triangle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Triangle</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -227,7 +226,7 @@ The robot can only move either down or right at any point in time. The robot is 
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="uniquePath" data-title="Unique Paths" data-url="http://yoursite.com/2014/09/22/uniquePath/"></div>
+	<div class="ds-thread" data-thread-key="maximum" data-title="Maximum Subarray" data-url="http://yoursite.com/2014/09/23/maximum/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

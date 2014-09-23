@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Unique Paths | 码农求职记</title>
+  <title>Best Time to Buy and Sell Stock III | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+  <meta name="description" content="Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete at most two transactions.
+Note:You may not enga">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unique Paths">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/uniquePath/">
+<meta property="og:title" content="Best Time to Buy and Sell Stock III">
+<meta property="og:url" content="http://yoursite.com/2014/09/23/bestStock3/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta property="og:description" content="Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete at most two transactions.
+Note:You may not enga">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unique Paths">
-<meta name="twitter:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta name="twitter:title" content="Best Time to Buy and Sell Stock III">
+<meta name="twitter:description" content="Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete at most two transactions.
+Note:You may not enga">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -142,15 +145,15 @@ The robot can only move either down or right at any point in time. The robot is 
 		</header>				
 	</div>
 </nav>
-      <article id="post-uniquePath" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-bestStock3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/uniquePath/" class="article-date">
-  	<time datetime="2014-09-21T22:04:54.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/09/23/bestStock3/" class="article-date">
+  	<time datetime="2014-09-23T15:49:21.000Z" itemprop="datePublished">9月 23 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
 
     </div>
   
@@ -160,7 +163,7 @@ The robot can only move either down or right at any point in time. The robot is 
         
   
     <h1 class="article-title" itemprop="name">
-      Unique Paths
+      Best Time to Buy and Sell Stock III
     </h1>
   
 
@@ -168,12 +171,10 @@ The robot can only move either down or right at any point in time. The robot is 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
-<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
-<p>How many possible unique paths are there?</p>
-<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
-<p>Note: m and n will be at most 100.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//dp 更合适</span></div><div class="line"><span class="keyword">int</span> uniquePaths(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">//dp f(m,n) = f(m,n-1) + f(m-1,n)</span></div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> || n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));<span class="comment">//初始化</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)  dp[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)  dp[<span class="number">0</span>][i] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
+        <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
+<p>Note:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
+<figure class="highlight"><pre><div class="line">//不明白题意</div><div class="line"><span class="type">int</span> maxProfit(vector&lt;<span class="type">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span> (prices.size()&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">    <span class="type">int</span> len=prices.size(),<span class="literal">result</span>=<span class="number">0</span>;</div><div class="line">    <span class="type">int</span> low=prices[<span class="number">0</span>],high=prices[len-<span class="number">1</span>];</div><div class="line"></div><div class="line">    vector&lt;<span class="type">int</span>&gt; profits_history(len,<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++){</div><div class="line">        low=min(low,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,prices[i]-low);</div><div class="line">        profits_history[i]=<span class="literal">result</span>; </div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--){</div><div class="line">        high=max(high,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,high-prices[i]+profits_history[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -187,18 +188,18 @@ The robot can only move either down or right at any point in time. The robot is 
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/uniquePath2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/23/editDis/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Unique Paths II
+          Edit Distance
         
       </div>
     </a>
   
   
-    <a href="/2014/09/22/palindrome/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Palindrome Partitioning</div>
+    <a href="/2014/09/23/maxRec/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Maximal Rectangle</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -227,7 +228,7 @@ The robot can only move either down or right at any point in time. The robot is 
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="uniquePath" data-title="Unique Paths" data-url="http://yoursite.com/2014/09/22/uniquePath/"></div>
+	<div class="ds-thread" data-thread-key="bestStock3" data-title="Best Time to Buy and Sell Stock III" data-url="http://yoursite.com/2014/09/23/bestStock3/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

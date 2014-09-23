@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Unique Paths | 码农求职记</title>
+  <title>Decode Ways | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+  <meta name="description" content="A message containing letters from A-Z is being encoded to numbers using the following mapping:
+‘A’ -&gt; 1‘B’ -&gt; 2…‘Z’ -&gt; 26Given an encoded message containing digits, determine the total number">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unique Paths">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/uniquePath/">
+<meta property="og:title" content="Decode Ways">
+<meta property="og:url" content="http://yoursite.com/2014/09/23/decodeWay/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta property="og:description" content="A message containing letters from A-Z is being encoded to numbers using the following mapping:
+‘A’ -&gt; 1‘B’ -&gt; 2…‘Z’ -&gt; 26Given an encoded message containing digits, determine the total number">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unique Paths">
-<meta name="twitter:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta name="twitter:title" content="Decode Ways">
+<meta name="twitter:description" content="A message containing letters from A-Z is being encoded to numbers using the following mapping:
+‘A’ -&gt; 1‘B’ -&gt; 2…‘Z’ -&gt; 26Given an encoded message containing digits, determine the total number">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -142,15 +142,15 @@ The robot can only move either down or right at any point in time. The robot is 
 		</header>				
 	</div>
 </nav>
-      <article id="post-uniquePath" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-decodeWay" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/uniquePath/" class="article-date">
-  	<time datetime="2014-09-21T22:04:54.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/09/23/decodeWay/" class="article-date">
+  	<time datetime="2014-09-23T15:52:10.000Z" itemprop="datePublished">9月 23 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
 
     </div>
   
@@ -160,7 +160,7 @@ The robot can only move either down or right at any point in time. The robot is 
         
   
     <h1 class="article-title" itemprop="name">
-      Unique Paths
+      Decode Ways
     </h1>
   
 
@@ -168,12 +168,11 @@ The robot can only move either down or right at any point in time. The robot is 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
-<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
-<p>How many possible unique paths are there?</p>
-<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
-<p>Note: m and n will be at most 100.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//dp 更合适</span></div><div class="line"><span class="keyword">int</span> uniquePaths(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">//dp f(m,n) = f(m,n-1) + f(m-1,n)</span></div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> || n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));<span class="comment">//初始化</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)  dp[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)  dp[<span class="number">0</span>][i] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
+        <p>A message containing letters from A-Z is being encoded to numbers using the following mapping:</p>
+<p>‘A’ -&gt; 1<br>‘B’ -&gt; 2<br>…<br>‘Z’ -&gt; 26<br>Given an encoded message containing digits, determine the total number of ways to decode it.</p>
+<p>For example,<br>Given encoded message “12”, it could be decoded as “AB” (1 2) or “L” (12).</p>
+<p>The number of ways decoding “12” is 2.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//dp[i]:表示[0,i]表示的Decode个数</span></div><div class="line"><span class="comment">//dp[i] != '0' dp[i] = dp[i-1];</span></div><div class="line"><span class="comment">//(10&lt;=(s[i-1]+s[i-2]*10)&lt;=26)?dp[i-2]:0;</span></div><div class="line"><span class="keyword">int</span> numDecodings(<span class="keyword">string</span> s) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() == <span class="number">0</span> || s[<span class="number">0</span>] == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//通过dp[2]来计算</span></div><div class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=s.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(s[i-<span class="number">1</span>] != <span class="string">'0'</span>) dp[i] = dp[i-<span class="number">1</span>];<span class="comment">//需要不等于0,就解释为0就好了</span></div><div class="line">        <span class="comment">//等于0的情况，只能与前一个结合了</span></div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = (s[i-<span class="number">2</span>]-<span class="string">'0'</span>)<span class="variable">*10</span> + s[i-<span class="number">1</span>]-<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(sum &gt;= <span class="number">10</span> && sum &lt;= <span class="number">26</span>) dp[i] += dp[i-<span class="number">2</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
 
 
       
@@ -187,18 +186,9 @@ The robot can only move either down or right at any point in time. The robot is 
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/uniquePath2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Unique Paths II
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/22/palindrome/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Palindrome Partitioning</div>
+    <a href="/2014/09/23/distinctS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Distinct Subsequences</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -227,7 +217,7 @@ The robot can only move either down or right at any point in time. The robot is 
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="uniquePath" data-title="Unique Paths" data-url="http://yoursite.com/2014/09/22/uniquePath/"></div>
+	<div class="ds-thread" data-thread-key="decodeWay" data-title="Decode Ways" data-url="http://yoursite.com/2014/09/23/decodeWay/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

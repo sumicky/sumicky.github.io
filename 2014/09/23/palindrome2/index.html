@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Unique Paths | 码农求职记</title>
+  <title>Palindrome Partitioning II | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+  <meta name="description" content="Given a string s, partition s such that every substring of the partition is a palindrome.
+Return the minimum cuts needed for a palindrome partitioning of s.
+For example, given s = “aab”,Return 1 since">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unique Paths">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/uniquePath/">
+<meta property="og:title" content="Palindrome Partitioning II">
+<meta property="og:url" content="http://yoursite.com/2014/09/23/palindrome2/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta property="og:description" content="Given a string s, partition s such that every substring of the partition is a palindrome.
+Return the minimum cuts needed for a palindrome partitioning of s.
+For example, given s = “aab”,Return 1 since">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unique Paths">
-<meta name="twitter:description" content="A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bot">
+<meta name="twitter:title" content="Palindrome Partitioning II">
+<meta name="twitter:description" content="Given a string s, partition s such that every substring of the partition is a palindrome.
+Return the minimum cuts needed for a palindrome partitioning of s.
+For example, given s = “aab”,Return 1 since">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -142,15 +145,15 @@ The robot can only move either down or right at any point in time. The robot is 
 		</header>				
 	</div>
 </nav>
-      <article id="post-uniquePath" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-palindrome2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/uniquePath/" class="article-date">
-  	<time datetime="2014-09-21T22:04:54.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/09/23/palindrome2/" class="article-date">
+  	<time datetime="2014-09-23T15:47:25.000Z" itemprop="datePublished">9月 23 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
 
     </div>
   
@@ -160,7 +163,7 @@ The robot can only move either down or right at any point in time. The robot is 
         
   
     <h1 class="article-title" itemprop="name">
-      Unique Paths
+      Palindrome Partitioning II
     </h1>
   
 
@@ -168,12 +171,10 @@ The robot can only move either down or right at any point in time. The robot is 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
-<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
-<p>How many possible unique paths are there?</p>
-<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
-<p>Note: m and n will be at most 100.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//dp 更合适</span></div><div class="line"><span class="keyword">int</span> uniquePaths(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">//dp f(m,n) = f(m,n-1) + f(m-1,n)</span></div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> || n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));<span class="comment">//初始化</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)  dp[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)  dp[<span class="number">0</span>][i] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
+        <p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
+<p>Return the minimum cuts needed for a palindrome partitioning of s.</p>
+<p>For example, given s = “aab”,<br>Return 1 since the palindrome partitioning [“aa”,”b”] could be produced using 1 cut.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minCut(<span class="keyword">string</span> s) {</div><div class="line">    <span class="comment">//dp[i,j] = dp[i,k]+dp[k+1,j];</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=s.<span class="keyword">size</span>(); i&gt;=<span class="number">0</span>; i--) dp[i] = s.<span class="keyword">size</span>()-i-<span class="number">1</span>;</div><div class="line">    <span class="comment">//dp[i]:第i元素之后最大化分cuts</span></div><div class="line">    </div><div class="line">    <span class="comment">//matrix[i][j]:[i,j]满足回文</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;<span class="keyword">matrix</span>(s.<span class="keyword">size</span>(),<span class="keyword">vector</span>&lt;bool&gt;(s.<span class="keyword">size</span>(),false));</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=s.<span class="keyword">size</span>()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">if</span>(s[i] == s[j] && (j-i&lt;<span class="number">2</span> || <span class="keyword">matrix</span>[i+<span class="number">1</span>][j-<span class="number">1</span>])){</div><div class="line">                <span class="keyword">matrix</span>[i][j] = true;</div><div class="line">                dp[i] = <span class="keyword">min</span>(dp[i],dp[j+<span class="number">1</span>]+<span class="number">1</span>);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
 
 
       
@@ -187,18 +188,18 @@ The robot can only move either down or right at any point in time. The robot is 
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/uniquePath2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/23/maxRec/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Unique Paths II
+          Maximal Rectangle
         
       </div>
     </a>
   
   
-    <a href="/2014/09/22/palindrome/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Palindrome Partitioning</div>
+    <a href="/2014/09/23/maximum/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Maximum Subarray</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -227,7 +228,7 @@ The robot can only move either down or right at any point in time. The robot is 
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="uniquePath" data-title="Unique Paths" data-url="http://yoursite.com/2014/09/22/uniquePath/"></div>
+	<div class="ds-thread" data-thread-key="palindrome2" data-title="Palindrome Partitioning II" data-url="http://yoursite.com/2014/09/23/palindrome2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

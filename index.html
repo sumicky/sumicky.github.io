@@ -86,7 +86,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 10.00px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.50px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.50px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.50px;">深度优先搜索</a>
+					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.00px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.00px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.00px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.00px;">深度优先搜索</a>
 				</div>
 			</section>
 			
@@ -140,6 +140,391 @@
 	</div>
 </nav>
       
+  
+    <article id="post-decodeWay" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/decodeWay/" class="article-date">
+  	<time datetime="2014-09-23T15:52:10.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/decodeWay/">Decode Ways</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A message containing letters from A-Z is being encoded to numbers using the following mapping:</p>
+<p>‘A’ -&gt; 1<br>‘B’ -&gt; 2<br>…<br>‘Z’ -&gt; 26<br>Given an encoded message containing digits, determine the total number of ways to decode it.</p>
+<p>For example,<br>Given encoded message “12”, it could be decoded as “AB” (1 2) or “L” (12).</p>
+<p>The number of ways decoding “12” is 2.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//dp[i]:表示[0,i]表示的Decode个数</span></div><div class="line"><span class="comment">//dp[i] != '0' dp[i] = dp[i-1];</span></div><div class="line"><span class="comment">//(10&lt;=(s[i-1]+s[i-2]*10)&lt;=26)?dp[i-2]:0;</span></div><div class="line"><span class="keyword">int</span> numDecodings(<span class="keyword">string</span> s) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() == <span class="number">0</span> || s[<span class="number">0</span>] == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//通过dp[2]来计算</span></div><div class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=s.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(s[i-<span class="number">1</span>] != <span class="string">'0'</span>) dp[i] = dp[i-<span class="number">1</span>];<span class="comment">//需要不等于0,就解释为0就好了</span></div><div class="line">        <span class="comment">//等于0的情况，只能与前一个结合了</span></div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = (s[i-<span class="number">2</span>]-<span class="string">'0'</span>)<span class="variable">*10</span> + s[i-<span class="number">1</span>]-<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(sum &gt;= <span class="number">10</span> && sum &lt;= <span class="number">26</span>) dp[i] += dp[i-<span class="number">2</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-distinctS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/distinctS/" class="article-date">
+  	<time datetime="2014-09-23T15:51:17.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/distinctS/">Distinct Subsequences</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string S and a string T, count the number of distinct subsequences of T in S.</p>
+<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ACE” is a subsequence of “ABCDE” while “AEC” is not).</p>
+<p>Here is an example:<br>S = “rabbbit”, T = “rabbit”</p>
+<p>Return 3.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> numDistinct(<span class="built_in">string</span> S, <span class="built_in">string</span> T) {</div><div class="line">    <span class="comment">//dp[i][j]:表示S[0,i]通过删除变成T[0,j]的个数</span></div><div class="line">    <span class="comment">//1.S[i] != T[j], dp[i][j] = dp[i-1][j], 只能删除</span></div><div class="line">    <span class="comment">//2.S[i] == T[j], 分两种，保持或删除 dp[i][j] = dp[i-1][j-1] + dp[i-1][j]</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> len1 = S.size();</div><div class="line">    <span class="keyword">int</span> len2 = T.size();</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(len1+<span class="number">1</span>,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(len2+<span class="number">1</span>,<span class="number">0</span>));</div><div class="line">    </div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1;i++) dp[i][<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//只有一种</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len2;i++) dp[<span class="number">0</span>][i] = <span class="number">0</span>;<span class="comment">//不可能，从1开始</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=len2; j++){</div><div class="line">            <span class="keyword">if</span>(S[i-<span class="number">1</span>] == T[j-<span class="number">1</span>]){</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[len1][len2];</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-editDis" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/editDis/" class="article-date">
+  	<time datetime="2014-09-23T15:50:31.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/editDis/">Edit Distance</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
+<p>You have the following 3 operations permitted on a word:</p>
+<p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
+<figure class="highlight"><pre><div class="line">//dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]:表示A[0,i]和B[0,j]之间的最小编辑距离，</div><div class="line">//设A[0,i]形式str1c,B[0,j]形式str2d</div><div class="line">//1.c==d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>];</div><div class="line">//2.c != d</div><div class="line">//2.1: c替换成d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.2: append d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.3: delete d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j</span>] + 1;</div><div class="line">int minDistance(string word1, string word2) {</div><div class="line"><span class="code">    int len1 = word1.size();</span></div><div class="line"><span class="code">    int len2 = word2.size();</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    vector&lt;vector&lt;int&gt; &gt;dp(len1+1,vector&lt;int&gt;(len2+1,0));</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    //初始化</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        dp[i][0] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len2; i++){</span></div><div class="line"><span class="code">        dp[0][i] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    for(int i=1; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        for(int j=1; j&lt;=len2; j++){</span></div><div class="line"><span class="code">            if(word1[i-1] == word2[j-1]){</span></div><div class="line"><span class="code">                dp[i][j] = dp[i-1][j-1];</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">            else{</span></div><div class="line"><span class="code">                dp[i][j] = min(dp[i-1][j-1],min(dp[i][j-1],dp[i-1][j]))+1;</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">        }</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    return dp[len1][len2];</span></div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-bestStock3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/bestStock3/" class="article-date">
+  	<time datetime="2014-09-23T15:49:21.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/bestStock3/">Best Time to Buy and Sell Stock III</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
+<p>Note:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
+<figure class="highlight"><pre><div class="line">//不明白题意</div><div class="line"><span class="type">int</span> maxProfit(vector&lt;<span class="type">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span> (prices.size()&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">    <span class="type">int</span> len=prices.size(),<span class="literal">result</span>=<span class="number">0</span>;</div><div class="line">    <span class="type">int</span> low=prices[<span class="number">0</span>],high=prices[len-<span class="number">1</span>];</div><div class="line"></div><div class="line">    vector&lt;<span class="type">int</span>&gt; profits_history(len,<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++){</div><div class="line">        low=min(low,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,prices[i]-low);</div><div class="line">        profits_history[i]=<span class="literal">result</span>; </div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--){</div><div class="line">        high=max(high,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,high-prices[i]+profits_history[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-maxRec" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/maxRec/" class="article-date">
+  	<time datetime="2014-09-23T15:48:25.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/maxRec/">Maximal Rectangle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest rectangle containing all ones and return its area.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maximalRectangle(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;char&gt; &gt; &<span class="keyword">matrix</span>) {</div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">matrix</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="comment">//dp[i][j]:从第[i][j]位开始，行连续1的个数</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=column-<span class="number">1</span>; j&gt;=<span class="number">0</span>; j--){</div><div class="line">            <span class="keyword">if</span>(j == column-<span class="number">1</span>) dp[i][j] = (<span class="keyword">matrix</span>[i][j] == <span class="string">'1'</span>);</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                <span class="keyword">if</span>(<span class="keyword">matrix</span>[i][j] == <span class="string">'1'</span>){</div><div class="line">                    dp[i][j] = dp[i][j+<span class="number">1</span>]+<span class="number">1</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> maxArea = <span class="number">0</span>;</div><div class="line">    <span class="comment">//以左上角为顶点开始遍历</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;column; j++){</div><div class="line">            <span class="comment">//若点为0，不能作为顶点</span></div><div class="line">            <span class="keyword">if</span>(<span class="keyword">matrix</span>[i][j] == <span class="string">'0'</span>) <span class="keyword">continue</span>;</div><div class="line">            <span class="comment">//若该顶点右下方全为1仍然小于maxArea，continue</span></div><div class="line">            <span class="keyword">if</span>((row-i)<span class="variable">*(</span>column-j) &lt; maxArea) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">int</span> minLength = dp[i][j];</div><div class="line">            <span class="comment">//逐行遍历</span></div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; row; k++){</div><div class="line">                minLength = <span class="keyword">min</span>(dp[k][j],minLength);</div><div class="line">                <span class="keyword">int</span> area = minLength * (k-i+<span class="number">1</span>);</div><div class="line">                <span class="keyword">if</span>(area &gt; maxArea) maxArea = area;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxArea;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-palindrome2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/palindrome2/" class="article-date">
+  	<time datetime="2014-09-23T15:47:25.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/palindrome2/">Palindrome Partitioning II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
+<p>Return the minimum cuts needed for a palindrome partitioning of s.</p>
+<p>For example, given s = “aab”,<br>Return 1 since the palindrome partitioning [“aa”,”b”] could be produced using 1 cut.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minCut(<span class="keyword">string</span> s) {</div><div class="line">    <span class="comment">//dp[i,j] = dp[i,k]+dp[k+1,j];</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=s.<span class="keyword">size</span>(); i&gt;=<span class="number">0</span>; i--) dp[i] = s.<span class="keyword">size</span>()-i-<span class="number">1</span>;</div><div class="line">    <span class="comment">//dp[i]:第i元素之后最大化分cuts</span></div><div class="line">    </div><div class="line">    <span class="comment">//matrix[i][j]:[i,j]满足回文</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;<span class="keyword">matrix</span>(s.<span class="keyword">size</span>(),<span class="keyword">vector</span>&lt;bool&gt;(s.<span class="keyword">size</span>(),false));</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=s.<span class="keyword">size</span>()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">if</span>(s[i] == s[j] && (j-i&lt;<span class="number">2</span> || <span class="keyword">matrix</span>[i+<span class="number">1</span>][j-<span class="number">1</span>])){</div><div class="line">                <span class="keyword">matrix</span>[i][j] = true;</div><div class="line">                dp[i] = <span class="keyword">min</span>(dp[i],dp[j+<span class="number">1</span>]+<span class="number">1</span>);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-maximum" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/maximum/" class="article-date">
+  	<time datetime="2014-09-23T15:46:33.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/maximum/">Maximum Subarray</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+<p>For example, given the array [−2,1,−3,4,−1,2,1,−5,4],<br>the contiguous subarray [4,−1,2,1] has the largest sum = 6.</p>
+<p>click to show more practice.</p>
+<p>More practice:<br>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxSubArray(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> maxSum = INT_MIN;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">sum</span> += A[i];</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &gt; maxSum) maxSum = <span class="keyword">sum</span>;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &lt; <span class="number">0</span>) <span class="keyword">sum</span> = <span class="number">0</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxSum;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-triangle" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/triangle/" class="article-date">
+  	<time datetime="2014-09-23T15:45:24.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/triangle/">Triangle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</p>
+<p>For example, given the following triangle<br>[<br>     [2],<br>    [3,4],<br>   [6,5,7],<br>  [4,1,8,3]<br>]<br>The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).</p>
+<p>Note:<br>Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minimumTotal(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &triangle) {</div><div class="line">    <span class="keyword">int</span> row = triangle.<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="comment">//dp[i]：第X层，到i叶子的最小路径</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(triangle[row-<span class="number">1</span>].<span class="keyword">size</span>(),<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = triangle[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=triangle[i].<span class="keyword">size</span>()-<span class="number">1</span>; j&gt;=<span class="number">0</span>; j--){</div><div class="line">            <span class="keyword">if</span>(j == triangle[i].<span class="keyword">size</span>()-<span class="number">1</span>){</div><div class="line">                dp[j] = dp[j-<span class="number">1</span>] + triangle[i][j];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j == <span class="number">0</span>){</div><div class="line">                dp[<span class="number">0</span>] = dp[<span class="number">0</span>]+triangle[i][<span class="number">0</span>];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                dp[j] = <span class="keyword">min</span>(dp[j],dp[j-<span class="number">1</span>])+triangle[i][j];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> minimum = INT_MAX;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;dp.<span class="keyword">size</span>(); i++){</div><div class="line">        minimum = <span class="keyword">min</span>(minimum,dp[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> minimum;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -236,392 +621,9 @@
 
 
   
-    <article id="post-2dMatrix" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/2dMatrix/" class="article-date">
-  	<time datetime="2014-09-21T22:39:03.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/2dMatrix/">Search a 2D Matrix</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<p>Integers in each row are sorted from left to right.<br>The first integer of each row is greater than the last integer of the previous row.<br>For example,</p>
-<p>Consider the following matrix:</p>
-<p>[<br>  [1,   3,  5,  7],<br>  [10, 11, 16, 20],<br>  [23, 30, 34, 50]<br>]<br>Given target = 3, return true.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//关于二分法，你好好琢磨下,写代码时配合例子，有无等号，或者比较怎么写</span></div><div class="line">bool searchMatrix(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">matrix</span>, <span class="keyword">int</span> target) {</div><div class="line">    <span class="comment">//先行后列</span></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">matrix</span>.<span class="keyword">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="keyword">matrix</span>.<span class="keyword">size</span>()-<span class="number">1</span>;  </div><div class="line">    <span class="keyword">int</span> n = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>()-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(left &lt; right){</div><div class="line">        <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="keyword">matrix</span>[mid][n] &gt;= target) right = mid;</div><div class="line">        <span class="keyword">else</span>  left = mid+<span class="number">1</span>;<span class="comment">//记录行</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">int</span> mid = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] == target) <span class="keyword">return</span> true;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] &gt; target) r = mid-<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span>  l = mid+<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> false;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-searchIp" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/searchIp/" class="article-date">
-  	<time datetime="2014-09-21T22:37:59.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/searchIp/">Search Insert Position</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Here are few examples.<br>[1,3,5,6], 5 → 2<br>[1,3,5,6], 2 → 1<br>[1,3,5,6], 7 → 4<br>[1,3,5,6], 0 → 0</p>
-<figure class="highlight"><pre><div class="line">int searchInsert(int <span class="type">A</span>[], int n, int target) {</div><div class="line">    int <span class="keyword">left</span> = <span class="number">0</span>, <span class="keyword">right</span> = n-<span class="number">1</span>;       </div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="keyword">left</span> &lt;= <span class="keyword">right</span>){<span class="comment">//有“=”</span></div><div class="line">        int mid = <span class="keyword">left</span> + (<span class="keyword">right</span> - <span class="keyword">left</span>)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="type">A</span>[mid] == target)  <span class="keyword">return</span> mid;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="type">A</span>[mid] &lt; target) <span class="keyword">left</span> = mid+<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">right</span> = mid-<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">left</span>;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-searchForRange" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/searchForRange/" class="article-date">
-  	<time datetime="2014-09-21T22:37:08.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/searchForRange/">Search for a Range</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
-<p>Your algorithm’s runtime complexity must be in the order of O(log n).</p>
-<p>If the target is not found in the array, return [-1, -1].</p>
-<p>For example,<br>Given [5, 7, 7, 8, 8, 10] and target value 8,<br>return [3, 4].</p>
-<figure class="highlight"><pre><div class="line">vector&lt;int&gt; searchRange(int <span class="type">A</span>[], int n, int target) {</div><div class="line">    vector&lt;int&gt;res;</div><div class="line">    int <span class="keyword">left</span> = <span class="number">0</span>, <span class="keyword">right</span> = n-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="keyword">left</span> &lt; <span class="keyword">right</span>){<span class="comment">//没有“=”</span></div><div class="line">        int mid = <span class="keyword">left</span> +(<span class="keyword">right</span> - <span class="keyword">left</span>)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="type">A</span>[mid] &lt; target) <span class="keyword">left</span> = mid+<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span>    <span class="keyword">right</span> = mid;</div><div class="line">    }</div><div class="line">    </div><div class="line">    res.push_back(<span class="type">A</span>[<span class="keyword">left</span>] == target ? <span class="keyword">left</span> : -<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">right</span> = n-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="keyword">left</span> &lt; <span class="keyword">right</span>){</div><div class="line">        int mid = <span class="keyword">left</span> + (<span class="keyword">right</span> - <span class="keyword">left</span> + <span class="number">1</span>)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="type">A</span>[mid] &gt; target) <span class="keyword">right</span> = mid - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span>  <span class="keyword">left</span> = mid;</div><div class="line">    }</div><div class="line">    </div><div class="line">    res.push_back(<span class="type">A</span>[<span class="keyword">left</span>] == target ? <span class="keyword">left</span> : -<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-evaluteReverse" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/evaluteReverse/" class="article-date">
-  	<time datetime="2014-09-21T22:34:32.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/evaluteReverse/">Evaluate Reverse Polish Notation</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Evaluate the value of an arithmetic expression in Reverse Polish Notation.</p>
-<p>Valid operators are +, -, *, /. Each operand may be an integer or another expression.</p>
-<p>Some examples:<br>  [“2”, “1”, “+”, “3”, “<em>“] -&gt; ((2 + 1) </em> 3) -&gt; 9<br>  [“4”, “13”, “5”, “/“, “+”] -&gt; (4 + (13 / 5)) -&gt; 6</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> evalRPN(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &tokens) {</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;</span>st;</div><div class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;tokens.size(); i++){</div><div class="line">        <span class="keyword">if</span>(tokens[i] != <span class="string">"+"</span> && tokens[i] != <span class="string">"-"</span></div><div class="line">           && tokens[i] != <span class="string">"*"</span> && tokens[i] != <span class="string">"/"</span>){</div><div class="line">            st.push(atoi(tokens[i].c_str()));    </div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> b = st.top();st.pop();</div><div class="line">            <span class="keyword">int</span> a = st.top();st.pop();</div><div class="line">            </div><div class="line">            <span class="keyword">int</span> c = calResult(a,b,tokens[i]);</div><div class="line">            st.push(c);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> st.top();</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">int</span> calResult(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="built_in">string</span>& symbol){</div><div class="line">    <span class="keyword">if</span>(symbol == <span class="string">"+"</span>) <span class="keyword">return</span> a+b;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(symbol == <span class="string">"-"</span>) <span class="keyword">return</span> a-b;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(symbol == <span class="string">"*"</span>) <span class="keyword">return</span> a*b;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(symbol == <span class="string">"/"</span>) <span class="keyword">return</span> a/b;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-largestRec" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/largestRec/" class="article-date">
-  	<time datetime="2014-09-21T22:33:26.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/largestRec/">Largest Rectangle in Histogram</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given $n$ non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.<br>For example, Given height = [2,1,5,6,2,3], return 10;</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> largestRectangleArea(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &height) {</div><div class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;</span>st;</div><div class="line">    <span class="keyword">int</span> maxArea = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> i =<span class="number">0</span>; </div><div class="line">    height.push_back(-<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(i&lt;height.size()){</div><div class="line">        <span class="keyword">if</span>(st.empty() || height[i] &gt;= height[st.top()]){</div><div class="line">            st.push(i++);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> temp = st.top();</div><div class="line">            st.pop();</div><div class="line">            <span class="comment">//注意这一点</span></div><div class="line">            maxArea = max(maxArea,height[temp]*(st.empty() ? i : i-st.top()-<span class="number">1</span>));<span class="comment">//{4,2,0,3,2,5}</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxArea;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-longvalidparent" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/longvalidparent/" class="article-date">
-  	<time datetime="2014-09-21T22:32:07.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/longvalidparent/">Longest Valid Parentheses</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string containing ‘(‘ and ‘)’, find the length of longest valid (well-formed) parentheses substring.<br>For “(()”, the longest valid parentheses substring is “()”, which has length = 2;<br>Another example is “)()())”, where the longest valid parentheses substring is “()()”, which has length = 4;</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> longestValidParentheses(string <span class="keyword">s</span>){</div><div class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</div><div class="line">    stack&lt;char&gt;st;</div><div class="line">    stack&lt;<span class="keyword">int</span>&gt;<span class="keyword">pos</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="keyword">s</span>.size(); i++){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">s</span>[i] == <span class="string">'('</span>){</div><div class="line">            st.<span class="keyword">push</span>(<span class="keyword">s</span>[i]);</div><div class="line">            <span class="keyword">pos</span>.<span class="keyword">push</span>(i);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">if</span>(!st.empty() && st.top() == <span class="string">'('</span>){</div><div class="line">                st.<span class="keyword">pop</span>();</div><div class="line">                <span class="keyword">pos</span>.<span class="keyword">pop</span>();</div><div class="line">                <span class="keyword">int</span> p = st.empty() ? -<span class="number">1</span> : <span class="keyword">pos</span>.top();</div><div class="line">                maxLength = max(maxLength, i-p);</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                st.<span class="keyword">push</span>(<span class="keyword">s</span>[i]);</div><div class="line">                <span class="keyword">pos</span>.<span class="keyword">push</span>(i);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxLength;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-lengthoflwt" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/lengthoflwt/" class="article-date">
-  	<time datetime="2014-09-21T22:30:27.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/lengthoflwt/">Length of Last Word</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string s consists of upper/lower-case alphabets and empty space characters ‘ ‘, return the length of last word in the string.</p>
-<p>If the last word does not exist, return 0.</p>
-<p>Note: A word is defined as a character sequence consists of non-space characters only.</p>
-<p>For example,<br>Given s = “Hello World”,<br>return 5.</p>
-<figure class="highlight"><pre><div class="line">int lengthOfLastWord(const <span class="keyword">char</span> *s) {</div><div class="line">    int <span class="function"><span class="keyword">end</span> = <span class="title">strlen</span>(<span class="title">s</span>)-<span class="title">1</span>;</span></div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="function"><span class="keyword">end</span> &gt;=<span class="title">0</span>  && <span class="title">s</span>[<span class="title">end</span>] == ' ') <span class="title">end</span>--;</span></div><div class="line">    <span class="keyword">if</span>(<span class="function"><span class="keyword">end</span> == -<span class="title">1</span>) <span class="title">return</span> <span class="title">0</span>;//空串</span></div><div class="line">    </div><div class="line">    int pos = <span class="function"><span class="keyword">end</span>;//保存尾端</span></div><div class="line">    <span class="keyword">while</span>(pos &gt;= <span class="number">0</span> && s[pos] != <span class="string">' '</span>){</div><div class="line">        pos<span class="comment">--;</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(pos == -<span class="number">1</span>) <span class="constant">return</span> <span class="function"><span class="keyword">end</span>+<span class="title">1</span>;</span></div><div class="line">    </div><div class="line">    <span class="constant">return</span> <span class="function"><span class="keyword">end</span>-pos;</span></div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-simplifypath" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/simplifypath/" class="article-date">
-  	<time datetime="2014-09-21T22:29:34.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/simplifypath/">Simplify Path</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an absolute path for a file (Unix-style), simplify it.</p>
-<p>For example,<br>path = “/home/“, =&gt; “/home”<br>path = “/a/./b/../../c/“, =&gt; “/c”<br>click to show corner cases.</p>
-<p>Corner Cases:<br>Did you consider the case where path = “/../“?<br>In this case, you should return “/“.<br>Another corner case is the path might contain multiple slashes ‘/‘ together, such as “/home//foo/“.<br>In this case, you should ignore redundant slashes and return “/home/foo”.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> simplifyPath(<span class="keyword">string</span> path) {</div><div class="line">    stack&lt;<span class="keyword">string</span>&gt;st;</div><div class="line">    <span class="keyword">string</span> name = <span class="string">""</span>;</div><div class="line">    path.append(<span class="number">1</span>,<span class="string">'/'</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;path.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(path[i] == <span class="string">'/'</span>){</div><div class="line">            <span class="keyword">if</span>(name.<span class="keyword">size</span>() != <span class="number">0</span>){<span class="comment">//name 有内容</span></div><div class="line">                <span class="keyword">if</span>(name == <span class="string">"."</span>){}</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(name == <span class="string">".."</span>){</div><div class="line">                    <span class="keyword">if</span>(!st.empty())st.pop();</div><div class="line">                }</div><div class="line">                <span class="keyword">else</span>{</div><div class="line">                    st.push(name);</div><div class="line">                }</div><div class="line">                name = <span class="string">""</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            name += path[i];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">if</span>(st.empty()) <span class="keyword">return</span> <span class="string">"/"</span>;</div><div class="line">    <span class="keyword">while</span>(!st.empty()){</div><div class="line">        res = <span class="string">"/"</span>+ st.top() + res;</div><div class="line">        st.pop();</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
