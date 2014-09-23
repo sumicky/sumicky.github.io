@@ -3,26 +3,85 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Interleaving String | 码农求职记</title>
+  <title>码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
-For example,Given:s1 = “aabcc”,s2 = “dbbca”,
-When s3 = “aadbbcbcac”, return true.When s3 = “aadbbbaccc”, return false.
-boo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Interleaving String">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/interleaving/">
+  <meta name="description" content="Shizhou Liu
+  
+
+
+
+ 
+  
+   
+	Shizhou Liu
+	 PHD students in ShangHai Jiao Tong University(SJTU)
+   
+  
+  
+   
+	
+	 Home| 
+         CV|  --&amp;
+	 Resume| 
+	 Research| 
+	 Teaching| 
+	 Contact">
+<meta property="og:type" content="website">
+<meta property="og:title" content="码农求职记">
+<meta property="og:url" content="http://yoursite.com/homepage/header.html">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
-For example,Given:s1 = “aabcc”,s2 = “dbbca”,
-When s3 = “aadbbcbcac”, return true.When s3 = “aadbbbaccc”, return false.
-boo">
+<meta property="og:description" content="Shizhou Liu
+  
+
+
+
+ 
+  
+   
+	Shizhou Liu
+	 PHD students in ShangHai Jiao Tong University(SJTU)
+   
+  
+  
+   
+	
+	 Home| 
+         CV|  --&amp;
+	 Resume| 
+	 Research| 
+	 Teaching| 
+	 Contact">
+<meta property="og:image" content="images/inv.gif ">
+<meta property="og:image" content="images/inv.gif">
+<meta property="og:image" content="images/inv.gif ">
+<meta property="og:image" content="images/inv.gif">
+<meta property="og:image" content="images/inv.gif ">
+<meta property="og:image" content="images/inv.gif">
+<meta property="og:image" content="images/inv.gif ">
+<meta property="og:image" content="images/inv.gif">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Interleaving String">
-<meta name="twitter:description" content="Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
-For example,Given:s1 = “aabcc”,s2 = “dbbca”,
-When s3 = “aadbbcbcac”, return true.When s3 = “aadbbbaccc”, return false.
-boo">
+<meta name="twitter:title" content="码农求职记">
+<meta name="twitter:description" content="Shizhou Liu
+  
+
+
+
+ 
+  
+   
+	Shizhou Liu
+	 PHD students in ShangHai Jiao Tong University(SJTU)
+   
+  
+  
+   
+	
+	 Home| 
+         CV|  --&amp;
+	 Resume| 
+	 Research| 
+	 Teaching| 
+	 Contact">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -146,37 +205,51 @@ boo">
 		</header>				
 	</div>
 </nav>
-      <article id="post-interleaving" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/interleaving/" class="article-date">
-  	<time datetime="2014-09-23T13:17:11.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/homepage/header.html" class="article-date">
+  	<time datetime="2014-09-23T13:39:39.000Z" itemprop="datePublished">9月 23 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
     </div>
   
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Interleaving String
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
-<p>For example,<br>Given:<br>s1 = “aabcc”,<br>s2 = “dbbca”,</p>
-<p>When s3 = “aadbbcbcac”, return true.<br>When s3 = “aadbbbaccc”, return false.</p>
-<figure class="highlight"><pre><div class="line">bool isInterleave(<span class="keyword">string</span> s1, <span class="keyword">string</span> s2, <span class="keyword">string</span> s3) {</div><div class="line">    <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;dp(s1.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="keyword">vector</span>&lt;bool&gt;(s2.<span class="keyword">size</span>()+<span class="number">1</span>,true));</div><div class="line">    <span class="comment">//从1开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.<span class="keyword">size</span>(); i++){</div><div class="line">        dp[i][<span class="number">0</span>] = (dp[i-<span class="number">1</span>][<span class="number">0</span>] && s1[i-<span class="number">1</span>] == s3[i-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">        dp[<span class="number">0</span>][j] = (dp[<span class="number">0</span>][j-<span class="number">1</span>] && s2[j-<span class="number">1</span>] == s3[j-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= s1.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">            dp[i][j] = (s1[i-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i-<span class="number">1</span>][j])</div><div class="line">                    || (s2[j-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i][j-<span class="number">1</span>]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s1.<span class="keyword">size</span>()][s2.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  <link rel="stylesheet" href="css/acl.css" type="text/css">
+  <title>Shizhou Liu</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
 
+<body>
+ <table align="center" border="0" cellpadding="0" cellspacing="0" width="730">
+  <tr>
+   <td align="center">
+	<div id="logo">Shizhou Liu</div>
+	<div id="phd"> PHD students in ShangHai Jiao Tong University(SJTU)</div>
+   </td>
+  </tr>
+  <tr align="center">
+   <td>
+	<div id="headerlinks">
+	 <a target="body" href="home.html">Home</a><img src="images/inv.gif " width="13px">| <img src="images/inv.gif" width="2px">
+         <!-- <a target="blank" href="CV.pdf">CV</a><img src="images/inv.gif " width="13px">| <img src="images/inv.gif" width="2px"> -->
+	 <a target="body" href="srt-resume.html">Resume</a><img src="images/inv.gif " width="13px">| <img src="images/inv.gif" width="2px">
+	 <a target="body" href="research.html">Research</a><img src="images/inv.gif " width="13px">| <img src="images/inv.gif" width="2px">
+	 <a target="body" href="teaching.html">Teaching</a><img src="images/inv.gif " width="13px">| <img src="images/inv.gif" width="2px">
+	 <a target="body" href="contact.html">Contact</a>
+	</div>
+   </td>
+  </tr>
+ </table>
+</body>
+
+</html> 
 
       
     </div>
@@ -210,7 +283,7 @@ boo">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="interleaving" data-title="Interleaving String" data-url="http://yoursite.com/2014/09/23/interleaving/"></div>
+	<div class="ds-thread" data-thread-key="undefined" data-title="" data-url="http://yoursite.com/homepage/header.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
