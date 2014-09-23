@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Minimum Path Sum | 码农求职记</title>
+  <title>Search Insert Position | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+  <meta name="description" content="Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+You may assume no duplicates in the array.
+He">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Minimum Path Sum">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/minimum/">
+<meta property="og:title" content="Search Insert Position">
+<meta property="og:url" content="http://yoursite.com/2014/09/22/searchIp/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta property="og:description" content="Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+You may assume no duplicates in the array.
+He">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minimum Path Sum">
-<meta name="twitter:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta name="twitter:title" content="Search Insert Position">
+<meta name="twitter:description" content="Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+You may assume no duplicates in the array.
+He">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -160,15 +163,15 @@ Note: You can only move either down or right at an">
 		</header>				
 	</div>
 </nav>
-      <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-searchIp" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/minimum/" class="article-date">
-  	<time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/22/searchIp/" class="article-date">
+  	<time datetime="2014-09-21T22:37:59.000Z" itemprop="datePublished">9月 22 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
 
     </div>
   
@@ -178,7 +181,7 @@ Note: You can only move either down or right at an">
         
   
     <h1 class="article-title" itemprop="name">
-      Minimum Path Sum
+      Search Insert Position
     </h1>
   
 
@@ -186,9 +189,10 @@ Note: You can only move either down or right at an">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
+        <p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p>Here are few examples.<br>[1,3,5,6], 5 → 2<br>[1,3,5,6], 2 → 1<br>[1,3,5,6], 7 → 4<br>[1,3,5,6], 0 → 0</p>
+<figure class="highlight"><pre><div class="line">int searchInsert(int <span class="type">A</span>[], int n, int target) {</div><div class="line">    int <span class="keyword">left</span> = <span class="number">0</span>, <span class="keyword">right</span> = n-<span class="number">1</span>;       </div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="keyword">left</span> &lt;= <span class="keyword">right</span>){<span class="comment">//有“=”</span></div><div class="line">        int mid = <span class="keyword">left</span> + (<span class="keyword">right</span> - <span class="keyword">left</span>)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="type">A</span>[mid] == target)  <span class="keyword">return</span> mid;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="type">A</span>[mid] &lt; target) <span class="keyword">left</span> = mid+<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">right</span> = mid-<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">left</span>;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -202,9 +206,18 @@ Note: You can only move either down or right at an">
     
 <nav id="article-nav">
   
+    <a href="/2014/09/22/2dMatrix/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Search a 2D Matrix
+        
+      </div>
+    </a>
   
-    <a href="/2014/09/23/interleaving/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Interleaving String</div>
+  
+    <a href="/2014/09/22/searchForRange/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Search for a Range</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -233,7 +246,7 @@ Note: You can only move either down or right at an">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="minimum" data-title="Minimum Path Sum" data-url="http://yoursite.com/2014/09/23/minimum/"></div>
+	<div class="ds-thread" data-thread-key="searchIp" data-title="Search Insert Position" data-url="http://yoursite.com/2014/09/22/searchIp/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

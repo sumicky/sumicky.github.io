@@ -3,20 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Minimum Path Sum | 码农求职记</title>
+  <title>Combinations | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+  <meta name="description" content="Given two integers n and k, return all possible combinations of k numbers out of 1 … n.
+For example,If n = 4 and k = 2, a solution is:
+[  [2,4],  [3,4],  [2,3],  [1,2],  [1,3],  [1,4],]
+void dfs(vecto">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Minimum Path Sum">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/minimum/">
+<meta property="og:title" content="Combinations">
+<meta property="og:url" content="http://yoursite.com/2014/09/22/combinations/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta property="og:description" content="Given two integers n and k, return all possible combinations of k numbers out of 1 … n.
+For example,If n = 4 and k = 2, a solution is:
+[  [2,4],  [3,4],  [2,3],  [1,2],  [1,3],  [1,4],]
+void dfs(vecto">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minimum Path Sum">
-<meta name="twitter:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta name="twitter:title" content="Combinations">
+<meta name="twitter:description" content="Given two integers n and k, return all possible combinations of k numbers out of 1 … n.
+For example,If n = 4 and k = 2, a solution is:
+[  [2,4],  [3,4],  [2,3],  [1,2],  [1,3],  [1,4],]
+void dfs(vecto">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -160,15 +166,15 @@ Note: You can only move either down or right at an">
 		</header>				
 	</div>
 </nav>
-      <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-combinations" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/minimum/" class="article-date">
-  	<time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/22/combinations/" class="article-date">
+  	<time datetime="2014-09-21T22:01:12.000Z" itemprop="datePublished">9月 22 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力枚举法/">暴力枚举法</a></li></ul>
 
     </div>
   
@@ -178,7 +184,7 @@ Note: You can only move either down or right at an">
         
   
     <h1 class="article-title" itemprop="name">
-      Minimum Path Sum
+      Combinations
     </h1>
   
 
@@ -186,9 +192,10 @@ Note: You can only move either down or right at an">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
+        <p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n.</p>
+<p>For example,<br>If n = 4 and k = 2, a solution is:</p>
+<p>[<br>  [2,4],<br>  [3,4],<br>  [2,3],<br>  [1,2],<br>  [1,3],<br>  [1,4],<br>]</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& num, <span class="keyword">int</span> k, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(path.size() == k){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;num.size(); i++){</div><div class="line">        path.push_back(num[i]);</div><div class="line">        dfs(num,k,i+<span class="number">1</span>,path,res);<span class="comment">//i+1，往后找</span></div><div class="line">        path.pop_back();</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combine(<span class="keyword">int</span> n, <span class="keyword">int</span> k) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>path;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>num;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) num.push_back(i+<span class="number">1</span>);</div><div class="line">    </div><div class="line">    dfs(num,k,<span class="number">0</span>,path,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -202,9 +209,18 @@ Note: You can only move either down or right at an">
     
 <nav id="article-nav">
   
+    <a href="/2014/09/22/letterCom/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Letter Combinations
+        
+      </div>
+    </a>
   
-    <a href="/2014/09/23/interleaving/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Interleaving String</div>
+  
+    <a href="/2014/09/22/permutatons2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Permutations II</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -233,7 +249,7 @@ Note: You can only move either down or right at an">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="minimum" data-title="Minimum Path Sum" data-url="http://yoursite.com/2014/09/23/minimum/"></div>
+	<div class="ds-thread" data-thread-key="combinations" data-title="Combinations" data-url="http://yoursite.com/2014/09/22/combinations/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

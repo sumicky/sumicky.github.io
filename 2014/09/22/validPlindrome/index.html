@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Minimum Path Sum | 码农求职记</title>
+  <title>Valid Palindrome | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+  <meta name="description" content="Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+For example,“A man, a plan, a canal: Panama” is a palindrome.“race a car” is not a palindr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Minimum Path Sum">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/minimum/">
+<meta property="og:title" content="Valid Palindrome">
+<meta property="og:url" content="http://yoursite.com/2014/09/22/validPlindrome/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta property="og:description" content="Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+For example,“A man, a plan, a canal: Panama” is a palindrome.“race a car” is not a palindr">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minimum Path Sum">
-<meta name="twitter:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta name="twitter:title" content="Valid Palindrome">
+<meta name="twitter:description" content="Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+For example,“A man, a plan, a canal: Panama” is a palindrome.“race a car” is not a palindr">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -160,15 +160,15 @@ Note: You can only move either down or right at an">
 		</header>				
 	</div>
 </nav>
-      <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-validPlindrome" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/minimum/" class="article-date">
-  	<time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/22/validPlindrome/" class="article-date">
+  	<time datetime="2014-09-21T22:16:03.000Z" itemprop="datePublished">9月 22 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
 
     </div>
   
@@ -178,7 +178,7 @@ Note: You can only move either down or right at an">
         
   
     <h1 class="article-title" itemprop="name">
-      Minimum Path Sum
+      Valid Palindrome
     </h1>
   
 
@@ -186,9 +186,11 @@ Note: You can only move either down or right at an">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
+        <p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome.</p>
+<p>Note:<br>Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+<p>For the purpose of this problem, we define empty string as valid palindrome.</p>
+<figure class="highlight"><pre><div class="line"><span class="built_in">bool</span> isPalindrome(<span class="built_in">string</span> s) {</div><div class="line">    transform(s.<span class="keyword">begin</span>(),s.<span class="keyword">end</span>(),s.<span class="keyword">begin</span>(),::tolower);</div><div class="line">    <span class="built_in">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>((s[i]&gt;=<span class="string">'a'</span> && s[i]&lt;=<span class="string">'z'</span>) || (s[i] &gt;= <span class="string">'0'</span> && s[i]&lt;=<span class="string">'9'</span>)){</div><div class="line">            res += s[i];  </div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="built_in">string</span> temp = res;</div><div class="line">    reverse(temp.<span class="keyword">begin</span>(),temp.<span class="keyword">end</span>());</div><div class="line">    </div><div class="line">    return temp == res;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -202,9 +204,18 @@ Note: You can only move either down or right at an">
     
 <nav id="article-nav">
   
+    <a href="/2014/09/22/implementstr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Implement strStr()
+        
+      </div>
+    </a>
   
-    <a href="/2014/09/23/interleaving/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Interleaving String</div>
+  
+    <a href="/2014/09/22/wordSearch/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Word Search</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -233,7 +244,7 @@ Note: You can only move either down or right at an">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="minimum" data-title="Minimum Path Sum" data-url="http://yoursite.com/2014/09/23/minimum/"></div>
+	<div class="ds-thread" data-thread-key="validPlindrome" data-title="Valid Palindrome" data-url="http://yoursite.com/2014/09/22/validPlindrome/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

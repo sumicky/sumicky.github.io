@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Minimum Path Sum | 码农求职记</title>
+  <title>Combination Sum | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+  <meta name="description" content="Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+The same repeated number may be chosen from C unlimited number of">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Minimum Path Sum">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/minimum/">
+<meta property="og:title" content="Combination Sum">
+<meta property="og:url" content="http://yoursite.com/2014/09/22/combinationSum/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta property="og:description" content="Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+The same repeated number may be chosen from C unlimited number of">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minimum Path Sum">
-<meta name="twitter:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta name="twitter:title" content="Combination Sum">
+<meta name="twitter:description" content="Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+The same repeated number may be chosen from C unlimited number of">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -160,15 +160,15 @@ Note: You can only move either down or right at an">
 		</header>				
 	</div>
 </nav>
-      <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-combinationSum" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/minimum/" class="article-date">
-  	<time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/22/combinationSum/" class="article-date">
+  	<time datetime="2014-09-21T22:10:08.000Z" itemprop="datePublished">9月 22 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
 
     </div>
   
@@ -178,7 +178,7 @@ Note: You can only move either down or right at an">
         
   
     <h1 class="article-title" itemprop="name">
-      Minimum Path Sum
+      Combination Sum
     </h1>
   
 
@@ -186,9 +186,10 @@ Note: You can only move either down or right at an">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
+        <p>Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
+<p>The same repeated number may be chosen from C unlimited number of times.</p>
+<p>Note:<br>All numbers (including target) will be positive integers.<br>Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set 2,3,6,7 and target 7,<br>A solution set is:<br>[7]<br>[2, 2, 3] </p>
+<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combinationSum(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &candidates, <span class="keyword">int</span> target) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>temp;</div><div class="line">    sort(candidates.begin(),candidates.end());</div><div class="line">    dfs(candidates,target,<span class="number">0</span>,temp,res);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& candidates, <span class="keyword">int</span> gap, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& temp, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(gap == <span class="number">0</span>){<span class="comment">//找到一个解</span></div><div class="line">        res.push_back(temp);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;candidates.size(); i++){<span class="comment">//皇帝轮流</span></div><div class="line">        <span class="keyword">if</span>(candidates[i] &gt; gap){<span class="comment">//超出了</span></div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        temp.push_back(candidates[i]);<span class="comment">//要了</span></div><div class="line">        dfs(candidates,gap-candidates[i],i,temp,res);<span class="comment">//至少要从本身开始，不然会重复,注意是i</span></div><div class="line">        temp.pop_back();</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       
@@ -202,9 +203,18 @@ Note: You can only move either down or right at an">
     
 <nav id="article-nav">
   
+    <a href="/2014/09/22/combinationsum2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Combination Sum II
+        
+      </div>
+    </a>
   
-    <a href="/2014/09/23/interleaving/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Interleaving String</div>
+  
+    <a href="/2014/09/22/queens2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">N-Queens II</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -233,7 +243,7 @@ Note: You can only move either down or right at an">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="minimum" data-title="Minimum Path Sum" data-url="http://yoursite.com/2014/09/23/minimum/"></div>
+	<div class="ds-thread" data-thread-key="combinationSum" data-title="Combination Sum" data-url="http://yoursite.com/2014/09/22/combinationSum/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

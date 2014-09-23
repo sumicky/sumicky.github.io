@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Minimum Path Sum | 码农求职记</title>
+  <title>Longest Palindromic Substring | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+  <meta name="description" content="Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+//可以改善效率的//这个复杂度为多少呢？stri">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Minimum Path Sum">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/minimum/">
+<meta property="og:title" content="Longest Palindromic Substring">
+<meta property="og:url" content="http://yoursite.com/2014/09/22/longestPalindromic/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta property="og:description" content="Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+//可以改善效率的//这个复杂度为多少呢？stri">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minimum Path Sum">
-<meta name="twitter:description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-Note: You can only move either down or right at an">
+<meta name="twitter:title" content="Longest Palindromic Substring">
+<meta name="twitter:description" content="Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+//可以改善效率的//这个复杂度为多少呢？stri">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -160,15 +160,15 @@ Note: You can only move either down or right at an">
 		</header>				
 	</div>
 </nav>
-      <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-longestPalindromic" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/minimum/" class="article-date">
-  	<time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/22/longestPalindromic/" class="article-date">
+  	<time datetime="2014-09-21T22:19:30.000Z" itemprop="datePublished">9月 22 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
 
     </div>
   
@@ -178,7 +178,7 @@ Note: You can only move either down or right at an">
         
   
     <h1 class="article-title" itemprop="name">
-      Minimum Path Sum
+      Longest Palindromic Substring
     </h1>
   
 
@@ -186,9 +186,8 @@ Note: You can only move either down or right at an">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
+        <p>Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//可以改善效率的</span></div><div class="line"><span class="comment">//这个复杂度为多少呢？</span></div><div class="line">string longestPalindrome(string s) {</div><div class="line">    <span class="keyword">if</span>(s.size() == <span class="number">0</span>)  <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> maxLength = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">index</span> = -<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        isPalindrome(i,i-<span class="number">1</span>,i+<span class="number">1</span>,<span class="keyword">index</span>,maxLength,s);</div><div class="line">        isPalindrome(i,i,i+<span class="number">1</span>,<span class="keyword">index</span>,maxLength,s);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(maxLength == -<span class="number">1</span>) <span class="keyword">return</span> s.substr(<span class="number">0</span>,<span class="number">1</span>);<span class="comment">//只有单个字母本身回文</span></div><div class="line">    <span class="keyword">return</span> s.substr(<span class="keyword">index</span>,maxLength);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> isPalindrome(<span class="keyword">int</span> center, <span class="keyword">int</span> start, <span class="keyword">int</span> end,<span class="keyword">int</span>& <span class="keyword">index</span>, <span class="keyword">int</span>& maxLength, const string& s){</div><div class="line">    <span class="keyword">while</span>(start &gt;=<span class="number">0</span> && end &lt; s.size() && s[start] == s[end]){</div><div class="line">        <span class="keyword">if</span>(end-start+<span class="number">1</span> &gt; maxLength){</div><div class="line">            <span class="keyword">index</span> = start;</div><div class="line">            maxLength = end-start+<span class="number">1</span>;</div><div class="line">        }</div><div class="line">        start--;</div><div class="line">        end++;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       
@@ -202,9 +201,18 @@ Note: You can only move either down or right at an">
     
 <nav id="article-nav">
   
+    <a href="/2014/09/22/regular/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Regular Expression Matching
+        
+      </div>
+    </a>
   
-    <a href="/2014/09/23/interleaving/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Interleaving String</div>
+  
+    <a href="/2014/09/22/addbinary/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">addbinary</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -233,7 +241,7 @@ Note: You can only move either down or right at an">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="minimum" data-title="Minimum Path Sum" data-url="http://yoursite.com/2014/09/23/minimum/"></div>
+	<div class="ds-thread" data-thread-key="longestPalindromic" data-title="Longest Palindromic Substring" data-url="http://yoursite.com/2014/09/22/longestPalindromic/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
