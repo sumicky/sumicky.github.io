@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.00px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.00px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.00px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.00px;">深度优先搜索</a>
+					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 11.67px;">查找</a><a href="/tags/栈和队列/" style="font-size: 11.67px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 13.33px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,290 @@
 	</div>
 </nav>
       
+  
+    <article id="post-largestRec" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/largestRec/" class="article-date">
+  	<time datetime="2014-09-21T22:33:26.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/largestRec/">Largest Rectangle in Histogram</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given $n$ non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.<br>For example, Given height = [2,1,5,6,2,3], return 10;</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> largestRectangleArea(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &height) {</div><div class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;</span>st;</div><div class="line">    <span class="keyword">int</span> maxArea = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> i =<span class="number">0</span>; </div><div class="line">    height.push_back(-<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(i&lt;height.size()){</div><div class="line">        <span class="keyword">if</span>(st.empty() || height[i] &gt;= height[st.top()]){</div><div class="line">            st.push(i++);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> temp = st.top();</div><div class="line">            st.pop();</div><div class="line">            <span class="comment">//注意这一点</span></div><div class="line">            maxArea = max(maxArea,height[temp]*(st.empty() ? i : i-st.top()-<span class="number">1</span>));<span class="comment">//{4,2,0,3,2,5}</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxArea;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-longvalidparent" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/longvalidparent/" class="article-date">
+  	<time datetime="2014-09-21T22:32:07.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/longvalidparent/">Longest Valid Parentheses</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string containing ‘(‘ and ‘)’, find the length of longest valid (well-formed) parentheses substring.<br>For “(()”, the longest valid parentheses substring is “()”, which has length = 2;<br>Another example is “)()())”, where the longest valid parentheses substring is “()()”, which has length = 4;</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> longestValidParentheses(string <span class="keyword">s</span>){</div><div class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</div><div class="line">    stack&lt;char&gt;st;</div><div class="line">    stack&lt;<span class="keyword">int</span>&gt;<span class="keyword">pos</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="keyword">s</span>.size(); i++){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">s</span>[i] == <span class="string">'('</span>){</div><div class="line">            st.<span class="keyword">push</span>(<span class="keyword">s</span>[i]);</div><div class="line">            <span class="keyword">pos</span>.<span class="keyword">push</span>(i);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">if</span>(!st.empty() && st.top() == <span class="string">'('</span>){</div><div class="line">                st.<span class="keyword">pop</span>();</div><div class="line">                <span class="keyword">pos</span>.<span class="keyword">pop</span>();</div><div class="line">                <span class="keyword">int</span> p = st.empty() ? -<span class="number">1</span> : <span class="keyword">pos</span>.top();</div><div class="line">                maxLength = max(maxLength, i-p);</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                st.<span class="keyword">push</span>(<span class="keyword">s</span>[i]);</div><div class="line">                <span class="keyword">pos</span>.<span class="keyword">push</span>(i);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxLength;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-lengthoflwt" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/lengthoflwt/" class="article-date">
+  	<time datetime="2014-09-21T22:30:27.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/lengthoflwt/">Length of Last Word</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string s consists of upper/lower-case alphabets and empty space characters ‘ ‘, return the length of last word in the string.</p>
+<p>If the last word does not exist, return 0.</p>
+<p>Note: A word is defined as a character sequence consists of non-space characters only.</p>
+<p>For example,<br>Given s = “Hello World”,<br>return 5.</p>
+<figure class="highlight"><pre><div class="line">int lengthOfLastWord(const <span class="keyword">char</span> *s) {</div><div class="line">    int <span class="function"><span class="keyword">end</span> = <span class="title">strlen</span>(<span class="title">s</span>)-<span class="title">1</span>;</span></div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="function"><span class="keyword">end</span> &gt;=<span class="title">0</span>  && <span class="title">s</span>[<span class="title">end</span>] == ' ') <span class="title">end</span>--;</span></div><div class="line">    <span class="keyword">if</span>(<span class="function"><span class="keyword">end</span> == -<span class="title">1</span>) <span class="title">return</span> <span class="title">0</span>;//空串</span></div><div class="line">    </div><div class="line">    int pos = <span class="function"><span class="keyword">end</span>;//保存尾端</span></div><div class="line">    <span class="keyword">while</span>(pos &gt;= <span class="number">0</span> && s[pos] != <span class="string">' '</span>){</div><div class="line">        pos<span class="comment">--;</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(pos == -<span class="number">1</span>) <span class="constant">return</span> <span class="function"><span class="keyword">end</span>+<span class="title">1</span>;</span></div><div class="line">    </div><div class="line">    <span class="constant">return</span> <span class="function"><span class="keyword">end</span>-pos;</span></div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-simplifypath" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/simplifypath/" class="article-date">
+  	<time datetime="2014-09-21T22:29:34.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/simplifypath/">Simplify Path</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an absolute path for a file (Unix-style), simplify it.</p>
+<p>For example,<br>path = “/home/“, =&gt; “/home”<br>path = “/a/./b/../../c/“, =&gt; “/c”<br>click to show corner cases.</p>
+<p>Corner Cases:<br>Did you consider the case where path = “/../“?<br>In this case, you should return “/“.<br>Another corner case is the path might contain multiple slashes ‘/‘ together, such as “/home//foo/“.<br>In this case, you should ignore redundant slashes and return “/home/foo”.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> simplifyPath(<span class="keyword">string</span> path) {</div><div class="line">    stack&lt;<span class="keyword">string</span>&gt;st;</div><div class="line">    <span class="keyword">string</span> name = <span class="string">""</span>;</div><div class="line">    path.append(<span class="number">1</span>,<span class="string">'/'</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;path.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(path[i] == <span class="string">'/'</span>){</div><div class="line">            <span class="keyword">if</span>(name.<span class="keyword">size</span>() != <span class="number">0</span>){<span class="comment">//name 有内容</span></div><div class="line">                <span class="keyword">if</span>(name == <span class="string">"."</span>){}</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(name == <span class="string">".."</span>){</div><div class="line">                    <span class="keyword">if</span>(!st.empty())st.pop();</div><div class="line">                }</div><div class="line">                <span class="keyword">else</span>{</div><div class="line">                    st.push(name);</div><div class="line">                }</div><div class="line">                name = <span class="string">""</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            name += path[i];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">if</span>(st.empty()) <span class="keyword">return</span> <span class="string">"/"</span>;</div><div class="line">    <span class="keyword">while</span>(!st.empty()){</div><div class="line">        res = <span class="string">"/"</span>+ st.top() + res;</div><div class="line">        st.pop();</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">    </div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-anagrams" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/anagrams/" class="article-date">
+  	<time datetime="2014-09-21T22:28:44.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/anagrams/">Anagrams</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an array of strings, return all groups of strings that are anagrams.</p>
+<p>Note: All inputs will be in lower-case.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//{dog,god,tea,eat,ssd}--{dog,god,tea,eat}</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> anagrams(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &strs) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>res;</div><div class="line">    <span class="keyword">if</span>(strs.size() == <span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span> isAnagram(strs.size(),<span class="keyword">false</span>);</div><div class="line">    <span class="stl_container"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;</span>mp;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;strs.size(); i++){</div><div class="line">        <span class="built_in">string</span> temp = strs[i];</div><div class="line">        sort(temp.begin(),temp.end());<span class="comment">//排序</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(mp.find(temp) == mp.end()){<span class="comment">//初次</span></div><div class="line">            mp[temp] = i;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            isAnagram[mp[temp]] = <span class="keyword">true</span>;</div><div class="line">            isAnagram[i] = <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;isAnagram.size(); i++){</div><div class="line">        <span class="keyword">if</span>(isAnagram[i]) res.push_back(strs[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-countandsay" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/countandsay/" class="article-date">
+  	<time datetime="2014-09-21T22:27:51.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/countandsay/">Count and Say</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The count-and-say sequence is the sequence of integers beginning as follows:<br>1, 11, 21, 1211, 111221, …</p>
+<p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.<br>Given an integer n, generate the nth sequence.</p>
+<p>Note: The sequence of integers will be represented as a string.</p>
+<figure class="highlight"><pre><div class="line">string countAndSay(<span class="keyword">int</span> n) {</div><div class="line">    string cur = <span class="string">"1"</span>;</div><div class="line">    string nxt = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++){</div><div class="line">        nxt = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;cur.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">count</span> = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(j+<span class="number">1</span>&lt;cur.<span class="keyword">size</span>() && cur[j] == cur[j+<span class="number">1</span>]){</div><div class="line">                <span class="keyword">count</span>++;</div><div class="line">                j++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,<span class="keyword">count</span>+<span class="string">'0'</span>);</div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,cur[j]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        cur = nxt;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cur;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-romantointerger" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -324,301 +608,9 @@
 
 
   
-    <article id="post-wildcard" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/wildcard/" class="article-date">
-  	<time datetime="2014-09-21T22:22:43.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/wildcard/">Wildcard Matching</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement wildcard pattern matching with support for ‘?’ and ‘*’.</p>
-<p>‘?’ Matches any single character.<br>‘*’ Matches any sequence of characters (including the empty sequence).</p>
-<p>The matching should cover the entire input string (not partial).</p>
-<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
-<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “<em>“) → true<br>isMatch(“aa”, “a</em>“) → true<br>isMatch(“ab”, “?<em>“) → true<br>isMatch(“aab”, “c</em>a*b”) → false</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> isMatch(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *p) {</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* ss = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* ps = <span class="literal">NULL</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(*s){</div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">'?'</span>  || *s == *p){</div><div class="line">            s++;p++;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">'*'</span>){</div><div class="line">            ss = s;</div><div class="line">            ps = p++;<span class="comment">//ps保存*的位置</span></div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(ps != <span class="literal">NULL</span>){</div><div class="line">            s = ++ss;</div><div class="line">            p = ps+<span class="number">1</span>;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(*p == <span class="string">'*'</span>) p++;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> *p == <span class="number">0</span>;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-regular" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/regular/" class="article-date">
-  	<time datetime="2014-09-21T22:21:50.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/regular/">Regular Expression Matching</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>‘.’ Matches any single character.<br>‘*’ Matches zero or more of the preceding element.</p>
-<p>The matching should cover the entire input string (not partial).</p>
-<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
-<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “a<em>“) → true<br>isMatch(“aa”, “.</em>“) → true<br>isMatch(“ab”, “.<em>“) → true<br>isMatch(“aab”, “c</em>a*b”) → true</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> isMatch(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *p) {</div><div class="line">    <span class="keyword">if</span>(*p == <span class="number">0</span>) <span class="keyword">return</span> *s == <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(*(p+<span class="number">1</span>) == <span class="string">'*'</span>){</div><div class="line">        <span class="keyword">while</span>((*p == <span class="string">'.'</span> && *s != <span class="number">0</span>)|| *p == *s){</div><div class="line">            <span class="keyword">if</span>(isMatch(s,p+<span class="number">2</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            s++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> isMatch(s,p+<span class="number">2</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span>{</div><div class="line">        <span class="keyword">if</span>((*p == <span class="string">'.'</span> && *s != <span class="number">0</span>)|| *p == *s)</div><div class="line">            <span class="keyword">return</span> isMatch(s+<span class="number">1</span>,p+<span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-longestPalindromic" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/longestPalindromic/" class="article-date">
-  	<time datetime="2014-09-21T22:19:30.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/longestPalindromic/">Longest Palindromic Substring</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//可以改善效率的</span></div><div class="line"><span class="comment">//这个复杂度为多少呢？</span></div><div class="line">string longestPalindrome(string s) {</div><div class="line">    <span class="keyword">if</span>(s.size() == <span class="number">0</span>)  <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> maxLength = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">index</span> = -<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        isPalindrome(i,i-<span class="number">1</span>,i+<span class="number">1</span>,<span class="keyword">index</span>,maxLength,s);</div><div class="line">        isPalindrome(i,i,i+<span class="number">1</span>,<span class="keyword">index</span>,maxLength,s);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(maxLength == -<span class="number">1</span>) <span class="keyword">return</span> s.substr(<span class="number">0</span>,<span class="number">1</span>);<span class="comment">//只有单个字母本身回文</span></div><div class="line">    <span class="keyword">return</span> s.substr(<span class="keyword">index</span>,maxLength);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> isPalindrome(<span class="keyword">int</span> center, <span class="keyword">int</span> start, <span class="keyword">int</span> end,<span class="keyword">int</span>& <span class="keyword">index</span>, <span class="keyword">int</span>& maxLength, const string& s){</div><div class="line">    <span class="keyword">while</span>(start &gt;=<span class="number">0</span> && end &lt; s.size() && s[start] == s[end]){</div><div class="line">        <span class="keyword">if</span>(end-start+<span class="number">1</span> &gt; maxLength){</div><div class="line">            <span class="keyword">index</span> = start;</div><div class="line">            maxLength = end-start+<span class="number">1</span>;</div><div class="line">        }</div><div class="line">        start--;</div><div class="line">        end++;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-addbinary" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/addbinary/" class="article-date">
-  	<time datetime="2014-09-21T22:18:49.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/addbinary/">addbinary</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given two binary strings, return their sum (also a binary string).</p>
-<p>For example,<br>a = “11”<br>b = “1”<br>Return “100”.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> addBinary(<span class="keyword">string</span> a, <span class="keyword">string</span> b) {</div><div class="line">    reverse(a.begin(),a.end());</div><div class="line">    reverse(b.begin(),b.end());</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> n = <span class="keyword">max</span>(a.<span class="keyword">size</span>(),b.<span class="keyword">size</span>());</div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">       <span class="keyword">int</span> ai = i &gt;= a.<span class="keyword">size</span>() ? <span class="number">0</span> : a[i]-<span class="string">'0'</span>;</div><div class="line">       <span class="keyword">int</span> bi = i &gt;= b.<span class="keyword">size</span>() ? <span class="number">0</span> : b[i]-<span class="string">'0'</span>;</div><div class="line">       </div><div class="line">       res.append(<span class="number">1</span>,(ai+bi+ret)<span class="variable">%2</span>+<span class="string">'0'</span>);</div><div class="line">       ret = (ai+bi+ret)/<span class="number">2</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(ret == <span class="number">1</span>) res.append(<span class="number">1</span>,<span class="string">'1'</span>);</div><div class="line">    </div><div class="line">    reverse(res.begin(),res.end());</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-atoi" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/atoi/" class="article-date">
-  	<time datetime="2014-09-21T22:17:59.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/atoi/">String to Integer (atoi)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement atoi to convert a string to an integer.</p>
-<p>Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
-<p>Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
-<p>spoilers alert… click to show requirements for atoi.</p>
-<p>Requirements for atoi:<br>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
-<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
-<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
-<p>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> atoi(const <span class="keyword">char</span> *<span class="keyword">str</span>) {</div><div class="line">    <span class="keyword">while</span>(*<span class="keyword">str</span> == <span class="string">' '</span>) <span class="keyword">str</span>++;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> symbol = <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(*<span class="keyword">str</span> == <span class="string">'-'</span>){</div><div class="line">        symbol = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(*<span class="keyword">str</span> == <span class="string">'+'</span>){</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>; </div><div class="line">    <span class="keyword">while</span>(*<span class="keyword">str</span> &gt;= <span class="string">'0'</span> && *<span class="keyword">str</span> &lt;= <span class="string">'9'</span>){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &gt; INT_MAX/<span class="number">10</span> || (<span class="keyword">sum</span> == INT_MAX/<span class="number">10</span> && (*<span class="keyword">str</span>-<span class="string">'0'</span>) &gt; INT_MAX%<span class="number">10</span>) )</div><div class="line">            <span class="keyword">return</span> symbol == -<span class="number">1</span> ? INT_MIN : INT_MAX;</div><div class="line">        <span class="keyword">sum</span> = <span class="keyword">sum</span>*<span class="number">10</span> + (*<span class="keyword">str</span> - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">sum</span>*symbol;</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-implementstr" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/implementstr/" class="article-date">
-  	<time datetime="2014-09-21T22:16:45.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/implementstr/">Implement strStr()</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement strStr().</p>
-<p>Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//暴力法，复杂度O(M*N)</span></div><div class="line"><span class="keyword">char</span>* strStr(<span class="keyword">const</span> <span class="keyword">char</span>* haystack, <span class="keyword">const</span> <span class="keyword">char</span>* needle){</div><div class="line">    <span class="keyword">int</span> hayLen = <span class="built_in">strlen</span>(haystack);</div><div class="line">    <span class="keyword">int</span> needLen = <span class="built_in">strlen</span>(needle);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;= hayLen-needLen; i++){</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p1 = haystack+i;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p2 = needle;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(*p1 && *p2 && *p1 == *p2){</div><div class="line">            p1++;</div><div class="line">            p2++;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p2 == <span class="string">'\0'</span>) <span class="keyword">return</span> <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(haystack+i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 

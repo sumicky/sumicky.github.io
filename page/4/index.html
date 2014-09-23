@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.00px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.00px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.00px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.00px;">深度优先搜索</a>
+					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 11.67px;">查找</a><a href="/tags/栈和队列/" style="font-size: 11.67px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 13.33px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,298 @@
 	</div>
 </nav>
       
+  
+    <article id="post-wildcard" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/wildcard/" class="article-date">
+  	<time datetime="2014-09-21T22:22:43.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/wildcard/">Wildcard Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Implement wildcard pattern matching with support for ‘?’ and ‘*’.</p>
+<p>‘?’ Matches any single character.<br>‘*’ Matches any sequence of characters (including the empty sequence).</p>
+<p>The matching should cover the entire input string (not partial).</p>
+<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
+<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “<em>“) → true<br>isMatch(“aa”, “a</em>“) → true<br>isMatch(“ab”, “?<em>“) → true<br>isMatch(“aab”, “c</em>a*b”) → false</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> isMatch(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *p) {</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* ss = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* ps = <span class="literal">NULL</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(*s){</div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">'?'</span>  || *s == *p){</div><div class="line">            s++;p++;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">'*'</span>){</div><div class="line">            ss = s;</div><div class="line">            ps = p++;<span class="comment">//ps保存*的位置</span></div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(ps != <span class="literal">NULL</span>){</div><div class="line">            s = ++ss;</div><div class="line">            p = ps+<span class="number">1</span>;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(*p == <span class="string">'*'</span>) p++;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> *p == <span class="number">0</span>;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-regular" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/regular/" class="article-date">
+  	<time datetime="2014-09-21T22:21:50.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/regular/">Regular Expression Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>‘.’ Matches any single character.<br>‘*’ Matches zero or more of the preceding element.</p>
+<p>The matching should cover the entire input string (not partial).</p>
+<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
+<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “a<em>“) → true<br>isMatch(“aa”, “.</em>“) → true<br>isMatch(“ab”, “.<em>“) → true<br>isMatch(“aab”, “c</em>a*b”) → true</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> isMatch(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *p) {</div><div class="line">    <span class="keyword">if</span>(*p == <span class="number">0</span>) <span class="keyword">return</span> *s == <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(*(p+<span class="number">1</span>) == <span class="string">'*'</span>){</div><div class="line">        <span class="keyword">while</span>((*p == <span class="string">'.'</span> && *s != <span class="number">0</span>)|| *p == *s){</div><div class="line">            <span class="keyword">if</span>(isMatch(s,p+<span class="number">2</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            s++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> isMatch(s,p+<span class="number">2</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span>{</div><div class="line">        <span class="keyword">if</span>((*p == <span class="string">'.'</span> && *s != <span class="number">0</span>)|| *p == *s)</div><div class="line">            <span class="keyword">return</span> isMatch(s+<span class="number">1</span>,p+<span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-longestPalindromic" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/longestPalindromic/" class="article-date">
+  	<time datetime="2014-09-21T22:19:30.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/longestPalindromic/">Longest Palindromic Substring</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//可以改善效率的</span></div><div class="line"><span class="comment">//这个复杂度为多少呢？</span></div><div class="line">string longestPalindrome(string s) {</div><div class="line">    <span class="keyword">if</span>(s.size() == <span class="number">0</span>)  <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> maxLength = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">index</span> = -<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        isPalindrome(i,i-<span class="number">1</span>,i+<span class="number">1</span>,<span class="keyword">index</span>,maxLength,s);</div><div class="line">        isPalindrome(i,i,i+<span class="number">1</span>,<span class="keyword">index</span>,maxLength,s);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(maxLength == -<span class="number">1</span>) <span class="keyword">return</span> s.substr(<span class="number">0</span>,<span class="number">1</span>);<span class="comment">//只有单个字母本身回文</span></div><div class="line">    <span class="keyword">return</span> s.substr(<span class="keyword">index</span>,maxLength);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> isPalindrome(<span class="keyword">int</span> center, <span class="keyword">int</span> start, <span class="keyword">int</span> end,<span class="keyword">int</span>& <span class="keyword">index</span>, <span class="keyword">int</span>& maxLength, const string& s){</div><div class="line">    <span class="keyword">while</span>(start &gt;=<span class="number">0</span> && end &lt; s.size() && s[start] == s[end]){</div><div class="line">        <span class="keyword">if</span>(end-start+<span class="number">1</span> &gt; maxLength){</div><div class="line">            <span class="keyword">index</span> = start;</div><div class="line">            maxLength = end-start+<span class="number">1</span>;</div><div class="line">        }</div><div class="line">        start--;</div><div class="line">        end++;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-addbinary" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/addbinary/" class="article-date">
+  	<time datetime="2014-09-21T22:18:49.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/addbinary/">addbinary</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given two binary strings, return their sum (also a binary string).</p>
+<p>For example,<br>a = “11”<br>b = “1”<br>Return “100”.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> addBinary(<span class="keyword">string</span> a, <span class="keyword">string</span> b) {</div><div class="line">    reverse(a.begin(),a.end());</div><div class="line">    reverse(b.begin(),b.end());</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> n = <span class="keyword">max</span>(a.<span class="keyword">size</span>(),b.<span class="keyword">size</span>());</div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">       <span class="keyword">int</span> ai = i &gt;= a.<span class="keyword">size</span>() ? <span class="number">0</span> : a[i]-<span class="string">'0'</span>;</div><div class="line">       <span class="keyword">int</span> bi = i &gt;= b.<span class="keyword">size</span>() ? <span class="number">0</span> : b[i]-<span class="string">'0'</span>;</div><div class="line">       </div><div class="line">       res.append(<span class="number">1</span>,(ai+bi+ret)<span class="variable">%2</span>+<span class="string">'0'</span>);</div><div class="line">       ret = (ai+bi+ret)/<span class="number">2</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(ret == <span class="number">1</span>) res.append(<span class="number">1</span>,<span class="string">'1'</span>);</div><div class="line">    </div><div class="line">    reverse(res.begin(),res.end());</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-atoi" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/atoi/" class="article-date">
+  	<time datetime="2014-09-21T22:17:59.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/atoi/">String to Integer (atoi)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Implement atoi to convert a string to an integer.</p>
+<p>Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
+<p>Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
+<p>spoilers alert… click to show requirements for atoi.</p>
+<p>Requirements for atoi:<br>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> atoi(const <span class="keyword">char</span> *<span class="keyword">str</span>) {</div><div class="line">    <span class="keyword">while</span>(*<span class="keyword">str</span> == <span class="string">' '</span>) <span class="keyword">str</span>++;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> symbol = <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(*<span class="keyword">str</span> == <span class="string">'-'</span>){</div><div class="line">        symbol = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(*<span class="keyword">str</span> == <span class="string">'+'</span>){</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>; </div><div class="line">    <span class="keyword">while</span>(*<span class="keyword">str</span> &gt;= <span class="string">'0'</span> && *<span class="keyword">str</span> &lt;= <span class="string">'9'</span>){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &gt; INT_MAX/<span class="number">10</span> || (<span class="keyword">sum</span> == INT_MAX/<span class="number">10</span> && (*<span class="keyword">str</span>-<span class="string">'0'</span>) &gt; INT_MAX%<span class="number">10</span>) )</div><div class="line">            <span class="keyword">return</span> symbol == -<span class="number">1</span> ? INT_MIN : INT_MAX;</div><div class="line">        <span class="keyword">sum</span> = <span class="keyword">sum</span>*<span class="number">10</span> + (*<span class="keyword">str</span> - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">sum</span>*symbol;</div><div class="line">    </div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-implementstr" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/implementstr/" class="article-date">
+  	<time datetime="2014-09-21T22:16:45.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/implementstr/">Implement strStr()</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Implement strStr().</p>
+<p>Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//暴力法，复杂度O(M*N)</span></div><div class="line"><span class="keyword">char</span>* strStr(<span class="keyword">const</span> <span class="keyword">char</span>* haystack, <span class="keyword">const</span> <span class="keyword">char</span>* needle){</div><div class="line">    <span class="keyword">int</span> hayLen = <span class="built_in">strlen</span>(haystack);</div><div class="line">    <span class="keyword">int</span> needLen = <span class="built_in">strlen</span>(needle);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;= hayLen-needLen; i++){</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p1 = haystack+i;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p2 = needle;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(*p1 && *p2 && *p1 == *p2){</div><div class="line">            p1++;</div><div class="line">            p2++;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p2 == <span class="string">'\0'</span>) <span class="keyword">return</span> <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(haystack+i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-validPlindrome" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -331,305 +623,9 @@
 
 
   
-    <article id="post-combinationSum" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/combinationSum/" class="article-date">
-  	<time datetime="2014-09-21T22:10:08.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/combinationSum/">Combination Sum</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
-<p>The same repeated number may be chosen from C unlimited number of times.</p>
-<p>Note:<br>All numbers (including target) will be positive integers.<br>Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set 2,3,6,7 and target 7,<br>A solution set is:<br>[7]<br>[2, 2, 3] </p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combinationSum(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &candidates, <span class="keyword">int</span> target) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>temp;</div><div class="line">    sort(candidates.begin(),candidates.end());</div><div class="line">    dfs(candidates,target,<span class="number">0</span>,temp,res);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& candidates, <span class="keyword">int</span> gap, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& temp, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(gap == <span class="number">0</span>){<span class="comment">//找到一个解</span></div><div class="line">        res.push_back(temp);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;candidates.size(); i++){<span class="comment">//皇帝轮流</span></div><div class="line">        <span class="keyword">if</span>(candidates[i] &gt; gap){<span class="comment">//超出了</span></div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        temp.push_back(candidates[i]);<span class="comment">//要了</span></div><div class="line">        dfs(candidates,gap-candidates[i],i,temp,res);<span class="comment">//至少要从本身开始，不然会重复,注意是i</span></div><div class="line">        temp.pop_back();</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-queens2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/queens2/" class="article-date">
-  	<time datetime="2014-09-21T22:08:51.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/queens2/">N-Queens II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Follow up for N-Queens problem.</p>
-<p>Now, instead outputting board configurations, return the total number of distinct solutions.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//代码跟上题基本完全一样</span></div><div class="line"><span class="keyword">int</span> totalNQueens(<span class="keyword">int</span> n) {</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x(n,<span class="number">0</span>);</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    dfs(<span class="number">0</span>,n,x,count);</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">bool</span> isValid(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x, <span class="keyword">int</span> row, <span class="keyword">int</span> col){<span class="comment">//判断点是否合法,与之前的比较即可0-row-1</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">int</span> prevRow = i, prevCol = x[i];</div><div class="line">        <span class="keyword">if</span>(prevCol == col) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同列</span></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(prevCol - col) == <span class="built_in">abs</span>(prevRow - row)) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同对角线</span></div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//4个规则：不同行，同列</span></div><div class="line"><span class="comment">//depth：深度</span></div><div class="line"><span class="comment">//x[i]: 第i行皇后位置x[i]</span></div><div class="line"><span class="keyword">void</span> dfs(<span class="keyword">int</span> depth, <span class="keyword">int</span> maxDepth, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x,<span class="keyword">int</span>& count){</div><div class="line">    <span class="keyword">if</span>(depth == maxDepth){<span class="comment">//找到解</span></div><div class="line">        count++;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;maxDepth; i++){<span class="comment">//每个位置均尝试</span></div><div class="line">        <span class="keyword">if</span>(isValid(x,depth,i)){</div><div class="line">            x[depth] = i;</div><div class="line">            dfs(depth+<span class="number">1</span>,maxDepth,x,count);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-queens" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/queens/" class="article-date">
-  	<time datetime="2014-09-21T22:07:34.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/queens/">N-Queens</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.</p>
-<p>Given an integer n, return all distinct solutions to the n-queens puzzle.</p>
-<p>Each solution contains a distinct board configuration of the n-queens’ placement, where ‘Q’ and ‘.’ both indicate a queen and an empty space respectively.</p>
-<p>For example,<br>There exist two distinct solutions to the 4-queens puzzle:</p>
-<p>[<br> [“.Q..”,  // Solution 1<br>  “…Q”,<br>  “Q…”,<br>  “..Q.”],</p>
-<p> [“..Q.”,  // Solution 2<br>  “Q…”,<br>  “…Q”,<br>  “.Q..”]<br>]</p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span> solveNQueens(<span class="keyword">int</span> n) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x(n,<span class="number">0</span>);</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>res;</div><div class="line">    </div><div class="line">    dfs(<span class="number">0</span>,n,x,res);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">bool</span> isValid(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x, <span class="keyword">int</span> row, <span class="keyword">int</span> col){<span class="comment">//判断点是否合法,与之前的比较即可0-row-1</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">int</span> prevRow = i, prevCol = x[i];</div><div class="line">        <span class="keyword">if</span>(prevCol == col) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同列</span></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(prevCol - col) == <span class="built_in">abs</span>(prevRow - row)) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同对角线</span></div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//4个规则：不同行，同列</span></div><div class="line"><span class="comment">//depth：深度</span></div><div class="line"><span class="comment">//x[i]: 第i行皇后位置x[i]</span></div><div class="line"><span class="keyword">void</span> dfs(<span class="keyword">int</span> depth, <span class="keyword">int</span> maxDepth, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(depth == maxDepth){<span class="comment">//找到解</span></div><div class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>t;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;maxDepth; i++){<span class="comment">//逐行来</span></div><div class="line">            <span class="keyword">int</span> j = <span class="number">0</span>;</div><div class="line">            <span class="built_in">string</span> tmp = <span class="string">""</span>;</div><div class="line">            <span class="keyword">for</span>(; j&lt;x[i]; j++) tmp += <span class="string">'.'</span>;</div><div class="line">            tmp += <span class="string">'Q'</span>;</div><div class="line">            <span class="keyword">for</span>(j = x[i]+<span class="number">1</span>; j&lt;maxDepth; j++) tmp += <span class="string">'.'</span>;</div><div class="line">            </div><div class="line">            t.push_back(tmp);</div><div class="line">        }</div><div class="line">        </div><div class="line">        res.push_back(t);<span class="comment">//一种</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;maxDepth; i++){<span class="comment">//每个位置均尝试</span></div><div class="line">        <span class="keyword">if</span>(isValid(x,depth,i)){</div><div class="line">            x[depth] = i;</div><div class="line">            dfs(depth+<span class="number">1</span>,maxDepth,x,res);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-uniquePath2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/uniquePath2/" class="article-date">
-  	<time datetime="2014-09-21T22:06:29.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/uniquePath2/">Unique Paths II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Follow up for “Unique Paths”:</p>
-<p>Now consider if some obstacles are added to the grids. How many unique paths would there be?</p>
-<p>An obstacle and empty space is marked as 1 and 0 respectively in the grid.</p>
-<p>For example,<br>There is one obstacle in the middle of a 3x3 grid as illustrated below.</p>
-<p>[<br>  [0,0,0],<br>  [0,1,0],<br>  [0,0,0]<br>]<br>The total number of unique paths is 2.</p>
-<p>Note: m and n will be at most 100.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> uniquePathsWithObstacles(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> &obstacleGrid) {</div><div class="line">    <span class="keyword">int</span> m = obstacleGrid.size();</div><div class="line">    <span class="keyword">int</span> n = obstacleGrid[<span class="number">0</span>].size();</div><div class="line">    </div><div class="line">    <span class="comment">//先处理第一行第一列</span></div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));</div><div class="line">    </div><div class="line">    </div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = obstacleGrid[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">1</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//第一列</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">       <span class="keyword">if</span>(obstacleGrid[i][<span class="number">0</span>] == <span class="number">1</span>){</div><div class="line">           dp[i][<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">       }</div><div class="line">       <span class="keyword">else</span>  dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>];</div><div class="line">    }</div><div class="line">    <span class="comment">//第一行</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">if</span>(obstacleGrid[<span class="number">0</span>][i] == <span class="number">1</span>){</div><div class="line">            dp[<span class="number">0</span>][i] = <span class="number">0</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            <span class="keyword">if</span>(obstacleGrid[i][j] == <span class="number">1</span>) dp[i][j] = <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span>    dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-uniquePath" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/uniquePath/" class="article-date">
-  	<time datetime="2014-09-21T22:04:54.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/uniquePath/">Unique Paths</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
-<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
-<p>How many possible unique paths are there?</p>
-<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
-<p>Note: m and n will be at most 100.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//dp 更合适</span></div><div class="line"><span class="keyword">int</span> uniquePaths(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">//dp f(m,n) = f(m,n-1) + f(m-1,n)</span></div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> || n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));<span class="comment">//初始化</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)  dp[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)  dp[<span class="number">0</span>][i] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-palindrome" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/palindrome/" class="article-date">
-  	<time datetime="2014-09-21T22:03:38.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/palindrome/">Palindrome Partitioning</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
-<p>Return all possible palindrome partitioning of s.</p>
-<p>For example, given s = “aab”,<br>Return</p>
-<p>  [<br>    [“aa”,”b”],<br>    [“a”,”a”,”b”]<br>  ]</p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span> partition(<span class="built_in">string</span> s){</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>path;</div><div class="line">    </div><div class="line">    dfs(s,path,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(s.size() == <span class="number">0</span>){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){<span class="comment">//每个都可以当end</span></div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = i;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left &lt; right){</div><div class="line">            <span class="keyword">if</span>(s[left] == s[right]){</div><div class="line">                left++;</div><div class="line">                right--;</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(left &gt;= right){<span class="comment">//有回文，前面</span></div><div class="line">            path.push_back(s.substr(<span class="number">0</span>,i+<span class="number">1</span>));<span class="comment">//i+1个字符</span></div><div class="line">            dfs(s.substr(i+<span class="number">1</span>),path,res);</div><div class="line">            path.pop_back();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
