@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>码农求职记</title>
+  <title>Archives | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="码农求职记">
-<meta property="og:url" content="http://yoursite.com/">
+<meta property="og:url" content="http://yoursite.com/archives/">
 <meta property="og:site_name" content="码农求职记">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -135,54 +135,43 @@
 </nav>
       
   
-    <article id="post-interleaving" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2014/09/23/interleaving/" class="article-date">
-  	<time datetime="2014-09-23T13:17:11.000Z" itemprop="datePublished">9月 23 2014</time>
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2014" class="archive-year">2014</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2014/09/23/interleaving/" class="archive-article-date">
+  	<time datetime="2014-09-23T13:17:11.000Z" itemprop="datePublished">9月 23</time>
 </a>
-      
-      
+	      	<br>
+	      	
+	    	
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
 
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    	</div>
+    	
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/interleaving/">Interleaving String</a>
+      <a class="archive-article-title" href="/2014/09/23/interleaving/">Interleaving String</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
-<p>For example,<br>Given:<br>s1 = “aabcc”,<br>s2 = “dbbca”,</p>
-<p>When s3 = “aadbbcbcac”, return true.<br>When s3 = “aadbbbaccc”, return false.</p>
-<figure class="highlight"><pre><div class="line">bool isInterleave(<span class="keyword">string</span> s1, <span class="keyword">string</span> s2, <span class="keyword">string</span> s3) {</div><div class="line">    <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> false;</div><div class="line">    </div><div class="line">    <span class="comment">//dp[i][j]:表示s1[0,i]和s2[0,j],匹配s3[0,i+j]</span></div><div class="line">    <span class="comment">//如果s1的最后一个字符匹配s3的最后一个字符,f[i][j] = f[i-1][j]</span></div><div class="line">    <span class="comment">//同理s2的最后一个字符匹配s3的最后一个字符,f[i][j] = f[i][j-1]</span></div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;dp(s1.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="keyword">vector</span>&lt;bool&gt;(s2.<span class="keyword">size</span>()+<span class="number">1</span>,true));</div><div class="line">    </div><div class="line">    <span class="comment">//从1开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.<span class="keyword">size</span>(); i++){</div><div class="line">        dp[i][<span class="number">0</span>] = (dp[i-<span class="number">1</span>][<span class="number">0</span>] && s1[i-<span class="number">1</span>] == s3[i-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">        dp[<span class="number">0</span>][j] = (dp[<span class="number">0</span>][j-<span class="number">1</span>] && s2[j-<span class="number">1</span>] == s3[j-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= s1.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">            dp[i][j] = (s1[i-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i-<span class="number">1</span>][j])</div><div class="line">                    || (s2[j-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i][j-<span class="number">1</span>]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s1.<span class="keyword">size</span>()][s2.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
+    </header>
   </div>
-  
 </article>
-
-
-
-
-
-
   
+  
+    </div></section>
   
 
       <footer id="footer">
