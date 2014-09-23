@@ -811,7 +811,7 @@ a {
 .article-entry li code {
   padding: 0px 5px;
   margin: 0 2px;
-  background: #eee;
+  background: #fff;
   border: 1px solid #ccc;
   font-family: "Courier New", Menlo, Monaco, "Andale Mono", "lucida console", monospace;
 }
