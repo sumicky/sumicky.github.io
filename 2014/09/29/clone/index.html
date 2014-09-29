@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Jump Game II | 码农求职记</title>
+  <title>Clone Graph | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given an array of non-negative integers, you are initially positioned at the first index of the array.
-Each element in the array represents your maximum jump length at that position.
-Your goal is to r">
+  <meta name="description" content="Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+OJ’s undirected graph serialization:Nodes are labeled uniquely.
+We use # as a separator for each node, a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jump Game II">
-<meta property="og:url" content="http://yoursite.com/2014/09/24/jumpgame2/">
+<meta property="og:title" content="Clone Graph">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/clone/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given an array of non-negative integers, you are initially positioned at the first index of the array.
-Each element in the array represents your maximum jump length at that position.
-Your goal is to r">
+<meta property="og:description" content="Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+OJ’s undirected graph serialization:Nodes are labeled uniquely.
+We use # as a separator for each node, a">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jump Game II">
-<meta name="twitter:description" content="Given an array of non-negative integers, you are initially positioned at the first index of the array.
-Each element in the array represents your maximum jump length at that position.
-Your goal is to r">
+<meta name="twitter:title" content="Clone Graph">
+<meta name="twitter:description" content="Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+OJ’s undirected graph serialization:Nodes are labeled uniquely.
+We use # as a separator for each node, a">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -141,15 +141,15 @@ Your goal is to r">
 		</header>				
 	</div>
 </nav>
-      <article id="post-jumpgame2" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-clone" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/24/jumpgame2/" class="article-date">
-  	<time datetime="2014-09-23T16:04:50.000Z" itemprop="datePublished">9月 24 2014</time>
+      <a href="/2014/09/29/clone/" class="article-date">
+  	<time datetime="2014-09-29T02:46:57.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
 
     </div>
   
@@ -159,7 +159,7 @@ Your goal is to r">
         
   
     <h1 class="article-title" itemprop="name">
-      Jump Game II
+      Clone Graph
     </h1>
   
 
@@ -167,12 +167,22 @@ Your goal is to r">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
-<p>Each element in the array represents your maximum jump length at that position.</p>
-<p>Your goal is to reach the last index in the minimum number of jumps.</p>
-<p>For example:<br>Given array A = [2,3,1,1,4]</p>
-<p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> jump(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//不满足要求</span></div><div class="line">  </div><div class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>, maxPos = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">if</span>(A[<span class="number">0</span>] &gt;= n-<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="comment">//若相等，说明到不了终点</span></div><div class="line">    <span class="keyword">while</span>(cur != maxPos){<span class="comment">//每一步都尝试走最大，并在区间内继续寻找，不漏过一个值</span></div><div class="line">       ret++;</div><div class="line">       <span class="keyword">int</span> temp = maxPos;</div><div class="line">       </div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=cur+<span class="number">1</span>; i&lt;=temp; i++){</div><div class="line">           <span class="keyword">if</span>(A[i]+i &gt;= maxPos){</div><div class="line">               maxPos = A[i] + i;</div><div class="line">               cur = i;</div><div class="line">           }</div><div class="line">           <span class="keyword">if</span>(maxPos &gt;= n-<span class="number">1</span>){</div><div class="line">               <span class="keyword">if</span>(cur == n-<span class="number">1</span>)<span class="keyword">return</span> ret;</div><div class="line">               <span class="keyword">else</span> <span class="keyword">return</span> ret+<span class="number">1</span>;</div><div class="line">           }</div><div class="line">       }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;<span class="comment">//到达不了终点</span></div><div class="line">}</div></pre></figure>
+        <p>Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.</p>
+<p>OJ’s undirected graph serialization:<br>Nodes are labeled uniquely.</p>
+<p>We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.<br>As an example, consider the serialized graph {0,1,2#1,2#2,2}.</p>
+<p>The graph has a total of three nodes, and therefore contains three parts as separated by #.</p>
+<p>First node is labeled as 0. Connect node 0 to both nodes 1 and 2.<br>Second node is labeled as 1. Connect node 1 to node 2.<br>Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.<br>Visually, the graph looks like the following:</p>
+<pre><code>   1
+  / <span class="command">\
+</span> /   <span class="command">\
+</span>0 --- 2
+     / <span class="command">\
+</span>     <span class="command">\_</span>/
+</code></pre><figure class="highlight"><pre><div class="line"><span class="keyword">*</span> Definition for undirected graph.</div><div class="line"><span class="keyword">*</span> struct UndirectedGraphNode {</div><div class="line"><span class="keyword">*</span>     int label;</div><div class="line"><span class="keyword">*</span>     vector<span class="variable">&lt;UndirectedGraphNode *&gt;</span> neighbors;</div><div class="line"><span class="keyword">*</span>     UndirectedGraphNode(int x) : label(x) {};</div><div class="line"><span class="keyword">*</span> };</div><div class="line"><span class="keyword">*</span>/</div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="comment">//广度优先遍历</span></div><div class="line">UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">NULL</span>) <span class="keyword">return</span> <span class="keyword">NULL</span>;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* ret = <span class="keyword">new</span> UndirectedGraphNode(node<span class="variable">-&gt;label</span>);</div><div class="line">    </div><div class="line">    queue&lt;UndirectedGraphNode* &gt;que;</div><div class="line">    que.push(node);</div><div class="line">    </div><div class="line">    <span class="comment">//避免重复建立节点</span></div><div class="line">    map&lt;UndirectedGraphNode*,UndirectedGraphNode*&gt;mp;</div><div class="line">    mp[node] = ret;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* tmp = <span class="keyword">NULL</span>, *nxt = <span class="keyword">NULL</span>;</div><div class="line">    <span class="keyword">while</span>(!que.<span class="keyword">empty</span>()){</div><div class="line">        tmp = que.front();</div><div class="line">        que.pop();</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;(tmp<span class="variable">-&gt;neighbors</span>).size();i++){</div><div class="line">            nxt = (tmp<span class="variable">-&gt;neighbors</span>)[i];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(mp.find(nxt) == mp.end()){<span class="comment">//不存在</span></div><div class="line">                mp[nxt] = <span class="keyword">new</span> UndirectedGraphNode(nxt<span class="variable">-&gt;label</span>);</div><div class="line">                que.push(nxt);</div><div class="line">            }</div><div class="line">            </div><div class="line">            (mp[tmp]<span class="variable">-&gt;neighbors</span>).push_back(mp[nxt]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -186,18 +196,9 @@ Your goal is to r">
     
 <nav id="article-nav">
   
-    <a href="/2014/09/24/best1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Best Time to Buy and Sell Stock
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/24/jumpgame1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Jump Game</div>
+    <a href="/2014/09/29/wordbreak2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Word Break II</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -226,7 +227,7 @@ Your goal is to r">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="jumpgame2" data-title="Jump Game II" data-url="http://yoursite.com/2014/09/24/jumpgame2/"></div>
+	<div class="ds-thread" data-thread-key="clone" data-title="Clone Graph" data-url="http://yoursite.com/2014/09/29/clone/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

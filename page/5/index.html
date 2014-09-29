@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 10.00px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.00px;">动态规划</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.00px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.00px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.00px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 14.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,55 @@
 	</div>
 </nav>
       
+  
+    <article id="post-wordSearch" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/wordSearch/" class="article-date">
+  	<time datetime="2014-09-21T22:13:08.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/wordSearch/">Word Search</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a 2D board and a word, find if the word exists in the grid.</p>
+<p>The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
+<p>For example,<br>Given board =</p>
+<p>[<br>  [“ABCE”],<br>  [“SFCS”],<br>  [“ADEE”]<br>]<br>word = “ABCCED”, -&gt; returns true,<br>word = “SEE”, -&gt; returns true,<br>word = “ABCB”, -&gt; returns false.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">class</span> Solution {</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="keyword">bool</span> exist(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;</span> &gt;</span> &board, <span class="built_in">string</span> word) {</div><div class="line">    row = board.size();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    col = board[<span class="number">0</span>].size();</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; j++){</div><div class="line">            <span class="keyword">if</span>(word[<span class="number">0</span>] == board[i][j]){</div><div class="line">                board[i][j] = <span class="string">'#'</span>;</div><div class="line">                <span class="keyword">if</span>(dfs(board,word,<span class="number">1</span>,i,j)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                board[i][j] = word[<span class="number">0</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">bool</span> isValid(<span class="keyword">int</span> x, <span class="keyword">int</span> y){</div><div class="line">    <span class="keyword">return</span> x &gt;=<span class="number">0</span> && x &lt; row && y &gt;= <span class="number">0</span> && y&lt;col;</div><div class="line">}</div><div class="line"><span class="keyword">bool</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;</span> &gt;</span>& board, <span class="keyword">const</span> <span class="built_in">string</span>& word, <span class="keyword">int</span> cnt, <span class="keyword">int</span> x, <span class="keyword">int</span> y){</div><div class="line">    <span class="keyword">if</span>(cnt == word.size())  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++){</div><div class="line">        <span class="keyword">int</span> tx = x+dx[i];</div><div class="line">        <span class="keyword">int</span> ty = y+dy[i];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(isValid(tx,ty) && board[tx][ty] == word[cnt]){</div><div class="line">            board[tx][ty] = <span class="string">'#'</span>;</div><div class="line">            <span class="keyword">if</span>(dfs(board,word,cnt+<span class="number">1</span>,tx,ty)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            board[tx][ty] = word[cnt];</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> row;</div><div class="line">    <span class="keyword">int</span> col;</div><div class="line">    <span class="keyword">int</span> dx[<span class="number">4</span>] = {<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>};<span class="comment">//配合起来，上下左右</span></div><div class="line">    <span class="keyword">int</span> dy[<span class="number">4</span>] = {<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>};</div><div class="line">};</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-generateParentheses" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -559,54 +608,6 @@
 <p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
 <p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].<br>Note:<br>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
 <figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> letterCombinations(<span class="built_in">string</span> digits) {</div><div class="line">    mp[<span class="string">'2'</span>] = <span class="string">"abc"</span>; mp[<span class="string">'3'</span>] = <span class="string">"def"</span>;</div><div class="line">    mp[<span class="string">'4'</span>] = <span class="string">"ghi"</span>; mp[<span class="string">'5'</span>] = <span class="string">"jkl"</span>;</div><div class="line">    mp[<span class="string">'6'</span>] = <span class="string">"mno"</span>; mp[<span class="string">'7'</span>] = <span class="string">"pqrs"</span>;</div><div class="line">    mp[<span class="string">'8'</span>] = <span class="string">"tuv"</span>; mp[<span class="string">'9'</span>] = <span class="string">"wxyz"</span>;</div><div class="line">    mp[<span class="string">'0'</span>] = <span class="string">" "</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>res;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(digits.size() == <span class="number">0</span>){</div><div class="line">        res.push_back(<span class="string">""</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> tmp = letterCombinations(digits.substr(<span class="number">1</span>));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; mp[digits[<span class="number">0</span>]].size(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;tmp.size(); j++){</div><div class="line">            res.push_back(mp[digits[<span class="number">0</span>]][i] + tmp[j]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="stl_container"><span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="built_in">string</span>&gt;</span>mp;</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-combinations" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/combinations/" class="article-date">
-  	<time datetime="2014-09-21T22:01:12.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力枚举法/">暴力枚举法</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/combinations/">Combinations</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n.</p>
-<p>For example,<br>If n = 4 and k = 2, a solution is:</p>
-<p>[<br>  [2,4],<br>  [3,4],<br>  [2,3],<br>  [1,2],<br>  [1,3],<br>  [1,4],<br>]</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& num, <span class="keyword">int</span> k, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(path.size() == k){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;num.size(); i++){</div><div class="line">        path.push_back(num[i]);</div><div class="line">        dfs(num,k,i+<span class="number">1</span>,path,res);<span class="comment">//i+1，往后找</span></div><div class="line">        path.pop_back();</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combine(<span class="keyword">int</span> n, <span class="keyword">int</span> k) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>path;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>num;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) num.push_back(i+<span class="number">1</span>);</div><div class="line">    </div><div class="line">    dfs(num,k,<span class="number">0</span>,path,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
 
       
