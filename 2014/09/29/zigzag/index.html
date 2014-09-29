@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Combination Sum II | 码农求职记</title>
+  <title>ZigZag Conversion | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
-Each number in C may only be used once in the combination.">
+  <meta name="description" content="The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+P   A   H   NA P L S I I GY">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Combination Sum II">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/combinationsum2/">
+<meta property="og:title" content="ZigZag Conversion">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/zigzag/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
-Each number in C may only be used once in the combination.">
+<meta property="og:description" content="The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+P   A   H   NA P L S I I GY">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Combination Sum II">
-<meta name="twitter:description" content="Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
-Each number in C may only be used once in the combination.">
+<meta name="twitter:title" content="ZigZag Conversion">
+<meta name="twitter:description" content="The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+P   A   H   NA P L S I I GY">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -138,15 +138,15 @@ Each number in C may only be used once in the combination.">
 		</header>				
 	</div>
 </nav>
-      <article id="post-combinationsum2" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-zigzag" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/combinationsum2/" class="article-date">
-  	<time datetime="2014-09-21T22:11:16.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/09/29/zigzag/" class="article-date">
+  	<time datetime="2014-09-29T13:29:33.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
 
     </div>
   
@@ -156,7 +156,7 @@ Each number in C may only be used once in the combination.">
         
   
     <h1 class="article-title" itemprop="name">
-      Combination Sum II
+      ZigZag Conversion
     </h1>
   
 
@@ -164,10 +164,12 @@ Each number in C may only be used once in the combination.">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
-<p>Each number in C may only be used once in the combination.</p>
-<p>Note:<br>All numbers (including target) will be positive integers.<br>Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set 10,1,2,7,6,1,5 and target 8,<br>A solution set is:<br>[1, 7]<br>[1, 2, 5]<br>[2, 6]<br>[1, 1, 6] </p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combinationSum2(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &num, <span class="keyword">int</span> target) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>temp;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>vis(num.size(),<span class="keyword">false</span>);</div><div class="line">    sort(num.begin(),num.end());</div><div class="line">    dfs(num,target,<span class="number">0</span>,temp,res,vis);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& num, <span class="keyword">int</span> gap, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& temp, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>& vis){</div><div class="line">    <span class="keyword">if</span>(gap == <span class="number">0</span>){</div><div class="line">        res.push_back(temp);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;num.size(); i++){</div><div class="line">        <span class="keyword">if</span>(i &gt; <span class="number">0</span> && num[i] == num[i-<span class="number">1</span>] && !vis[i-<span class="number">1</span>]) <span class="keyword">continue</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(num[i] &gt; gap) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        temp.push_back(num[i]);</div><div class="line">        vis[i] = <span class="keyword">true</span>;</div><div class="line">        dfs(num,gap-num[i],i+<span class="number">1</span>,temp,res,vis);</div><div class="line">        temp.pop_back();</div><div class="line">        vis[i] = <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+        <p>The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<figure class="highlight"><pre><div class="line">P   A   H   <span class="keyword">N</span></div><div class="line">A P L S <span class="keyword">I</span> <span class="keyword">I</span> G</div><div class="line">Y   <span class="keyword">I</span>   R</div></pre></figure>
+
+<p>And then read line by line: “PAHNAPLSIIGYIR”<br>Write the code that will take a string and make this conversion given a number of rows:</p>
+<p>string convert(string text, int nRows);<br>convert(“PAYPALISHIRING”, 3) should return “PAHNAPLSIIGYIR”.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> convert(<span class="keyword">string</span> s, <span class="keyword">int</span> nRows) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() &lt;= <span class="number">1</span> || nRows &lt;= <span class="number">1</span>) <span class="keyword">return</span> s;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> gap = <span class="number">2</span><span class="variable">*nRows</span>-<span class="number">2</span>;<span class="comment">//相差</span></div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nRows; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.<span class="keyword">size</span>(); j+=gap){</div><div class="line">            res += s[j]; </div><div class="line">            <span class="comment">//画图，e.g: nRows = 3 or 4</span></div><div class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span> && i&lt;nRows-<span class="number">1</span> && j+gap-<span class="number">2</span><span class="variable">*i</span> &lt; s.<span class="keyword">size</span>()){</div><div class="line">                res += s[j+gap-<span class="number">2</span><span class="variable">*i</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -181,18 +183,9 @@ Each number in C may only be used once in the combination.">
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/generateParentheses/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Generate Parentheses
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/22/combinationSum/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Combination Sum</div>
+    <a href="/2014/09/29/spiral2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spiral Matrix II</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -221,7 +214,7 @@ Each number in C may only be used once in the combination.">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="combinationsum2" data-title="Combination Sum II" data-url="http://yoursite.com/2014/09/22/combinationsum2/"></div>
+	<div class="ds-thread" data-thread-key="zigzag" data-title="ZigZag Conversion" data-url="http://yoursite.com/2014/09/29/zigzag/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

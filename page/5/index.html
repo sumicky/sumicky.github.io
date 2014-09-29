@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 16.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-integertoroman" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/integertoroman/" class="article-date">
+  	<time datetime="2014-09-21T22:26:07.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/integertoroman/">Integer to Roman</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an integer, convert it to a roman numeral.</p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> intToRoman(<span class="keyword">int</span> num) {</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> radix[] = {<span class="number">1000</span>,<span class="number">900</span>,<span class="number">500</span>,<span class="number">400</span>,<span class="number">100</span>,<span class="number">90</span>,<span class="number">50</span>,<span class="number">40</span>,<span class="number">10</span>,<span class="number">9</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>};</div><div class="line">    <span class="keyword">const</span> <span class="keyword">string</span> symbol[] = {<span class="string">"M"</span>,<span class="string">"CM"</span>,<span class="string">"D"</span>,<span class="string">"CD"</span>,<span class="string">"C"</span>,<span class="string">"XC"</span>,<span class="string">"L"</span>,<span class="string">"XL"</span>,<span class="string">"X"</span>,<span class="string">"IX"</span>,<span class="string">"V"</span>,<span class="string">"IV"</span>,<span class="string">"I"</span>};</div><div class="line">    </div><div class="line">    <span class="keyword">string</span> roman = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; num &gt; <span class="number">0</span>; ++i){</div><div class="line">        <span class="keyword">int</span> count = num/radix[i];</div><div class="line">        num = num%radix[i];</div><div class="line">        <span class="keyword">for</span>(;count&gt;<span class="number">0</span>; count--) roman += symbol[i];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> roman;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-validNumber" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -553,55 +600,6 @@
 <p>Note:<br>Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
 <p>For the purpose of this problem, we define empty string as valid palindrome.</p>
 <figure class="highlight"><pre><div class="line"><span class="built_in">bool</span> isPalindrome(<span class="built_in">string</span> s) {</div><div class="line">    transform(s.<span class="keyword">begin</span>(),s.<span class="keyword">end</span>(),s.<span class="keyword">begin</span>(),::tolower);</div><div class="line">    <span class="built_in">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>((s[i]&gt;=<span class="string">'a'</span> && s[i]&lt;=<span class="string">'z'</span>) || (s[i] &gt;= <span class="string">'0'</span> && s[i]&lt;=<span class="string">'9'</span>)){</div><div class="line">            res += s[i];  </div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="built_in">string</span> temp = res;</div><div class="line">    reverse(temp.<span class="keyword">begin</span>(),temp.<span class="keyword">end</span>());</div><div class="line">    </div><div class="line">    return temp == res;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-wordSearch" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/wordSearch/" class="article-date">
-  	<time datetime="2014-09-21T22:13:08.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/wordSearch/">Word Search</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a 2D board and a word, find if the word exists in the grid.</p>
-<p>The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
-<p>For example,<br>Given board =</p>
-<p>[<br>  [“ABCE”],<br>  [“SFCS”],<br>  [“ADEE”]<br>]<br>word = “ABCCED”, -&gt; returns true,<br>word = “SEE”, -&gt; returns true,<br>word = “ABCB”, -&gt; returns false.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">class</span> Solution {</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="keyword">bool</span> exist(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;</span> &gt;</span> &board, <span class="built_in">string</span> word) {</div><div class="line">    row = board.size();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    col = board[<span class="number">0</span>].size();</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; j++){</div><div class="line">            <span class="keyword">if</span>(word[<span class="number">0</span>] == board[i][j]){</div><div class="line">                board[i][j] = <span class="string">'#'</span>;</div><div class="line">                <span class="keyword">if</span>(dfs(board,word,<span class="number">1</span>,i,j)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                board[i][j] = word[<span class="number">0</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">bool</span> isValid(<span class="keyword">int</span> x, <span class="keyword">int</span> y){</div><div class="line">    <span class="keyword">return</span> x &gt;=<span class="number">0</span> && x &lt; row && y &gt;= <span class="number">0</span> && y&lt;col;</div><div class="line">}</div><div class="line"><span class="keyword">bool</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;</span> &gt;</span>& board, <span class="keyword">const</span> <span class="built_in">string</span>& word, <span class="keyword">int</span> cnt, <span class="keyword">int</span> x, <span class="keyword">int</span> y){</div><div class="line">    <span class="keyword">if</span>(cnt == word.size())  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++){</div><div class="line">        <span class="keyword">int</span> tx = x+dx[i];</div><div class="line">        <span class="keyword">int</span> ty = y+dy[i];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(isValid(tx,ty) && board[tx][ty] == word[cnt]){</div><div class="line">            board[tx][ty] = <span class="string">'#'</span>;</div><div class="line">            <span class="keyword">if</span>(dfs(board,word,cnt+<span class="number">1</span>,tx,ty)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            board[tx][ty] = word[cnt];</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> row;</div><div class="line">    <span class="keyword">int</span> col;</div><div class="line">    <span class="keyword">int</span> dx[<span class="number">4</span>] = {<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>};<span class="comment">//配合起来，上下左右</span></div><div class="line">    <span class="keyword">int</span> dy[<span class="number">4</span>] = {<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>};</div><div class="line">};</div></pre></figure>
 
 
       

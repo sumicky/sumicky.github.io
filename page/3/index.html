@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 16.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,55 @@
 	</div>
 </nav>
       
+  
+    <article id="post-distinctS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/distinctS/" class="article-date">
+  	<time datetime="2014-09-23T15:51:17.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/distinctS/">Distinct Subsequences</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string S and a string T, count the number of distinct subsequences of T in S.</p>
+<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ACE” is a subsequence of “ABCDE” while “AEC” is not).</p>
+<p>Here is an example:<br>S = “rabbbit”, T = “rabbit”</p>
+<p>Return 3.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> numDistinct(<span class="built_in">string</span> S, <span class="built_in">string</span> T) {</div><div class="line">    <span class="comment">//dp[i][j]:表示S[0,i]通过删除变成T[0,j]的个数</span></div><div class="line">    <span class="comment">//1.S[i] != T[j], dp[i][j] = dp[i-1][j], 只能删除</span></div><div class="line">    <span class="comment">//2.S[i] == T[j], 分两种，保持或删除 dp[i][j] = dp[i-1][j-1] + dp[i-1][j]</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> len1 = S.size();</div><div class="line">    <span class="keyword">int</span> len2 = T.size();</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(len1+<span class="number">1</span>,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(len2+<span class="number">1</span>,<span class="number">0</span>));</div><div class="line">    </div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1;i++) dp[i][<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//只有一种</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len2;i++) dp[<span class="number">0</span>][i] = <span class="number">0</span>;<span class="comment">//不可能，从1开始</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=len2; j++){</div><div class="line">            <span class="keyword">if</span>(S[i-<span class="number">1</span>] == T[j-<span class="number">1</span>]){</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[len1][len2];</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-editDis" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -550,54 +599,6 @@
 <p>Consider the following matrix:</p>
 <p>[<br>  [1,   3,  5,  7],<br>  [10, 11, 16, 20],<br>  [23, 30, 34, 50]<br>]<br>Given target = 3, return true.</p>
 <figure class="highlight"><pre><div class="line"><span class="comment">//关于二分法，你好好琢磨下,写代码时配合例子，有无等号，或者比较怎么写</span></div><div class="line">bool searchMatrix(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">matrix</span>, <span class="keyword">int</span> target) {</div><div class="line">    <span class="comment">//先行后列</span></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">matrix</span>.<span class="keyword">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="keyword">matrix</span>.<span class="keyword">size</span>()-<span class="number">1</span>;  </div><div class="line">    <span class="keyword">int</span> n = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>()-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(left &lt; right){</div><div class="line">        <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="keyword">matrix</span>[mid][n] &gt;= target) right = mid;</div><div class="line">        <span class="keyword">else</span>  left = mid+<span class="number">1</span>;<span class="comment">//记录行</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">int</span> mid = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] == target) <span class="keyword">return</span> true;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] &gt; target) r = mid-<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span>  l = mid+<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> false;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-searchIp" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/searchIp/" class="article-date">
-  	<time datetime="2014-09-21T22:37:59.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/searchIp/">Search Insert Position</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Here are few examples.<br>[1,3,5,6], 5 → 2<br>[1,3,5,6], 2 → 1<br>[1,3,5,6], 7 → 4<br>[1,3,5,6], 0 → 0</p>
-<figure class="highlight"><pre><div class="line">int searchInsert(int <span class="type">A</span>[], int n, int target) {</div><div class="line">    int <span class="keyword">left</span> = <span class="number">0</span>, <span class="keyword">right</span> = n-<span class="number">1</span>;       </div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(<span class="keyword">left</span> &lt;= <span class="keyword">right</span>){<span class="comment">//有“=”</span></div><div class="line">        int mid = <span class="keyword">left</span> + (<span class="keyword">right</span> - <span class="keyword">left</span>)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="type">A</span>[mid] == target)  <span class="keyword">return</span> mid;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="type">A</span>[mid] &lt; target) <span class="keyword">left</span> = mid+<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">right</span> = mid-<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">left</span>;</div><div class="line">}</div></pre></figure>
 
 
       

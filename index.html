@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 16.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,56 @@
 	</div>
 </nav>
       
+  
+    <article id="post-zigzag" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/zigzag/" class="article-date">
+  	<time datetime="2014-09-29T13:29:33.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/zigzag/">ZigZag Conversion</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<figure class="highlight"><pre><div class="line">P   A   H   <span class="keyword">N</span></div><div class="line">A P L S <span class="keyword">I</span> <span class="keyword">I</span> G</div><div class="line">Y   <span class="keyword">I</span>   R</div></pre></figure>
+
+<p>And then read line by line: “PAHNAPLSIIGYIR”<br>Write the code that will take a string and make this conversion given a number of rows:</p>
+<p>string convert(string text, int nRows);<br>convert(“PAYPALISHIRING”, 3) should return “PAHNAPLSIIGYIR”.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> convert(<span class="keyword">string</span> s, <span class="keyword">int</span> nRows) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() &lt;= <span class="number">1</span> || nRows &lt;= <span class="number">1</span>) <span class="keyword">return</span> s;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> gap = <span class="number">2</span><span class="variable">*nRows</span>-<span class="number">2</span>;<span class="comment">//相差</span></div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nRows; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.<span class="keyword">size</span>(); j+=gap){</div><div class="line">            res += s[j]; </div><div class="line">            <span class="comment">//画图，e.g: nRows = 3 or 4</span></div><div class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span> && i&lt;nRows-<span class="number">1</span> && j+gap-<span class="number">2</span><span class="variable">*i</span> &lt; s.<span class="keyword">size</span>()){</div><div class="line">                res += s[j+gap-<span class="number">2</span><span class="variable">*i</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-spiral2" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -574,66 +624,6 @@
 <p>Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?</p>
 <p>Throw an exception? Good, but what if throwing an exception is not an option? You would then have to re-design the function (ie, add an extra parameter).</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">int</span> reverse(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">int</span> r = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> symbol = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(x &lt; <span class="number">0</span>){</div><div class="line">        symbol = -<span class="number">1</span>;<span class="comment">//负数</span></div><div class="line">        <span class="keyword">if</span>(x == INT_MIN) <span class="keyword">return</span> INT_MIN;<span class="comment">//x = -x也有可能溢出</span></div><div class="line">		x = -x;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(x){</div><div class="line">        <span class="keyword">if</span>(r &gt; INT_MAX/<span class="number">10</span> || (r == INT_MAX/<span class="number">10</span> && x<span class="variable">%10</span> &gt; INT_MAX<span class="variable">%10</span>)){</div><div class="line">            <span class="keyword">return</span> symbol == <span class="number">1</span> ? INT_MAX : INT_MIN;</div><div class="line">        }</div><div class="line">        r = r<span class="variable">*10</span> + x<span class="variable">%10</span>;</div><div class="line">        x = x/<span class="number">10</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> r<span class="variable">*symbol</span>;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-clone" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/29/clone/" class="article-date">
-  	<time datetime="2014-09-29T02:46:57.000Z" itemprop="datePublished">9月 29 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/29/clone/">Clone Graph</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.</p>
-<p>OJ’s undirected graph serialization:<br>Nodes are labeled uniquely.</p>
-<p>We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.<br>As an example, consider the serialized graph {0,1,2#1,2#2,2}.</p>
-<p>The graph has a total of three nodes, and therefore contains three parts as separated by #.</p>
-<p>First node is labeled as 0. Connect node 0 to both nodes 1 and 2.<br>Second node is labeled as 1. Connect node 1 to node 2.<br>Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.<br>Visually, the graph looks like the following:</p>
-<pre><code>   1
-  / <span class="command">\
-</span> /   <span class="command">\
-</span>0 --- 2
-     / <span class="command">\
-</span>     <span class="command">\_</span>/
-</code></pre><figure class="highlight"><pre><div class="line"><span class="keyword">*</span> Definition for undirected graph.</div><div class="line"><span class="keyword">*</span> struct UndirectedGraphNode {</div><div class="line"><span class="keyword">*</span>     int label;</div><div class="line"><span class="keyword">*</span>     vector<span class="variable">&lt;UndirectedGraphNode *&gt;</span> neighbors;</div><div class="line"><span class="keyword">*</span>     UndirectedGraphNode(int x) : label(x) {};</div><div class="line"><span class="keyword">*</span> };</div><div class="line"><span class="keyword">*</span>/</div></pre></figure>
-
-
-
-<figure class="highlight"><pre><div class="line"><span class="comment">//广度优先遍历</span></div><div class="line">UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">NULL</span>) <span class="keyword">return</span> <span class="keyword">NULL</span>;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* ret = <span class="keyword">new</span> UndirectedGraphNode(node<span class="variable">-&gt;label</span>);</div><div class="line">    </div><div class="line">    queue&lt;UndirectedGraphNode* &gt;que;</div><div class="line">    que.push(node);</div><div class="line">    </div><div class="line">    <span class="comment">//避免重复建立节点</span></div><div class="line">    map&lt;UndirectedGraphNode*,UndirectedGraphNode*&gt;mp;</div><div class="line">    mp[node] = ret;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* tmp = <span class="keyword">NULL</span>, *nxt = <span class="keyword">NULL</span>;</div><div class="line">    <span class="keyword">while</span>(!que.<span class="keyword">empty</span>()){</div><div class="line">        tmp = que.front();</div><div class="line">        que.pop();</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;(tmp<span class="variable">-&gt;neighbors</span>).size();i++){</div><div class="line">            nxt = (tmp<span class="variable">-&gt;neighbors</span>)[i];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(mp.find(nxt) == mp.end()){<span class="comment">//不存在</span></div><div class="line">                mp[nxt] = <span class="keyword">new</span> UndirectedGraphNode(nxt<span class="variable">-&gt;label</span>);</div><div class="line">                que.push(nxt);</div><div class="line">            }</div><div class="line">            </div><div class="line">            (mp[tmp]<span class="variable">-&gt;neighbors</span>).push_back(mp[nxt]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></figure>
 
 
       

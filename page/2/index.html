@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 16.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,66 @@
 	</div>
 </nav>
       
+  
+    <article id="post-clone" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/clone/" class="article-date">
+  	<time datetime="2014-09-29T02:46:57.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/clone/">Clone Graph</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.</p>
+<p>OJ’s undirected graph serialization:<br>Nodes are labeled uniquely.</p>
+<p>We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.<br>As an example, consider the serialized graph {0,1,2#1,2#2,2}.</p>
+<p>The graph has a total of three nodes, and therefore contains three parts as separated by #.</p>
+<p>First node is labeled as 0. Connect node 0 to both nodes 1 and 2.<br>Second node is labeled as 1. Connect node 1 to node 2.<br>Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.<br>Visually, the graph looks like the following:</p>
+<pre><code>   1
+  / <span class="command">\
+</span> /   <span class="command">\
+</span>0 --- 2
+     / <span class="command">\
+</span>     <span class="command">\_</span>/
+</code></pre><figure class="highlight"><pre><div class="line"><span class="keyword">*</span> Definition for undirected graph.</div><div class="line"><span class="keyword">*</span> struct UndirectedGraphNode {</div><div class="line"><span class="keyword">*</span>     int label;</div><div class="line"><span class="keyword">*</span>     vector<span class="variable">&lt;UndirectedGraphNode *&gt;</span> neighbors;</div><div class="line"><span class="keyword">*</span>     UndirectedGraphNode(int x) : label(x) {};</div><div class="line"><span class="keyword">*</span> };</div><div class="line"><span class="keyword">*</span>/</div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="comment">//广度优先遍历</span></div><div class="line">UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">NULL</span>) <span class="keyword">return</span> <span class="keyword">NULL</span>;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* ret = <span class="keyword">new</span> UndirectedGraphNode(node<span class="variable">-&gt;label</span>);</div><div class="line">    </div><div class="line">    queue&lt;UndirectedGraphNode* &gt;que;</div><div class="line">    que.push(node);</div><div class="line">    </div><div class="line">    <span class="comment">//避免重复建立节点</span></div><div class="line">    map&lt;UndirectedGraphNode*,UndirectedGraphNode*&gt;mp;</div><div class="line">    mp[node] = ret;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* tmp = <span class="keyword">NULL</span>, *nxt = <span class="keyword">NULL</span>;</div><div class="line">    <span class="keyword">while</span>(!que.<span class="keyword">empty</span>()){</div><div class="line">        tmp = que.front();</div><div class="line">        que.pop();</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;(tmp<span class="variable">-&gt;neighbors</span>).size();i++){</div><div class="line">            nxt = (tmp<span class="variable">-&gt;neighbors</span>)[i];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(mp.find(nxt) == mp.end()){<span class="comment">//不存在</span></div><div class="line">                mp[nxt] = <span class="keyword">new</span> UndirectedGraphNode(nxt<span class="variable">-&gt;label</span>);</div><div class="line">                que.push(nxt);</div><div class="line">            }</div><div class="line">            </div><div class="line">            (mp[tmp]<span class="variable">-&gt;neighbors</span>).push_back(mp[nxt]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-wordbreak2" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -552,55 +612,6 @@
 <p>For example,<br>Given encoded message “12”, it could be decoded as “AB” (1 2) or “L” (12).</p>
 <p>The number of ways decoding “12” is 2.</p>
 <figure class="highlight"><pre><div class="line"><span class="comment">//dp[i]:表示[0,i]表示的Decode个数</span></div><div class="line"><span class="comment">//dp[i] != '0' dp[i] = dp[i-1];</span></div><div class="line"><span class="comment">//(10&lt;=(s[i-1]+s[i-2]*10)&lt;=26)?dp[i-2]:0;</span></div><div class="line"><span class="keyword">int</span> numDecodings(<span class="keyword">string</span> s) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() == <span class="number">0</span> || s[<span class="number">0</span>] == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//通过dp[2]来计算</span></div><div class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=s.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(s[i-<span class="number">1</span>] != <span class="string">'0'</span>) dp[i] = dp[i-<span class="number">1</span>];<span class="comment">//需要不等于0,就解释为0就好了</span></div><div class="line">        <span class="comment">//等于0的情况，只能与前一个结合了</span></div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = (s[i-<span class="number">2</span>]-<span class="string">'0'</span>)<span class="variable">*10</span> + s[i-<span class="number">1</span>]-<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(sum &gt;= <span class="number">10</span> && sum &lt;= <span class="number">26</span>) dp[i] += dp[i-<span class="number">2</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-distinctS" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/distinctS/" class="article-date">
-  	<time datetime="2014-09-23T15:51:17.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/distinctS/">Distinct Subsequences</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string S and a string T, count the number of distinct subsequences of T in S.</p>
-<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ACE” is a subsequence of “ABCDE” while “AEC” is not).</p>
-<p>Here is an example:<br>S = “rabbbit”, T = “rabbit”</p>
-<p>Return 3.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> numDistinct(<span class="built_in">string</span> S, <span class="built_in">string</span> T) {</div><div class="line">    <span class="comment">//dp[i][j]:表示S[0,i]通过删除变成T[0,j]的个数</span></div><div class="line">    <span class="comment">//1.S[i] != T[j], dp[i][j] = dp[i-1][j], 只能删除</span></div><div class="line">    <span class="comment">//2.S[i] == T[j], 分两种，保持或删除 dp[i][j] = dp[i-1][j-1] + dp[i-1][j]</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> len1 = S.size();</div><div class="line">    <span class="keyword">int</span> len2 = T.size();</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(len1+<span class="number">1</span>,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(len2+<span class="number">1</span>,<span class="number">0</span>));</div><div class="line">    </div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1;i++) dp[i][<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//只有一种</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len2;i++) dp[<span class="number">0</span>][i] = <span class="number">0</span>;<span class="comment">//不可能，从1开始</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=len2; j++){</div><div class="line">            <span class="keyword">if</span>(S[i-<span class="number">1</span>] == T[j-<span class="number">1</span>]){</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[len1][len2];</div><div class="line">}</div></pre></figure>
 
 
       
