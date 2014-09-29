@@ -3,23 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Best Time to Buy and Sell Stock III | 码农求职记</title>
+  <title>Pascal&#39;s Triangle II | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Say you have an array for which the ith element is the price of a given stock on day i.
-Design an algorithm to find the maximum profit. You may complete at most two transactions.
-Note:You may not enga">
+  <meta name="description" content="Given an index k, return the kth row of the Pascal’s triangle.
+For example, given k = 3,Return [1,3,3,1].
+Note:Could you optimize your algorithm to use only O(k) extra space?
+//从后往前，只需要O(K)空间vector&lt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Best Time to Buy and Sell Stock III">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/bestStock3/">
+<meta property="og:title" content="Pascal's Triangle II">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/pascal2/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Say you have an array for which the ith element is the price of a given stock on day i.
-Design an algorithm to find the maximum profit. You may complete at most two transactions.
-Note:You may not enga">
+<meta property="og:description" content="Given an index k, return the kth row of the Pascal’s triangle.
+For example, given k = 3,Return [1,3,3,1].
+Note:Could you optimize your algorithm to use only O(k) extra space?
+//从后往前，只需要O(K)空间vector&lt">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Best Time to Buy and Sell Stock III">
-<meta name="twitter:description" content="Say you have an array for which the ith element is the price of a given stock on day i.
-Design an algorithm to find the maximum profit. You may complete at most two transactions.
-Note:You may not enga">
+<meta name="twitter:title" content="Pascal's Triangle II">
+<meta name="twitter:description" content="Given an index k, return the kth row of the Pascal’s triangle.
+For example, given k = 3,Return [1,3,3,1].
+Note:Could you optimize your algorithm to use only O(k) extra space?
+//从后往前，只需要O(K)空间vector&lt">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -141,15 +144,15 @@ Note:You may not enga">
 		</header>				
 	</div>
 </nav>
-      <article id="post-bestStock3" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-pascal2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/bestStock3/" class="article-date">
-  	<time datetime="2014-09-23T15:49:21.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/29/pascal2/" class="article-date">
+  	<time datetime="2014-09-29T12:22:12.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
 
     </div>
   
@@ -159,7 +162,7 @@ Note:You may not enga">
         
   
     <h1 class="article-title" itemprop="name">
-      Best Time to Buy and Sell Stock III
+      Pascal&#39;s Triangle II
     </h1>
   
 
@@ -167,10 +170,10 @@ Note:You may not enga">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
-<p>Note:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<figure class="highlight"><pre><div class="line">//不明白题意</div><div class="line"><span class="type">int</span> maxProfit(vector&lt;<span class="type">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span> (prices.size()&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">    <span class="type">int</span> len=prices.size(),<span class="literal">result</span>=<span class="number">0</span>;</div><div class="line">    <span class="type">int</span> low=prices[<span class="number">0</span>],high=prices[len-<span class="number">1</span>];</div><div class="line"></div><div class="line">    vector&lt;<span class="type">int</span>&gt; profits_history(len,<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++){</div><div class="line">        low=min(low,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,prices[i]-low);</div><div class="line">        profits_history[i]=<span class="literal">result</span>; </div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--){</div><div class="line">        high=max(high,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,high-prices[i]+profits_history[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</div><div class="line">}</div></pre></figure>
+        <p>Given an index k, return the kth row of the Pascal’s triangle.</p>
+<p>For example, given k = 3,<br>Return [1,3,3,1].</p>
+<p>Note:<br>Could you optimize your algorithm to use only O(k) extra space?</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//从后往前，只需要O(K)空间</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> getRow(<span class="keyword">int</span> rowIndex) {</div><div class="line">    <span class="keyword">if</span>(rowIndex == <span class="number">0</span>) <span class="keyword">return</span> <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>res(rowIndex+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//approach 1: O(N^2)</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= rowIndex; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&gt;=<span class="number">0</span>; j--){</div><div class="line">            <span class="keyword">if</span>(j == i || j == <span class="number">0</span>){</div><div class="line">                res[j] = <span class="number">1</span>;</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                res[j] += res[j-<span class="number">1</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="comment">/*</span></div><div class="line">    //approach 2: O(N)</div><div class="line">    for(int i=1; i&lt;= rowIndex/2; i++){</div><div class="line">		res[i] = res[rowIndex-i] = (long long int)res[i-1]*(rowIndex-i+1)/i;</div><div class="line">	}</div><div class="line">	*/</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -184,18 +187,9 @@ Note:You may not enga">
     
 <nav id="article-nav">
   
-    <a href="/2014/09/23/editDis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Edit Distance
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/23/maxRec/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Maximal Rectangle</div>
+    <a href="/2014/09/29/pascal1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pascal&#39;s Triangle</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -224,7 +218,7 @@ Note:You may not enga">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="bestStock3" data-title="Best Time to Buy and Sell Stock III" data-url="http://yoursite.com/2014/09/23/bestStock3/"></div>
+	<div class="ds-thread" data-thread-key="pascal2" data-title="Pascal&#39;s Triangle II" data-url="http://yoursite.com/2014/09/29/pascal2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

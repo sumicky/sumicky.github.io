@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.71px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.14px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 14.29px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.71px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.14px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 15.71px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,105 @@
 	</div>
 </nav>
       
+  
+    <article id="post-wildcard" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/wildcard/" class="article-date">
+  	<time datetime="2014-09-21T22:22:43.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/wildcard/">Wildcard Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Implement wildcard pattern matching with support for ‘?’ and ‘*’.</p>
+<p>‘?’ Matches any single character.<br>‘*’ Matches any sequence of characters (including the empty sequence).</p>
+<p>The matching should cover the entire input string (not partial).</p>
+<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
+<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “<em>“) → true<br>isMatch(“aa”, “a</em>“) → true<br>isMatch(“ab”, “?<em>“) → true<br>isMatch(“aab”, “c</em>a*b”) → false</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> isMatch(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *p) {</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* ss = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* ps = <span class="literal">NULL</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(*s){</div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">'?'</span>  || *s == *p){</div><div class="line">            s++;p++;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">'*'</span>){</div><div class="line">            ss = s;</div><div class="line">            ps = p++;<span class="comment">//ps保存*的位置</span></div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(ps != <span class="literal">NULL</span>){</div><div class="line">            s = ++ss;</div><div class="line">            p = ps+<span class="number">1</span>;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(*p == <span class="string">'*'</span>) p++;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> *p == <span class="number">0</span>;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-regular" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/regular/" class="article-date">
+  	<time datetime="2014-09-21T22:21:50.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/regular/">Regular Expression Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>‘.’ Matches any single character.<br>‘*’ Matches zero or more of the preceding element.</p>
+<p>The matching should cover the entire input string (not partial).</p>
+<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
+<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “a<em>“) → true<br>isMatch(“aa”, “.</em>“) → true<br>isMatch(“ab”, “.<em>“) → true<br>isMatch(“aab”, “c</em>a*b”) → true</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> isMatch(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *p) {</div><div class="line">    <span class="keyword">if</span>(*p == <span class="number">0</span>) <span class="keyword">return</span> *s == <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(*(p+<span class="number">1</span>) == <span class="string">'*'</span>){</div><div class="line">        <span class="keyword">while</span>((*p == <span class="string">'.'</span> && *s != <span class="number">0</span>)|| *p == *s){</div><div class="line">            <span class="keyword">if</span>(isMatch(s,p+<span class="number">2</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            s++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> isMatch(s,p+<span class="number">2</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span>{</div><div class="line">        <span class="keyword">if</span>((*p == <span class="string">'.'</span> && *s != <span class="number">0</span>)|| *p == *s)</div><div class="line">            <span class="keyword">return</span> isMatch(s+<span class="number">1</span>,p+<span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-longestPalindromic" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -506,101 +605,6 @@
 <p>Each number in C may only be used once in the combination.</p>
 <p>Note:<br>All numbers (including target) will be positive integers.<br>Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set 10,1,2,7,6,1,5 and target 8,<br>A solution set is:<br>[1, 7]<br>[1, 2, 5]<br>[2, 6]<br>[1, 1, 6] </p>
 <figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combinationSum2(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &num, <span class="keyword">int</span> target) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>temp;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>vis(num.size(),<span class="keyword">false</span>);</div><div class="line">    sort(num.begin(),num.end());</div><div class="line">    dfs(num,target,<span class="number">0</span>,temp,res,vis);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& num, <span class="keyword">int</span> gap, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& temp, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>& vis){</div><div class="line">    <span class="keyword">if</span>(gap == <span class="number">0</span>){</div><div class="line">        res.push_back(temp);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;num.size(); i++){</div><div class="line">        <span class="keyword">if</span>(i &gt; <span class="number">0</span> && num[i] == num[i-<span class="number">1</span>] && !vis[i-<span class="number">1</span>]) <span class="keyword">continue</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(num[i] &gt; gap) <span class="keyword">return</span>;</div><div class="line">        </div><div class="line">        temp.push_back(num[i]);</div><div class="line">        vis[i] = <span class="keyword">true</span>;</div><div class="line">        dfs(num,gap-num[i],i+<span class="number">1</span>,temp,res,vis);</div><div class="line">        temp.pop_back();</div><div class="line">        vis[i] = <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-combinationSum" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/combinationSum/" class="article-date">
-  	<time datetime="2014-09-21T22:10:08.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/combinationSum/">Combination Sum</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
-<p>The same repeated number may be chosen from C unlimited number of times.</p>
-<p>Note:<br>All numbers (including target) will be positive integers.<br>Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).<br>The solution set must not contain duplicate combinations.<br>For example, given candidate set 2,3,6,7 and target 7,<br>A solution set is:<br>[7]<br>[2, 2, 3] </p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> combinationSum(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &candidates, <span class="keyword">int</span> target) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>temp;</div><div class="line">    sort(candidates.begin(),candidates.end());</div><div class="line">    dfs(candidates,target,<span class="number">0</span>,temp,res);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& candidates, <span class="keyword">int</span> gap, <span class="keyword">int</span> idx, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& temp, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(gap == <span class="number">0</span>){<span class="comment">//找到一个解</span></div><div class="line">        res.push_back(temp);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=idx; i&lt;candidates.size(); i++){<span class="comment">//皇帝轮流</span></div><div class="line">        <span class="keyword">if</span>(candidates[i] &gt; gap){<span class="comment">//超出了</span></div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        temp.push_back(candidates[i]);<span class="comment">//要了</span></div><div class="line">        dfs(candidates,gap-candidates[i],i,temp,res);<span class="comment">//至少要从本身开始，不然会重复,注意是i</span></div><div class="line">        temp.pop_back();</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-queens2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/queens2/" class="article-date">
-  	<time datetime="2014-09-21T22:08:51.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/queens2/">N-Queens II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Follow up for N-Queens problem.</p>
-<p>Now, instead outputting board configurations, return the total number of distinct solutions.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//代码跟上题基本完全一样</span></div><div class="line"><span class="keyword">int</span> totalNQueens(<span class="keyword">int</span> n) {</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x(n,<span class="number">0</span>);</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    dfs(<span class="number">0</span>,n,x,count);</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">bool</span> isValid(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x, <span class="keyword">int</span> row, <span class="keyword">int</span> col){<span class="comment">//判断点是否合法,与之前的比较即可0-row-1</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">int</span> prevRow = i, prevCol = x[i];</div><div class="line">        <span class="keyword">if</span>(prevCol == col) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同列</span></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(prevCol - col) == <span class="built_in">abs</span>(prevRow - row)) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同对角线</span></div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//4个规则：不同行，同列</span></div><div class="line"><span class="comment">//depth：深度</span></div><div class="line"><span class="comment">//x[i]: 第i行皇后位置x[i]</span></div><div class="line"><span class="keyword">void</span> dfs(<span class="keyword">int</span> depth, <span class="keyword">int</span> maxDepth, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x,<span class="keyword">int</span>& count){</div><div class="line">    <span class="keyword">if</span>(depth == maxDepth){<span class="comment">//找到解</span></div><div class="line">        count++;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;maxDepth; i++){<span class="comment">//每个位置均尝试</span></div><div class="line">        <span class="keyword">if</span>(isValid(x,depth,i)){</div><div class="line">            x[depth] = i;</div><div class="line">            dfs(depth+<span class="number">1</span>,maxDepth,x,count);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       

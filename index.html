@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.71px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.14px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 14.29px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.71px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.14px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 15.71px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,105 @@
 	</div>
 </nav>
       
+  
+    <article id="post-pascal2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/pascal2/" class="article-date">
+  	<time datetime="2014-09-29T12:22:12.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/pascal2/">Pascal&#39;s Triangle II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an index k, return the kth row of the Pascal’s triangle.</p>
+<p>For example, given k = 3,<br>Return [1,3,3,1].</p>
+<p>Note:<br>Could you optimize your algorithm to use only O(k) extra space?</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//从后往前，只需要O(K)空间</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> getRow(<span class="keyword">int</span> rowIndex) {</div><div class="line">    <span class="keyword">if</span>(rowIndex == <span class="number">0</span>) <span class="keyword">return</span> <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>res(rowIndex+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//approach 1: O(N^2)</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= rowIndex; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&gt;=<span class="number">0</span>; j--){</div><div class="line">            <span class="keyword">if</span>(j == i || j == <span class="number">0</span>){</div><div class="line">                res[j] = <span class="number">1</span>;</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                res[j] += res[j-<span class="number">1</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="comment">/*</span></div><div class="line">    //approach 2: O(N)</div><div class="line">    for(int i=1; i&lt;= rowIndex/2; i++){</div><div class="line">		res[i] = res[rowIndex-i] = (long long int)res[i-1]*(rowIndex-i+1)/i;</div><div class="line">	}</div><div class="line">	*/</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-pascal1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/pascal1/" class="article-date">
+  	<time datetime="2014-09-29T12:21:11.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/pascal1/">Pascal&#39;s Triangle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given numRows, generate the first numRows of Pascal’s triangle.</p>
+<p>For example, given numRows = 5,<br>Return</p>
+<figure class="highlight"><pre><div class="line">[</div><div class="line">     [<span class="number">1</span>],</div><div class="line">    [<span class="number">1</span>,<span class="number">1</span>],</div><div class="line">   [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],</div><div class="line">  [<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>],</div><div class="line"> [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">1</span>]</div><div class="line">]</div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="comment">//杨辉三角</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> generate(<span class="keyword">int</span> numRows) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="keyword">if</span>(numRows == <span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">    res.push_back(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(<span class="number">1</span>,<span class="number">1</span>));</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i &lt; numRows; i++){</div><div class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>temp;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=i; j++){</div><div class="line">            <span class="keyword">if</span>(j==<span class="number">0</span> || j==i) temp.push_back(<span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                temp.push_back(res[i-<span class="number">1</span>][j-<span class="number">1</span>]+res[i-<span class="number">1</span>][j]);</div><div class="line">            }</div><div class="line">        }</div><div class="line">        res.push_back(temp);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-concater" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -530,99 +629,6 @@
 <p>For example, given<br>s = “leetcode”,<br>dict = [“leet”, “code”].</p>
 <p>Return true because “leetcode” can be segmented as “leet code”.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> wordBreak(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;</span> &dict) {</div><div class="line">    <span class="comment">//dp[i]:代表前i个字符可分</span></div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>dp(s.size()+<span class="number">1</span>,<span class="keyword">false</span>);</div><div class="line">    </div><div class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>(!dp[i]) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.size(); j++){</div><div class="line">            <span class="keyword">if</span>(dict.find(s.substr(i,j-i+<span class="number">1</span>)) != dict.end()){</div><div class="line">                dp[j+<span class="number">1</span>] = <span class="keyword">true</span>;<span class="comment">//前j个字符可分</span></div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(dp[s.size()]) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-container" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/24/container/" class="article-date">
-  	<time datetime="2014-09-23T16:07:51.000Z" itemprop="datePublished">9月 24 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/24/container/">Container With Most Water</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p>Note: You may not slant the container.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//不大明白什么意思，抄袭答案</span></div><div class="line"><span class="keyword">int</span> maxArea(<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &height) {</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = height.<span class="keyword">size</span>()-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> res = INT_MIN;</div><div class="line">    <span class="keyword">while</span>(start &lt; end){</div><div class="line">        res = <span class="keyword">max</span>(res,<span class="keyword">min</span>(height[start],height[end])<span class="variable">*(</span>end-start));</div><div class="line">        height[start] &lt;= height[end] ? start++ : end--;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-longestSub" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/24/longestSub/" class="article-date">
-  	<time datetime="2014-09-23T16:07:11.000Z" itemprop="datePublished">9月 24 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/24/longestSub/">Longest Substring Without Repeating Characters</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating letters for “abcabcbb” is “abc”, which the length is 3. For “bbbbb” the longest substring is “b”, with the length of 1.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> lengthOfLongestSubstring(string s) {</div><div class="line">    string subString = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(subString.<span class="keyword">find</span>(s[i],<span class="number">0</span>) == string::npos){</div><div class="line">            subString += s[i];</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">if</span>(subString.<span class="keyword">size</span>() &gt; maxLength){</div><div class="line">                maxLength = subString.<span class="keyword">size</span>();</div><div class="line">            }</div><div class="line">            subString = <span class="string">""</span>;</div><div class="line">            i = <span class="keyword">count</span>;<span class="comment">//因为有个i++</span></div><div class="line">            <span class="keyword">count</span>++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(subString.<span class="keyword">size</span>() &gt; maxLength){</div><div class="line">        maxLength = subString.<span class="keyword">size</span>();<span class="comment">//如果均没有重复</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxLength;</div><div class="line">}</div></pre></figure>
 
 
       
