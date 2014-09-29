@@ -137,6 +137,103 @@
 </nav>
       
   
+    <article id="post-wordbreak2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/wordbreak2/" class="article-date">
+  	<time datetime="2014-09-29T02:26:21.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/wordbreak2/">Word Break II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.</p>
+<p>Return all such possible sentences.</p>
+<p>For example, given<br>s = “catsanddog”,<br>dict = [“cat”, “cats”, “and”, “sand”, “dog”].</p>
+<p>A solution is [“cats and dog”, “cat sand dog”].</p>
+<figure class="highlight"><pre><div class="line">//<span class="type">AC</span>没有通过</div><div class="line"><span class="type">void</span> dfs(<span class="keyword">const</span> <span class="type">string</span>& s, unordered_set&lt;<span class="type">string</span>&gt;& dict, <span class="type">int</span> idx, </div><div class="line">        vector&lt;vector&lt;<span class="type">bool</span>&gt; &gt;& dp, vector&lt;<span class="type">string</span>&gt;& temp, vector&lt;<span class="type">string</span>&gt;& res){</div><div class="line">    <span class="keyword">if</span>(idx == s.size()){</div><div class="line">        <span class="type">string</span> <span class="literal">result</span> = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;temp.size()-<span class="number">1</span>; i++){</div><div class="line">            <span class="literal">result</span> += temp[i]+<span class="string">" "</span>;</div><div class="line">        }</div><div class="line">        <span class="literal">result</span> += temp[temp.size()-<span class="number">1</span>];</div><div class="line">        res.push_back(<span class="literal">result</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    //dp[<span class="number">0</span>][<span class="number">1</span>],dp[<span class="number">0</span>][<span class="number">5</span>];</div><div class="line">    //dp[<span class="number">1</span>,<span class="number">5</span>]; dp调用结果dp[<span class="number">0</span>][<span class="number">1</span>],dp[<span class="number">1</span>][<span class="number">5</span>]; dp[<span class="number">0</span>][<span class="number">5</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=idx; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>(dp[idx][i]){</div><div class="line">            temp.push_back(s.substr(idx,i-idx+<span class="number">1</span>));//</div><div class="line">            dfs(s,dict,i+<span class="number">1</span>,dp,temp,res);</div><div class="line">            temp.pop_back();</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line">vector&lt;<span class="type">string</span>&gt; wordBreak(<span class="type">string</span> s, unordered_set&lt;<span class="type">string</span>&gt; &dict) {</div><div class="line">    </div><div class="line">    vector&lt;vector&lt;<span class="type">bool</span>&gt; &gt; dp = vector&lt;vector&lt;<span class="type">bool</span>&gt; &gt;(s.size(),vector&lt;<span class="type">bool</span>&gt;(s.size(),<span class="literal">false</span>));</div><div class="line">    </div><div class="line">    //dp[i][j]:表示[i,j]存在于字典中</div><div class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i; j&lt;s.size(); j++){</div><div class="line">            <span class="keyword">if</span>(dict.find(s.substr(i,j-i+<span class="number">1</span>)) != dict.<span class="keyword">end</span>()){</div><div class="line">                dp[i][j] = <span class="literal">true</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    vector&lt;<span class="type">string</span>&gt;temp;</div><div class="line">    vector&lt;<span class="type">string</span>&gt;res;</div><div class="line">    dfs(s,dict,<span class="number">0</span>,dp,temp,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-wordbreak" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/wordbreak/" class="article-date">
+  	<time datetime="2014-09-29T02:24:55.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/wordbreak/">Word Break</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
+<p>For example, given<br>s = “leetcode”,<br>dict = [“leet”, “code”].</p>
+<p>Return true because “leetcode” can be segmented as “leet code”.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> wordBreak(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;</span> &dict) {</div><div class="line">    <span class="comment">//dp[i]:代表前i个字符可分</span></div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>dp(s.size()+<span class="number">1</span>,<span class="keyword">false</span>);</div><div class="line">    </div><div class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>(!dp[i]) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.size(); j++){</div><div class="line">            <span class="keyword">if</span>(dict.find(s.substr(i,j-i+<span class="number">1</span>)) != dict.end()){</div><div class="line">                dp[j+<span class="number">1</span>] = <span class="keyword">true</span>;<span class="comment">//前j个字符可分</span></div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(dp[s.size()]) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-container" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -504,102 +601,6 @@
 <p>Here is an example:<br>S = “rabbbit”, T = “rabbit”</p>
 <p>Return 3.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">int</span> numDistinct(<span class="built_in">string</span> S, <span class="built_in">string</span> T) {</div><div class="line">    <span class="comment">//dp[i][j]:表示S[0,i]通过删除变成T[0,j]的个数</span></div><div class="line">    <span class="comment">//1.S[i] != T[j], dp[i][j] = dp[i-1][j], 只能删除</span></div><div class="line">    <span class="comment">//2.S[i] == T[j], 分两种，保持或删除 dp[i][j] = dp[i-1][j-1] + dp[i-1][j]</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> len1 = S.size();</div><div class="line">    <span class="keyword">int</span> len2 = T.size();</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(len1+<span class="number">1</span>,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(len2+<span class="number">1</span>,<span class="number">0</span>));</div><div class="line">    </div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1;i++) dp[i][<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//只有一种</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len2;i++) dp[<span class="number">0</span>][i] = <span class="number">0</span>;<span class="comment">//不可能，从1开始</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len1; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=len2; j++){</div><div class="line">            <span class="keyword">if</span>(S[i-<span class="number">1</span>] == T[j-<span class="number">1</span>]){</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[len1][len2];</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-editDis" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/editDis/" class="article-date">
-  	<time datetime="2014-09-23T15:50:31.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/editDis/">Edit Distance</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
-<p>You have the following 3 operations permitted on a word:</p>
-<p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
-<figure class="highlight"><pre><div class="line">//dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]:表示A[0,i]和B[0,j]之间的最小编辑距离，</div><div class="line">//设A[0,i]形式str1c,B[0,j]形式str2d</div><div class="line">//1.c==d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>];</div><div class="line">//2.c != d</div><div class="line">//2.1: c替换成d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.2: append d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.3: delete d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j</span>] + 1;</div><div class="line">int minDistance(string word1, string word2) {</div><div class="line"><span class="code">    int len1 = word1.size();</span></div><div class="line"><span class="code">    int len2 = word2.size();</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    vector&lt;vector&lt;int&gt; &gt;dp(len1+1,vector&lt;int&gt;(len2+1,0));</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    //初始化</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        dp[i][0] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len2; i++){</span></div><div class="line"><span class="code">        dp[0][i] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    for(int i=1; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        for(int j=1; j&lt;=len2; j++){</span></div><div class="line"><span class="code">            if(word1[i-1] == word2[j-1]){</span></div><div class="line"><span class="code">                dp[i][j] = dp[i-1][j-1];</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">            else{</span></div><div class="line"><span class="code">                dp[i][j] = min(dp[i-1][j-1],min(dp[i][j-1],dp[i-1][j]))+1;</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">        }</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    return dp[len1][len2];</span></div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-bestStock3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/bestStock3/" class="article-date">
-  	<time datetime="2014-09-23T15:49:21.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/bestStock3/">Best Time to Buy and Sell Stock III</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
-<p>Note:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<figure class="highlight"><pre><div class="line">//不明白题意</div><div class="line"><span class="type">int</span> maxProfit(vector&lt;<span class="type">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span> (prices.size()&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">    <span class="type">int</span> len=prices.size(),<span class="literal">result</span>=<span class="number">0</span>;</div><div class="line">    <span class="type">int</span> low=prices[<span class="number">0</span>],high=prices[len-<span class="number">1</span>];</div><div class="line"></div><div class="line">    vector&lt;<span class="type">int</span>&gt; profits_history(len,<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++){</div><div class="line">        low=min(low,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,prices[i]-low);</div><div class="line">        profits_history[i]=<span class="literal">result</span>; </div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--){</div><div class="line">        high=max(high,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,high-prices[i]+profits_history[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</div><div class="line">}</div></pre></figure>
 
 
       

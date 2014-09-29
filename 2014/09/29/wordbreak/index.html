@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Container With Most Water | 码农求职记</title>
+  <title>Word Break | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two li">
+  <meta name="description" content="Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+For example, givens = “leetcode”,dict = [“leet”, “code">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Container With Most Water">
-<meta property="og:url" content="http://yoursite.com/2014/09/24/container/">
+<meta property="og:title" content="Word Break">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/wordbreak/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two li">
+<meta property="og:description" content="Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+For example, givens = “leetcode”,dict = [“leet”, “code">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Container With Most Water">
-<meta name="twitter:description" content="Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two li">
+<meta name="twitter:title" content="Word Break">
+<meta name="twitter:description" content="Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+For example, givens = “leetcode”,dict = [“leet”, “code">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -135,15 +138,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-container" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-wordbreak" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/24/container/" class="article-date">
-  	<time datetime="2014-09-23T16:07:51.000Z" itemprop="datePublished">9月 24 2014</time>
+      <a href="/2014/09/29/wordbreak/" class="article-date">
+  	<time datetime="2014-09-29T02:24:55.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
 
     </div>
   
@@ -153,7 +156,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Container With Most Water
+      Word Break
     </h1>
   
 
@@ -161,9 +164,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p>Note: You may not slant the container.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//不大明白什么意思，抄袭答案</span></div><div class="line"><span class="keyword">int</span> maxArea(<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &height) {</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = height.<span class="keyword">size</span>()-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> res = INT_MIN;</div><div class="line">    <span class="keyword">while</span>(start &lt; end){</div><div class="line">        res = <span class="keyword">max</span>(res,<span class="keyword">min</span>(height[start],height[end])<span class="variable">*(</span>end-start));</div><div class="line">        height[start] &lt;= height[end] ? start++ : end--;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+        <p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
+<p>For example, given<br>s = “leetcode”,<br>dict = [“leet”, “code”].</p>
+<p>Return true because “leetcode” can be segmented as “leet code”.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> wordBreak(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;</span> &dict) {</div><div class="line">    <span class="comment">//dp[i]:代表前i个字符可分</span></div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>dp(s.size()+<span class="number">1</span>,<span class="keyword">false</span>);</div><div class="line">    </div><div class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>(!dp[i]) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.size(); j++){</div><div class="line">            <span class="keyword">if</span>(dict.find(s.substr(i,j-i+<span class="number">1</span>)) != dict.end()){</div><div class="line">                dp[j+<span class="number">1</span>] = <span class="keyword">true</span>;<span class="comment">//前j个字符可分</span></div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(dp[s.size()]) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -177,18 +181,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/29/wordbreak/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/29/wordbreak2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Word Break
+          Word Break II
         
       </div>
     </a>
   
   
-    <a href="/2014/09/24/longestSub/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Longest Substring Without Repeating Characters</div>
+    <a href="/2014/09/24/container/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Container With Most Water</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -217,7 +221,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="container" data-title="Container With Most Water" data-url="http://yoursite.com/2014/09/24/container/"></div>
+	<div class="ds-thread" data-thread-key="wordbreak" data-title="Word Break" data-url="http://yoursite.com/2014/09/29/wordbreak/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
