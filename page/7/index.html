@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.14px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 15.71px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 16.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,100 @@
 	</div>
 </nav>
       
+  
+    <article id="post-permutatons2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/permutatons2/" class="article-date">
+  	<time datetime="2014-09-21T22:00:13.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力枚举法/">暴力枚举法</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/permutatons2/">Permutations II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
+<p>For example,<br>[1,1,2] have the following unique permutations:<br>[1,1,2], [1,2,1], and [2,1,1].</p>
+<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> permuteUnique(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &num) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>path;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>vis(num.size(),<span class="keyword">false</span>);</div><div class="line">    sort(num.begin(),num.end());<span class="comment">//别忘了排序</span></div><div class="line">    dfs(num,path,res,vis);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& num, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>& vis){</div><div class="line">    <span class="keyword">if</span>(num.size() == path.size()){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;num.size(); i++){</div><div class="line">        <span class="keyword">if</span>(i&gt;<span class="number">0</span> && num[i] == num[i-<span class="number">1</span>] && !vis[i-<span class="number">1</span>]) <span class="keyword">continue</span>;<span class="comment">//重复作为首元素</span></div><div class="line">        <span class="keyword">if</span>(vis[i]) <span class="keyword">continue</span>;</div><div class="line">        </div><div class="line">        path.push_back(num[i]);</div><div class="line">        vis[i] = <span class="keyword">true</span>;</div><div class="line">        </div><div class="line">        dfs(num,path,res,vis);</div><div class="line">        path.pop_back();</div><div class="line">        vis[i] = <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-permutations" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/permutations/" class="article-date">
+  	<time datetime="2014-09-21T21:58:49.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力枚举法/">暴力枚举法</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/permutations/">Permutations</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a collection of numbers, return all possible permutations.</p>
+<p>For example,<br>[1,2,3] have the following permutations:<br>[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//(1,2,3)(1,3,2)(2,1,3)(2,3,1)(3,1,2)(3,2,1)</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span> permute(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &num) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>path;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>vis(num.size(),<span class="keyword">false</span>);</div><div class="line">    </div><div class="line">    permute(num,path,res,vis);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">void</span> permute(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& num, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>& res, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>& vis){</div><div class="line">    <span class="keyword">if</span>(path.size() == num.size()){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; num.size(); i++){</div><div class="line">        <span class="keyword">if</span>(vis[i]) <span class="keyword">continue</span>;<span class="comment">//已遍历过，跳过</span></div><div class="line">        </div><div class="line">        path.push_back(num[i]);</div><div class="line">        vis[i] = <span class="keyword">true</span>;</div><div class="line">        permute(num,path,res,vis);</div><div class="line">        path.pop_back();</div><div class="line">        vis[i] = <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-subset2" class="article article-type-post" itemscope itemprop="blogPost">
   

@@ -3,20 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Maximum Subarray | 码农求职记</title>
+  <title>Spiral Matrix | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray [4,−1,2,1] has the">
+  <meta name="description" content="Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+For example,Given the following matrix:
+[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]
+
+You should re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maximum Subarray">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/maximum/">
+<meta property="og:title" content="Spiral Matrix">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/spiral1/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray [4,−1,2,1] has the">
+<meta property="og:description" content="Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+For example,Given the following matrix:
+[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]
+
+You should re">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Maximum Subarray">
-<meta name="twitter:description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray [4,−1,2,1] has the">
+<meta name="twitter:title" content="Spiral Matrix">
+<meta name="twitter:description" content="Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+For example,Given the following matrix:
+[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]
+
+You should re">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -138,15 +147,15 @@ For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous suba
 		</header>				
 	</div>
 </nav>
-      <article id="post-maximum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-spiral1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/maximum/" class="article-date">
-  	<time datetime="2014-09-23T15:46:33.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/29/spiral1/" class="article-date">
+  	<time datetime="2014-09-29T13:08:08.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
 
     </div>
   
@@ -156,7 +165,7 @@ For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous suba
         
   
     <h1 class="article-title" itemprop="name">
-      Maximum Subarray
+      Spiral Matrix
     </h1>
   
 
@@ -164,11 +173,12 @@ For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous suba
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
-<p>For example, given the array [−2,1,−3,4,−1,2,1,−5,4],<br>the contiguous subarray [4,−1,2,1] has the largest sum = 6.</p>
-<p>click to show more practice.</p>
-<p>More practice:<br>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxSubArray(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> maxSum = INT_MIN;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">sum</span> += A[i];</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &gt; maxSum) maxSum = <span class="keyword">sum</span>;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &lt; <span class="number">0</span>) <span class="keyword">sum</span> = <span class="number">0</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxSum;</div><div class="line">}</div></pre></figure>
+        <p>Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.</p>
+<p>For example,<br>Given the following matrix:</p>
+<figure class="highlight"><pre><div class="line">[</div><div class="line"> [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ],</div><div class="line"> [ <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> ],</div><div class="line"> [ <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> ]</div><div class="line">]</div></pre></figure>
+
+<p>You should return [1,2,3,6,9,8,7,4,5].</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//螺旋线输出</span></div><div class="line"><span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; spiralOrder(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">matrix</span>) {</div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">matrix</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;res;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> ux=<span class="number">0</span>, uy=<span class="number">0</span>, dx=row-<span class="number">1</span>, dy=column-<span class="number">1</span>;<span class="comment">//设置4个变量</span></div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(ux &lt; dx && uy &lt; dy){<span class="comment">//在同一行的话直接解决就好</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=uy; i&lt;dy; i++){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[ux][i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=ux; i&lt;dx; i++){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[i][dy]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dy; i&gt;uy; i--){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[dx][i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dx; i&gt;ux; i--){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[i][uy]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        uy++; dy--;</div><div class="line">        ux++; dx--;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="comment">//要用if,else if如果n==m时，ux==dx && uy == dy同时成立</span></div><div class="line">    <span class="keyword">if</span>(ux == dx){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=uy; i&lt;=dy; i++) res.push_back(<span class="keyword">matrix</span>[ux][i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(uy == dy){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=ux; i&lt;=dx; i++) res.push_back(<span class="keyword">matrix</span>[i][ux]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">    </div><div class="line">}</div></pre></figure>
 
 
       
@@ -182,18 +192,18 @@ For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous suba
     
 <nav id="article-nav">
   
-    <a href="/2014/09/23/palindrome2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/29/spiral2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Palindrome Partitioning II
+          Spiral Matrix II
         
       </div>
     </a>
   
   
-    <a href="/2014/09/23/triangle/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Triangle</div>
+    <a href="/2014/09/29/pascal2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pascal&#39;s Triangle II</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -222,7 +232,7 @@ For example, given the array [−2,1,−3,4,−1,2,1,−5,4],the contiguous suba
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="maximum" data-title="Maximum Subarray" data-url="http://yoursite.com/2014/09/23/maximum/"></div>
+	<div class="ds-thread" data-thread-key="spiral1" data-title="Spiral Matrix" data-url="http://yoursite.com/2014/09/29/spiral1/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

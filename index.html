@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 17.14px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 15.71px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 16.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,108 @@
 	</div>
 </nav>
       
+  
+    <article id="post-spiral2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/spiral2/" class="article-date">
+  	<time datetime="2014-09-29T13:09:01.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/spiral2/">Spiral Matrix II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
+<p>For example,<br>Given n = 3,</p>
+<p>You should return the following matrix:</p>
+<figure class="highlight"><pre><div class="line">[</div><div class="line"> [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ],</div><div class="line"> [ <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span> ],</div><div class="line"> [ <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span> ]</div><div class="line">]</div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; generateMatrix(<span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;<span class="keyword">matrix</span>(n,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(n,<span class="number">0</span>));</div><div class="line"></div><div class="line">    <span class="keyword">int</span> ux=<span class="number">0</span>, uy=<span class="number">0</span>, dx=n-<span class="number">1</span>, dy=n-<span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(ux &lt; dx && uy &lt; dy){</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=uy; i&lt;dy; i++){</div><div class="line">            count++;</div><div class="line">            <span class="keyword">matrix</span>[ux][i] = count;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=ux; i&lt;dx; i++){</div><div class="line">            count++;</div><div class="line">            <span class="keyword">matrix</span>[i][dy] = count;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dy; i&gt;uy; i--){</div><div class="line">            count++;</div><div class="line">            <span class="keyword">matrix</span>[dx][i] = count;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dx; i&gt;ux; i--){</div><div class="line">            count++;</div><div class="line">            <span class="keyword">matrix</span>[i][uy] = count;</div><div class="line">        }</div><div class="line">        </div><div class="line">        ux++;dx--;</div><div class="line">        uy++;dy--;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(ux == dx && uy == dy){<span class="comment">//n为奇数情况</span></div><div class="line">        <span class="keyword">matrix</span>[ux][uy] = (++count);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">matrix</span>;</div><div class="line">    </div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-spiral1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/spiral1/" class="article-date">
+  	<time datetime="2014-09-29T13:08:08.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/spiral1/">Spiral Matrix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.</p>
+<p>For example,<br>Given the following matrix:</p>
+<figure class="highlight"><pre><div class="line">[</div><div class="line"> [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ],</div><div class="line"> [ <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> ],</div><div class="line"> [ <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> ]</div><div class="line">]</div></pre></figure>
+
+<p>You should return [1,2,3,6,9,8,7,4,5].</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//螺旋线输出</span></div><div class="line"><span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; spiralOrder(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">matrix</span>) {</div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">matrix</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;res;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> ux=<span class="number">0</span>, uy=<span class="number">0</span>, dx=row-<span class="number">1</span>, dy=column-<span class="number">1</span>;<span class="comment">//设置4个变量</span></div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(ux &lt; dx && uy &lt; dy){<span class="comment">//在同一行的话直接解决就好</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=uy; i&lt;dy; i++){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[ux][i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=ux; i&lt;dx; i++){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[i][dy]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dy; i&gt;uy; i--){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[dx][i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dx; i&gt;ux; i--){</div><div class="line">            res.push_back(<span class="keyword">matrix</span>[i][uy]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        uy++; dy--;</div><div class="line">        ux++; dx--;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="comment">//要用if,else if如果n==m时，ux==dx && uy == dy同时成立</span></div><div class="line">    <span class="keyword">if</span>(ux == dx){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=uy; i&lt;=dy; i++) res.push_back(<span class="keyword">matrix</span>[ux][i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(uy == dy){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=ux; i&lt;=dx; i++) res.push_back(<span class="keyword">matrix</span>[i][ux]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">    </div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-pascal2" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -532,103 +634,6 @@
 
 
 <figure class="highlight"><pre><div class="line"><span class="comment">//广度优先遍历</span></div><div class="line">UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">NULL</span>) <span class="keyword">return</span> <span class="keyword">NULL</span>;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* ret = <span class="keyword">new</span> UndirectedGraphNode(node<span class="variable">-&gt;label</span>);</div><div class="line">    </div><div class="line">    queue&lt;UndirectedGraphNode* &gt;que;</div><div class="line">    que.push(node);</div><div class="line">    </div><div class="line">    <span class="comment">//避免重复建立节点</span></div><div class="line">    map&lt;UndirectedGraphNode*,UndirectedGraphNode*&gt;mp;</div><div class="line">    mp[node] = ret;</div><div class="line">    </div><div class="line">    UndirectedGraphNode* tmp = <span class="keyword">NULL</span>, *nxt = <span class="keyword">NULL</span>;</div><div class="line">    <span class="keyword">while</span>(!que.<span class="keyword">empty</span>()){</div><div class="line">        tmp = que.front();</div><div class="line">        que.pop();</div><div class="line">        <span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;(tmp<span class="variable">-&gt;neighbors</span>).size();i++){</div><div class="line">            nxt = (tmp<span class="variable">-&gt;neighbors</span>)[i];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(mp.find(nxt) == mp.end()){<span class="comment">//不存在</span></div><div class="line">                mp[nxt] = <span class="keyword">new</span> UndirectedGraphNode(nxt<span class="variable">-&gt;label</span>);</div><div class="line">                que.push(nxt);</div><div class="line">            }</div><div class="line">            </div><div class="line">            (mp[tmp]<span class="variable">-&gt;neighbors</span>).push_back(mp[nxt]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-wordbreak2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/29/wordbreak2/" class="article-date">
-  	<time datetime="2014-09-29T02:26:21.000Z" itemprop="datePublished">9月 29 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/29/wordbreak2/">Word Break II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.</p>
-<p>Return all such possible sentences.</p>
-<p>For example, given<br>s = “catsanddog”,<br>dict = [“cat”, “cats”, “and”, “sand”, “dog”].</p>
-<p>A solution is [“cats and dog”, “cat sand dog”].</p>
-<figure class="highlight"><pre><div class="line">//<span class="type">AC</span>没有通过</div><div class="line"><span class="type">void</span> dfs(<span class="keyword">const</span> <span class="type">string</span>& s, unordered_set&lt;<span class="type">string</span>&gt;& dict, <span class="type">int</span> idx, </div><div class="line">        vector&lt;vector&lt;<span class="type">bool</span>&gt; &gt;& dp, vector&lt;<span class="type">string</span>&gt;& temp, vector&lt;<span class="type">string</span>&gt;& res){</div><div class="line">    <span class="keyword">if</span>(idx == s.size()){</div><div class="line">        <span class="type">string</span> <span class="literal">result</span> = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;temp.size()-<span class="number">1</span>; i++){</div><div class="line">            <span class="literal">result</span> += temp[i]+<span class="string">" "</span>;</div><div class="line">        }</div><div class="line">        <span class="literal">result</span> += temp[temp.size()-<span class="number">1</span>];</div><div class="line">        res.push_back(<span class="literal">result</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    //dp[<span class="number">0</span>][<span class="number">1</span>],dp[<span class="number">0</span>][<span class="number">5</span>];</div><div class="line">    //dp[<span class="number">1</span>,<span class="number">5</span>]; dp调用结果dp[<span class="number">0</span>][<span class="number">1</span>],dp[<span class="number">1</span>][<span class="number">5</span>]; dp[<span class="number">0</span>][<span class="number">5</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=idx; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>(dp[idx][i]){</div><div class="line">            temp.push_back(s.substr(idx,i-idx+<span class="number">1</span>));//</div><div class="line">            dfs(s,dict,i+<span class="number">1</span>,dp,temp,res);</div><div class="line">            temp.pop_back();</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line">vector&lt;<span class="type">string</span>&gt; wordBreak(<span class="type">string</span> s, unordered_set&lt;<span class="type">string</span>&gt; &dict) {</div><div class="line">    </div><div class="line">    vector&lt;vector&lt;<span class="type">bool</span>&gt; &gt; dp = vector&lt;vector&lt;<span class="type">bool</span>&gt; &gt;(s.size(),vector&lt;<span class="type">bool</span>&gt;(s.size(),<span class="literal">false</span>));</div><div class="line">    </div><div class="line">    //dp[i][j]:表示[i,j]存在于字典中</div><div class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i; j&lt;s.size(); j++){</div><div class="line">            <span class="keyword">if</span>(dict.find(s.substr(i,j-i+<span class="number">1</span>)) != dict.<span class="keyword">end</span>()){</div><div class="line">                dp[i][j] = <span class="literal">true</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    vector&lt;<span class="type">string</span>&gt;temp;</div><div class="line">    vector&lt;<span class="type">string</span>&gt;res;</div><div class="line">    dfs(s,dict,<span class="number">0</span>,dp,temp,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-wordbreak" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/29/wordbreak/" class="article-date">
-  	<time datetime="2014-09-29T02:24:55.000Z" itemprop="datePublished">9月 29 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/29/wordbreak/">Word Break</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
-<p>For example, given<br>s = “leetcode”,<br>dict = [“leet”, “code”].</p>
-<p>Return true because “leetcode” can be segmented as “leet code”.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> wordBreak(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;</span> &dict) {</div><div class="line">    <span class="comment">//dp[i]:代表前i个字符可分</span></div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span>dp(s.size()+<span class="number">1</span>,<span class="keyword">false</span>);</div><div class="line">    </div><div class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>(!dp[i]) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.size(); j++){</div><div class="line">            <span class="keyword">if</span>(dict.find(s.substr(i,j-i+<span class="number">1</span>)) != dict.end()){</div><div class="line">                dp[j+<span class="number">1</span>] = <span class="keyword">true</span>;<span class="comment">//前j个字符可分</span></div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(dp[s.size()]) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></figure>
 
 
       
