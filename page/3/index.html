@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 10.00px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 11.67px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,54 @@
 	</div>
 </nav>
       
+  
+    <article id="post-interleaving" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/interleaving/" class="article-date">
+  	<time datetime="2014-09-23T13:17:11.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/interleaving/">Interleaving String</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.</p>
+<p>For example,<br>Given:<br>s1 = “aabcc”,<br>s2 = “dbbca”,</p>
+<p>When s3 = “aadbbcbcac”, return true.<br>When s3 = “aadbbbaccc”, return false.</p>
+<figure class="highlight"><pre><div class="line">bool isInterleave(<span class="keyword">string</span> s1, <span class="keyword">string</span> s2, <span class="keyword">string</span> s3) {</div><div class="line">    <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;dp(s1.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="keyword">vector</span>&lt;bool&gt;(s2.<span class="keyword">size</span>()+<span class="number">1</span>,true));</div><div class="line">    <span class="comment">//从1开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.<span class="keyword">size</span>(); i++){</div><div class="line">        dp[i][<span class="number">0</span>] = (dp[i-<span class="number">1</span>][<span class="number">0</span>] && s1[i-<span class="number">1</span>] == s3[i-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">        dp[<span class="number">0</span>][j] = (dp[<span class="number">0</span>][j-<span class="number">1</span>] && s2[j-<span class="number">1</span>] == s3[j-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= s1.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">            dp[i][j] = (s1[i-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i-<span class="number">1</span>][j])</div><div class="line">                    || (s2[j-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i][j-<span class="number">1</span>]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s1.<span class="keyword">size</span>()][s2.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-2dMatrix" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -549,54 +597,6 @@
         <p>Given an array of strings, return all groups of strings that are anagrams.</p>
 <p>Note: All inputs will be in lower-case.</p>
 <figure class="highlight"><pre><div class="line"><span class="comment">//{dog,god,tea,eat,ssd}--{dog,god,tea,eat}</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> anagrams(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &strs) {</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>res;</div><div class="line">    <span class="keyword">if</span>(strs.size() == <span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;</span> isAnagram(strs.size(),<span class="keyword">false</span>);</div><div class="line">    <span class="stl_container"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;</span>mp;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;strs.size(); i++){</div><div class="line">        <span class="built_in">string</span> temp = strs[i];</div><div class="line">        sort(temp.begin(),temp.end());<span class="comment">//排序</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(mp.find(temp) == mp.end()){<span class="comment">//初次</span></div><div class="line">            mp[temp] = i;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            isAnagram[mp[temp]] = <span class="keyword">true</span>;</div><div class="line">            isAnagram[i] = <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;isAnagram.size(); i++){</div><div class="line">        <span class="keyword">if</span>(isAnagram[i]) res.push_back(strs[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-countandsay" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/countandsay/" class="article-date">
-  	<time datetime="2014-09-21T22:27:51.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/countandsay/">Count and Say</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The count-and-say sequence is the sequence of integers beginning as follows:<br>1, 11, 21, 1211, 111221, …</p>
-<p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.<br>Given an integer n, generate the nth sequence.</p>
-<p>Note: The sequence of integers will be represented as a string.</p>
-<figure class="highlight"><pre><div class="line">string countAndSay(<span class="keyword">int</span> n) {</div><div class="line">    string cur = <span class="string">"1"</span>;</div><div class="line">    string nxt = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++){</div><div class="line">        nxt = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;cur.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">count</span> = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(j+<span class="number">1</span>&lt;cur.<span class="keyword">size</span>() && cur[j] == cur[j+<span class="number">1</span>]){</div><div class="line">                <span class="keyword">count</span>++;</div><div class="line">                j++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,<span class="keyword">count</span>+<span class="string">'0'</span>);</div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,cur[j]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        cur = nxt;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cur;</div><div class="line">}</div></pre></figure>
 
 
       
