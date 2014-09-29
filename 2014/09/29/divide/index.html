@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ZigZag Conversion | 码农求职记</title>
+  <title>Divide Two Integers | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-P   A   H   NA P L S I I GY">
+  <meta name="description" content="Divide two integers without using multiplication, division and mod operator.
+int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MAX;        bool symbol = true;    if((dividend&gt;0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ZigZag Conversion">
-<meta property="og:url" content="http://yoursite.com/2014/09/29/zigzag/">
+<meta property="og:title" content="Divide Two Integers">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/divide/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-P   A   H   NA P L S I I GY">
+<meta property="og:description" content="Divide two integers without using multiplication, division and mod operator.
+int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MAX;        bool symbol = true;    if((dividend&gt;0">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZigZag Conversion">
-<meta name="twitter:description" content="The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-P   A   H   NA P L S I I GY">
+<meta name="twitter:title" content="Divide Two Integers">
+<meta name="twitter:description" content="Divide two integers without using multiplication, division and mod operator.
+int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MAX;        bool symbol = true;    if((dividend&gt;0">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -138,11 +138,11 @@ P   A   H   NA P L S I I GY">
 		</header>				
 	</div>
 </nav>
-      <article id="post-zigzag" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-divide" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/29/zigzag/" class="article-date">
-  	<time datetime="2014-09-29T13:29:33.000Z" itemprop="datePublished">9月 29 2014</time>
+      <a href="/2014/09/29/divide/" class="article-date">
+  	<time datetime="2014-09-29T13:49:41.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
@@ -156,7 +156,7 @@ P   A   H   NA P L S I I GY">
         
   
     <h1 class="article-title" itemprop="name">
-      ZigZag Conversion
+      Divide Two Integers
     </h1>
   
 
@@ -164,12 +164,8 @@ P   A   H   NA P L S I I GY">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
-<figure class="highlight"><pre><div class="line">P   A   H   <span class="keyword">N</span></div><div class="line">A P L S <span class="keyword">I</span> <span class="keyword">I</span> G</div><div class="line">Y   <span class="keyword">I</span>   R</div></pre></figure>
-
-<p>And then read line by line: “PAHNAPLSIIGYIR”<br>Write the code that will take a string and make this conversion given a number of rows:</p>
-<p>string convert(string text, int nRows);<br>convert(“PAYPALISHIRING”, 3) should return “PAHNAPLSIIGYIR”.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> convert(<span class="keyword">string</span> s, <span class="keyword">int</span> nRows) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() &lt;= <span class="number">1</span> || nRows &lt;= <span class="number">1</span>) <span class="keyword">return</span> s;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> gap = <span class="number">2</span><span class="variable">*nRows</span>-<span class="number">2</span>;<span class="comment">//相差</span></div><div class="line">    <span class="keyword">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nRows; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;s.<span class="keyword">size</span>(); j+=gap){</div><div class="line">            res += s[j]; </div><div class="line">            <span class="comment">//画图，e.g: nRows = 3 or 4</span></div><div class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span> && i&lt;nRows-<span class="number">1</span> && j+gap-<span class="number">2</span><span class="variable">*i</span> &lt; s.<span class="keyword">size</span>()){</div><div class="line">                res += s[j+gap-<span class="number">2</span><span class="variable">*i</span>];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+        <p>Divide two integers without using multiplication, division and mod operator.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> divide(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor) {</div><div class="line">    <span class="keyword">if</span>(divisor == <span class="number">0</span>) <span class="keyword">return</span> INT_MAX;</div><div class="line">    </div><div class="line">    bool symbol = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">if</span>((dividend&gt;<span class="number">0</span> && divisor&lt;<span class="number">0</span>) || (dividend&lt;<span class="number">0</span> && divisor&gt;<span class="number">0</span>)){</div><div class="line">        symbol = <span class="keyword">false</span>;<span class="comment">//结果为负数</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> molecule = dividend;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> denominator = divisor;</div><div class="line">    <span class="comment">//如果改为abs，会超时</span></div><div class="line">    <span class="keyword">if</span>(molecule &lt; <span class="number">0</span>) molecule = -molecule;</div><div class="line">    <span class="keyword">if</span>(denominator &lt; <span class="number">0</span>) denominator = -denominator;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(molecule &lt; denominator || molecule == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(molecule &gt;= denominator){</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> tmp = denominator;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">count</span> = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(tmp + tmp &lt;= molecule){<span class="comment">//注意“=”</span></div><div class="line">            tmp &lt;&lt;= <span class="number">1</span>;</div><div class="line">            <span class="keyword">count</span> &lt;&lt;=<span class="number">1</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        ret += <span class="keyword">count</span>;</div><div class="line">        molecule -= tmp;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(symbol) <span class="keyword">return</span> ret;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> -ret;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -183,18 +179,9 @@ P   A   H   NA P L S I I GY">
     
 <nav id="article-nav">
   
-    <a href="/2014/09/29/divide/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Divide Two Integers
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/29/spiral2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spiral Matrix II</div>
+    <a href="/2014/09/29/zigzag/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ZigZag Conversion</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -223,7 +210,7 @@ P   A   H   NA P L S I I GY">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="zigzag" data-title="ZigZag Conversion" data-url="http://yoursite.com/2014/09/29/zigzag/"></div>
+	<div class="ds-thread" data-thread-key="divide" data-title="Divide Two Integers" data-url="http://yoursite.com/2014/09/29/divide/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

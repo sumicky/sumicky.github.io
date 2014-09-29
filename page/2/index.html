@@ -137,6 +137,58 @@
 </nav>
       
   
+    <article id="post-reverseInteger" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/reverseInteger/" class="article-date">
+  	<time datetime="2014-09-29T03:23:40.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/reverseInteger/">Reverse Integer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Reverse digits of an integer.</p>
+<p>Example1: x = 123, return 321<br>Example2: x = -123, return -321</p>
+<p>click to show spoilers.</p>
+<p>Have you thought about this?<br>Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!</p>
+<p>If the integer’s last digit is 0, what should the output be? ie, cases such as 10, 100.</p>
+<p>Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?</p>
+<p>Throw an exception? Good, but what if throwing an exception is not an option? You would then have to re-design the function (ie, add an extra parameter).</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> reverse(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">int</span> r = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> symbol = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(x &lt; <span class="number">0</span>){</div><div class="line">        symbol = -<span class="number">1</span>;<span class="comment">//负数</span></div><div class="line">        <span class="keyword">if</span>(x == INT_MIN) <span class="keyword">return</span> INT_MIN;<span class="comment">//x = -x也有可能溢出</span></div><div class="line">		x = -x;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(x){</div><div class="line">        <span class="keyword">if</span>(r &gt; INT_MAX/<span class="number">10</span> || (r == INT_MAX/<span class="number">10</span> && x<span class="variable">%10</span> &gt; INT_MAX<span class="variable">%10</span>)){</div><div class="line">            <span class="keyword">return</span> symbol == <span class="number">1</span> ? INT_MAX : INT_MIN;</div><div class="line">        }</div><div class="line">        r = r<span class="variable">*10</span> + x<span class="variable">%10</span>;</div><div class="line">        x = x/<span class="number">10</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> r<span class="variable">*symbol</span>;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-clone" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -563,55 +615,6 @@
 <p>For example:<br>A = [2,3,1,1,4], return true.</p>
 <p>A = [3,2,1,0,4], return false.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">bool</span> canJump(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">int</span> <span class="built_in">step</span> = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">step</span> &gt; <span class="number">0</span>){</div><div class="line">            <span class="built_in">step</span>--;</div><div class="line">            <span class="built_in">step</span> = <span class="built_in">max</span>(A[i],<span class="built_in">step</span>);<span class="comment">//与最后一个元素无关</span></div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-decodeWay" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/decodeWay/" class="article-date">
-  	<time datetime="2014-09-23T15:52:10.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/decodeWay/">Decode Ways</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A message containing letters from A-Z is being encoded to numbers using the following mapping:</p>
-<p>‘A’ -&gt; 1<br>‘B’ -&gt; 2<br>…<br>‘Z’ -&gt; 26<br>Given an encoded message containing digits, determine the total number of ways to decode it.</p>
-<p>For example,<br>Given encoded message “12”, it could be decoded as “AB” (1 2) or “L” (12).</p>
-<p>The number of ways decoding “12” is 2.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//dp[i]:表示[0,i]表示的Decode个数</span></div><div class="line"><span class="comment">//dp[i] != '0' dp[i] = dp[i-1];</span></div><div class="line"><span class="comment">//(10&lt;=(s[i-1]+s[i-2]*10)&lt;=26)?dp[i-2]:0;</span></div><div class="line"><span class="keyword">int</span> numDecodings(<span class="keyword">string</span> s) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() == <span class="number">0</span> || s[<span class="number">0</span>] == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//通过dp[2]来计算</span></div><div class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=s.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(s[i-<span class="number">1</span>] != <span class="string">'0'</span>) dp[i] = dp[i-<span class="number">1</span>];<span class="comment">//需要不等于0,就解释为0就好了</span></div><div class="line">        <span class="comment">//等于0的情况，只能与前一个结合了</span></div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = (s[i-<span class="number">2</span>]-<span class="string">'0'</span>)<span class="variable">*10</span> + s[i-<span class="number">1</span>]-<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(sum &gt;= <span class="number">10</span> && sum &lt;= <span class="number">26</span>) dp[i] += dp[i-<span class="number">2</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
 
 
       

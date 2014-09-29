@@ -137,6 +137,55 @@
 </nav>
       
   
+    <article id="post-decodeWay" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/23/decodeWay/" class="article-date">
+  	<time datetime="2014-09-23T15:52:10.000Z" itemprop="datePublished">9月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/23/decodeWay/">Decode Ways</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A message containing letters from A-Z is being encoded to numbers using the following mapping:</p>
+<p>‘A’ -&gt; 1<br>‘B’ -&gt; 2<br>…<br>‘Z’ -&gt; 26<br>Given an encoded message containing digits, determine the total number of ways to decode it.</p>
+<p>For example,<br>Given encoded message “12”, it could be decoded as “AB” (1 2) or “L” (12).</p>
+<p>The number of ways decoding “12” is 2.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//dp[i]:表示[0,i]表示的Decode个数</span></div><div class="line"><span class="comment">//dp[i] != '0' dp[i] = dp[i-1];</span></div><div class="line"><span class="comment">//(10&lt;=(s[i-1]+s[i-2]*10)&lt;=26)?dp[i-2]:0;</span></div><div class="line"><span class="keyword">int</span> numDecodings(<span class="keyword">string</span> s) {</div><div class="line">    <span class="keyword">if</span>(s.<span class="keyword">size</span>() == <span class="number">0</span> || s[<span class="number">0</span>] == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(s.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//通过dp[2]来计算</span></div><div class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=s.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">if</span>(s[i-<span class="number">1</span>] != <span class="string">'0'</span>) dp[i] = dp[i-<span class="number">1</span>];<span class="comment">//需要不等于0,就解释为0就好了</span></div><div class="line">        <span class="comment">//等于0的情况，只能与前一个结合了</span></div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sum = (s[i-<span class="number">2</span>]-<span class="string">'0'</span>)<span class="variable">*10</span> + s[i-<span class="number">1</span>]-<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(sum &gt;= <span class="number">10</span> && sum &lt;= <span class="number">26</span>) dp[i] += dp[i-<span class="number">2</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-distinctS" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -550,55 +599,6 @@
 <p>For example,<br>Given:<br>s1 = “aabcc”,<br>s2 = “dbbca”,</p>
 <p>When s3 = “aadbbcbcac”, return true.<br>When s3 = “aadbbbaccc”, return false.</p>
 <figure class="highlight"><pre><div class="line">bool isInterleave(<span class="keyword">string</span> s1, <span class="keyword">string</span> s2, <span class="keyword">string</span> s3) {</div><div class="line">    <span class="keyword">if</span>(s3.length() != s1.length() + s2.length()) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;bool&gt; &gt;dp(s1.<span class="keyword">size</span>()+<span class="number">1</span>,<span class="keyword">vector</span>&lt;bool&gt;(s2.<span class="keyword">size</span>()+<span class="number">1</span>,true));</div><div class="line">    <span class="comment">//从1开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=s1.<span class="keyword">size</span>(); i++){</div><div class="line">        dp[i][<span class="number">0</span>] = (dp[i-<span class="number">1</span>][<span class="number">0</span>] && s1[i-<span class="number">1</span>] == s3[i-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">        dp[<span class="number">0</span>][j] = (dp[<span class="number">0</span>][j-<span class="number">1</span>] && s2[j-<span class="number">1</span>] == s3[j-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= s1.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=s2.<span class="keyword">size</span>(); j++){</div><div class="line">            dp[i][j] = (s1[i-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i-<span class="number">1</span>][j])</div><div class="line">                    || (s2[j-<span class="number">1</span>] == s3[i+j-<span class="number">1</span>] && dp[i][j-<span class="number">1</span>]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[s1.<span class="keyword">size</span>()][s2.<span class="keyword">size</span>()];</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-2dMatrix" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/2dMatrix/" class="article-date">
-  	<time datetime="2014-09-21T22:39:03.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/2dMatrix/">Search a 2D Matrix</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<p>Integers in each row are sorted from left to right.<br>The first integer of each row is greater than the last integer of the previous row.<br>For example,</p>
-<p>Consider the following matrix:</p>
-<p>[<br>  [1,   3,  5,  7],<br>  [10, 11, 16, 20],<br>  [23, 30, 34, 50]<br>]<br>Given target = 3, return true.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//关于二分法，你好好琢磨下,写代码时配合例子，有无等号，或者比较怎么写</span></div><div class="line">bool searchMatrix(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">matrix</span>, <span class="keyword">int</span> target) {</div><div class="line">    <span class="comment">//先行后列</span></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">matrix</span>.<span class="keyword">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="keyword">matrix</span>.<span class="keyword">size</span>()-<span class="number">1</span>;  </div><div class="line">    <span class="keyword">int</span> n = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>()-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(left &lt; right){</div><div class="line">        <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="keyword">matrix</span>[mid][n] &gt;= target) right = mid;</div><div class="line">        <span class="keyword">else</span>  left = mid+<span class="number">1</span>;<span class="comment">//记录行</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">int</span> mid = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] == target) <span class="keyword">return</span> true;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] &gt; target) r = mid-<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span>  l = mid+<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> false;</div><div class="line">}</div></pre></figure>
 
 
       

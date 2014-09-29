@@ -137,6 +137,55 @@
 </nav>
       
   
+    <article id="post-validPlindrome" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/validPlindrome/" class="article-date">
+  	<time datetime="2014-09-21T22:16:03.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/validPlindrome/">Valid Palindrome</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome.</p>
+<p>Note:<br>Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+<p>For the purpose of this problem, we define empty string as valid palindrome.</p>
+<figure class="highlight"><pre><div class="line"><span class="built_in">bool</span> isPalindrome(<span class="built_in">string</span> s) {</div><div class="line">    transform(s.<span class="keyword">begin</span>(),s.<span class="keyword">end</span>(),s.<span class="keyword">begin</span>(),::tolower);</div><div class="line">    <span class="built_in">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>((s[i]&gt;=<span class="string">'a'</span> && s[i]&lt;=<span class="string">'z'</span>) || (s[i] &gt;= <span class="string">'0'</span> && s[i]&lt;=<span class="string">'9'</span>)){</div><div class="line">            res += s[i];  </div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="built_in">string</span> temp = res;</div><div class="line">    reverse(temp.<span class="keyword">begin</span>(),temp.<span class="keyword">end</span>());</div><div class="line">    </div><div class="line">    return temp == res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-wordSearch" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -560,54 +609,6 @@
 <p>For example, given s = “aab”,<br>Return</p>
 <p>  [<br>    [“aa”,”b”],<br>    [“a”,”a”,”b”]<br>  ]</p>
 <figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span> partition(<span class="built_in">string</span> s){</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>path;</div><div class="line">    </div><div class="line">    dfs(s,path,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(s.size() == <span class="number">0</span>){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){<span class="comment">//每个都可以当end</span></div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = i;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left &lt; right){</div><div class="line">            <span class="keyword">if</span>(s[left] == s[right]){</div><div class="line">                left++;</div><div class="line">                right--;</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(left &gt;= right){<span class="comment">//有回文，前面</span></div><div class="line">            path.push_back(s.substr(<span class="number">0</span>,i+<span class="number">1</span>));<span class="comment">//i+1个字符</span></div><div class="line">            dfs(s.substr(i+<span class="number">1</span>),path,res);</div><div class="line">            path.pop_back();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-letterCom" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/letterCom/" class="article-date">
-  	<time datetime="2014-09-21T22:02:13.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力枚举法/">暴力枚举法</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/letterCom/">Letter Combinations</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a digit string, return all possible letter combinations that the number could represent.</p>
-<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
-<p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].<br>Note:<br>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> letterCombinations(<span class="built_in">string</span> digits) {</div><div class="line">    mp[<span class="string">'2'</span>] = <span class="string">"abc"</span>; mp[<span class="string">'3'</span>] = <span class="string">"def"</span>;</div><div class="line">    mp[<span class="string">'4'</span>] = <span class="string">"ghi"</span>; mp[<span class="string">'5'</span>] = <span class="string">"jkl"</span>;</div><div class="line">    mp[<span class="string">'6'</span>] = <span class="string">"mno"</span>; mp[<span class="string">'7'</span>] = <span class="string">"pqrs"</span>;</div><div class="line">    mp[<span class="string">'8'</span>] = <span class="string">"tuv"</span>; mp[<span class="string">'9'</span>] = <span class="string">"wxyz"</span>;</div><div class="line">    mp[<span class="string">'0'</span>] = <span class="string">" "</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>res;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(digits.size() == <span class="number">0</span>){</div><div class="line">        res.push_back(<span class="string">""</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> tmp = letterCombinations(digits.substr(<span class="number">1</span>));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; mp[digits[<span class="number">0</span>]].size(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;tmp.size(); j++){</div><div class="line">            res.push_back(mp[digits[<span class="number">0</span>]][i] + tmp[j]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="stl_container"><span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="built_in">string</span>&gt;</span>mp;</div></pre></figure>
 
 
       
