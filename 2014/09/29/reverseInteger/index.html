@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Largest Rectangle in Histogram | 码农求职记</title>
+  <title>Reverse Integer | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given $n$ non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.For example, Given height = [2,1,5,6,2,3],">
+  <meta name="description" content="Reverse digits of an integer.
+Example1: x = 123, return 321Example2: x = -123, return -321
+click to show spoilers.
+Have you thought about this?Here are some good questions to ask before coding. Bonus">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Largest Rectangle in Histogram">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/largestRec/">
+<meta property="og:title" content="Reverse Integer">
+<meta property="og:url" content="http://yoursite.com/2014/09/29/reverseInteger/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given $n$ non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.For example, Given height = [2,1,5,6,2,3],">
+<meta property="og:description" content="Reverse digits of an integer.
+Example1: x = 123, return 321Example2: x = -123, return -321
+click to show spoilers.
+Have you thought about this?Here are some good questions to ask before coding. Bonus">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Largest Rectangle in Histogram">
-<meta name="twitter:description" content="Given $n$ non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.For example, Given height = [2,1,5,6,2,3],">
+<meta name="twitter:title" content="Reverse Integer">
+<meta name="twitter:description" content="Reverse digits of an integer.
+Example1: x = 123, return 321Example2: x = -123, return -321
+click to show spoilers.
+Have you thought about this?Here are some good questions to ask before coding. Bonus">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -135,15 +144,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-largestRec" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-reverseInteger" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/largestRec/" class="article-date">
-  	<time datetime="2014-09-21T22:33:26.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/09/29/reverseInteger/" class="article-date">
+  	<time datetime="2014-09-29T03:23:40.000Z" itemprop="datePublished">9月 29 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
 
     </div>
   
@@ -153,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Largest Rectangle in Histogram
+      Reverse Integer
     </h1>
   
 
@@ -161,8 +170,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given $n$ non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.<br>For example, Given height = [2,1,5,6,2,3], return 10;</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> largestRectangleArea(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &height) {</div><div class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;</span>st;</div><div class="line">    <span class="keyword">int</span> maxArea = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> i =<span class="number">0</span>; </div><div class="line">    height.push_back(-<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(i&lt;height.size()){</div><div class="line">        <span class="keyword">if</span>(st.empty() || height[i] &gt;= height[st.top()]){</div><div class="line">            st.push(i++);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> temp = st.top();</div><div class="line">            st.pop();</div><div class="line">            <span class="comment">//注意这一点</span></div><div class="line">            maxArea = max(maxArea,height[temp]*(st.empty() ? i : i-st.top()-<span class="number">1</span>));<span class="comment">//{4,2,0,3,2,5}</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxArea;</div><div class="line">}</div></pre></figure>
+        <p>Reverse digits of an integer.</p>
+<p>Example1: x = 123, return 321<br>Example2: x = -123, return -321</p>
+<p>click to show spoilers.</p>
+<p>Have you thought about this?<br>Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!</p>
+<p>If the integer’s last digit is 0, what should the output be? ie, cases such as 10, 100.</p>
+<p>Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?</p>
+<p>Throw an exception? Good, but what if throwing an exception is not an option? You would then have to re-design the function (ie, add an extra parameter).</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> reverse(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">int</span> r = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> symbol = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(x &lt; <span class="number">0</span>){</div><div class="line">        symbol = -<span class="number">1</span>;<span class="comment">//负数</span></div><div class="line">        <span class="keyword">if</span>(x == INT_MIN) <span class="keyword">return</span> INT_MIN;<span class="comment">//x = -x也有可能溢出</span></div><div class="line">		x = -x;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(x){</div><div class="line">        <span class="keyword">if</span>(r &gt; INT_MAX/<span class="number">10</span> || (r == INT_MAX/<span class="number">10</span> && x<span class="variable">%10</span> &gt; INT_MAX<span class="variable">%10</span>)){</div><div class="line">            <span class="keyword">return</span> symbol == <span class="number">1</span> ? INT_MAX : INT_MIN;</div><div class="line">        }</div><div class="line">        r = r<span class="variable">*10</span> + x<span class="variable">%10</span>;</div><div class="line">        x = x/<span class="number">10</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> r<span class="variable">*symbol</span>;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -176,18 +191,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/evaluteReverse/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Evaluate Reverse Polish Notation
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/22/longvalidparent/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Longest Valid Parentheses</div>
+    <a href="/2014/09/29/clone/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Clone Graph</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -216,7 +222,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="largestRec" data-title="Largest Rectangle in Histogram" data-url="http://yoursite.com/2014/09/22/largestRec/"></div>
+	<div class="ds-thread" data-thread-key="reverseInteger" data-title="Reverse Integer" data-url="http://yoursite.com/2014/09/29/reverseInteger/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

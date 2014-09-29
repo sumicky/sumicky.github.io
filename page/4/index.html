@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 10.00px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-romantointerger" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/romantointerger/" class="article-date">
+  	<time datetime="2014-09-21T22:27:05.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/romantointerger/">Roman to Integer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a roman numeral, convert it to an integer.</p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> romanToInt(<span class="built_in">string</span> s) {</div><div class="line">    <span class="stl_container"><span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;</span> mp;</div><div class="line">    mp[<span class="string">'I'</span>] = <span class="number">1</span>, mp[<span class="string">'V'</span>] = <span class="number">5</span>;</div><div class="line">    mp[<span class="string">'X'</span>] = <span class="number">10</span>, mp[<span class="string">'L'</span>] = <span class="number">50</span>;</div><div class="line">    mp[<span class="string">'C'</span>] = <span class="number">100</span>, mp[<span class="string">'D'</span>] = <span class="number">500</span>;</div><div class="line">    mp[<span class="string">'M'</span>] = <span class="number">1000</span>;</div><div class="line">   </div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) {</div><div class="line">        <span class="keyword">if</span> (i&gt;<span class="number">0</span> && mp[s[i]] &gt; mp[s[i-<span class="number">1</span>]]) {</div><div class="line">            ret += mp[s[i]] - <span class="number">2</span>*mp[s[i-<span class="number">1</span>]];</div><div class="line">        } </div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            ret += mp[ s[i] ];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-integertoroman" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -551,55 +598,6 @@
         <p>Implement strStr().</p>
 <p>Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.</p>
 <figure class="highlight"><pre><div class="line"><span class="comment">//暴力法，复杂度O(M*N)</span></div><div class="line"><span class="keyword">char</span>* strStr(<span class="keyword">const</span> <span class="keyword">char</span>* haystack, <span class="keyword">const</span> <span class="keyword">char</span>* needle){</div><div class="line">    <span class="keyword">int</span> hayLen = <span class="built_in">strlen</span>(haystack);</div><div class="line">    <span class="keyword">int</span> needLen = <span class="built_in">strlen</span>(needle);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;= hayLen-needLen; i++){</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p1 = haystack+i;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p2 = needle;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(*p1 && *p2 && *p1 == *p2){</div><div class="line">            p1++;</div><div class="line">            p2++;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p2 == <span class="string">'\0'</span>) <span class="keyword">return</span> <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(haystack+i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-validPlindrome" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/validPlindrome/" class="article-date">
-  	<time datetime="2014-09-21T22:16:03.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/validPlindrome/">Valid Palindrome</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
-<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome.</p>
-<p>Note:<br>Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
-<p>For the purpose of this problem, we define empty string as valid palindrome.</p>
-<figure class="highlight"><pre><div class="line"><span class="built_in">bool</span> isPalindrome(<span class="built_in">string</span> s) {</div><div class="line">    transform(s.<span class="keyword">begin</span>(),s.<span class="keyword">end</span>(),s.<span class="keyword">begin</span>(),::tolower);</div><div class="line">    <span class="built_in">string</span> res = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){</div><div class="line">        <span class="keyword">if</span>((s[i]&gt;=<span class="string">'a'</span> && s[i]&lt;=<span class="string">'z'</span>) || (s[i] &gt;= <span class="string">'0'</span> && s[i]&lt;=<span class="string">'9'</span>)){</div><div class="line">            res += s[i];  </div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="built_in">string</span> temp = res;</div><div class="line">    reverse(temp.<span class="keyword">begin</span>(),temp.<span class="keyword">end</span>());</div><div class="line">    </div><div class="line">    return temp == res;</div><div class="line">}</div></pre></figure>
 
 
       

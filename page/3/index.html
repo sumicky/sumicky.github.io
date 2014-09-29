@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 10.00px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,55 @@
 	</div>
 </nav>
       
+  
+    <article id="post-2dMatrix" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/2dMatrix/" class="article-date">
+  	<time datetime="2014-09-21T22:39:03.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/2dMatrix/">Search a 2D Matrix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<p>Integers in each row are sorted from left to right.<br>The first integer of each row is greater than the last integer of the previous row.<br>For example,</p>
+<p>Consider the following matrix:</p>
+<p>[<br>  [1,   3,  5,  7],<br>  [10, 11, 16, 20],<br>  [23, 30, 34, 50]<br>]<br>Given target = 3, return true.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//关于二分法，你好好琢磨下,写代码时配合例子，有无等号，或者比较怎么写</span></div><div class="line">bool searchMatrix(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">matrix</span>, <span class="keyword">int</span> target) {</div><div class="line">    <span class="comment">//先行后列</span></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">matrix</span>.<span class="keyword">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> false;</div><div class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="keyword">matrix</span>.<span class="keyword">size</span>()-<span class="number">1</span>;  </div><div class="line">    <span class="keyword">int</span> n = <span class="keyword">matrix</span>[<span class="number">0</span>].<span class="keyword">size</span>()-<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(left &lt; right){</div><div class="line">        <span class="keyword">int</span> mid = left + (right-left)/<span class="number">2</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="keyword">matrix</span>[mid][n] &gt;= target) right = mid;</div><div class="line">        <span class="keyword">else</span>  left = mid+<span class="number">1</span>;<span class="comment">//记录行</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">int</span> mid = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] == target) <span class="keyword">return</span> true;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">matrix</span>[left][mid] &gt; target) r = mid-<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span>  l = mid+<span class="number">1</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> false;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-searchIp" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -548,53 +597,6 @@
 <p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.<br>Given an integer n, generate the nth sequence.</p>
 <p>Note: The sequence of integers will be represented as a string.</p>
 <figure class="highlight"><pre><div class="line">string countAndSay(<span class="keyword">int</span> n) {</div><div class="line">    string cur = <span class="string">"1"</span>;</div><div class="line">    string nxt = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++){</div><div class="line">        nxt = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;cur.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">count</span> = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(j+<span class="number">1</span>&lt;cur.<span class="keyword">size</span>() && cur[j] == cur[j+<span class="number">1</span>]){</div><div class="line">                <span class="keyword">count</span>++;</div><div class="line">                j++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,<span class="keyword">count</span>+<span class="string">'0'</span>);</div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,cur[j]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        cur = nxt;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cur;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-romantointerger" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/romantointerger/" class="article-date">
-  	<time datetime="2014-09-21T22:27:05.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/romantointerger/">Roman to Integer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a roman numeral, convert it to an integer.</p>
-<p>Input is guaranteed to be within the range from 1 to 3999.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> romanToInt(<span class="built_in">string</span> s) {</div><div class="line">    <span class="stl_container"><span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;</span> mp;</div><div class="line">    mp[<span class="string">'I'</span>] = <span class="number">1</span>, mp[<span class="string">'V'</span>] = <span class="number">5</span>;</div><div class="line">    mp[<span class="string">'X'</span>] = <span class="number">10</span>, mp[<span class="string">'L'</span>] = <span class="number">50</span>;</div><div class="line">    mp[<span class="string">'C'</span>] = <span class="number">100</span>, mp[<span class="string">'D'</span>] = <span class="number">500</span>;</div><div class="line">    mp[<span class="string">'M'</span>] = <span class="number">1000</span>;</div><div class="line">   </div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) {</div><div class="line">        <span class="keyword">if</span> (i&gt;<span class="number">0</span> && mp[s[i]] &gt; mp[s[i-<span class="number">1</span>]]) {</div><div class="line">            ret += mp[s[i]] - <span class="number">2</span>*mp[s[i-<span class="number">1</span>]];</div><div class="line">        } </div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            ret += mp[ s[i] ];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></figure>
 
 
       

@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 10.00px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,54 @@
 	</div>
 </nav>
       
+  
+    <article id="post-letterCom" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/letterCom/" class="article-date">
+  	<time datetime="2014-09-21T22:02:13.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力枚举法/">暴力枚举法</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/letterCom/">Letter Combinations</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a digit string, return all possible letter combinations that the number could represent.</p>
+<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
+<p>Input:Digit string “23”<br>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].<br>Note:<br>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
+<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> letterCombinations(<span class="built_in">string</span> digits) {</div><div class="line">    mp[<span class="string">'2'</span>] = <span class="string">"abc"</span>; mp[<span class="string">'3'</span>] = <span class="string">"def"</span>;</div><div class="line">    mp[<span class="string">'4'</span>] = <span class="string">"ghi"</span>; mp[<span class="string">'5'</span>] = <span class="string">"jkl"</span>;</div><div class="line">    mp[<span class="string">'6'</span>] = <span class="string">"mno"</span>; mp[<span class="string">'7'</span>] = <span class="string">"pqrs"</span>;</div><div class="line">    mp[<span class="string">'8'</span>] = <span class="string">"tuv"</span>; mp[<span class="string">'9'</span>] = <span class="string">"wxyz"</span>;</div><div class="line">    mp[<span class="string">'0'</span>] = <span class="string">" "</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>res;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(digits.size() == <span class="number">0</span>){</div><div class="line">        res.push_back(<span class="string">""</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> tmp = letterCombinations(digits.substr(<span class="number">1</span>));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; mp[digits[<span class="number">0</span>]].size(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;tmp.size(); j++){</div><div class="line">            res.push_back(mp[digits[<span class="number">0</span>]][i] + tmp[j]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="stl_container"><span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="built_in">string</span>&gt;</span>mp;</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-combinations" class="article article-type-post" itemscope itemprop="blogPost">
   
