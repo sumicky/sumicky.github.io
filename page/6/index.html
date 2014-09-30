@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.33px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-implementstr" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/implementstr/" class="article-date">
+  	<time datetime="2014-09-21T22:16:45.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/implementstr/">Implement strStr()</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Implement strStr().</p>
+<p>Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//暴力法，复杂度O(M*N)</span></div><div class="line"><span class="keyword">char</span>* strStr(<span class="keyword">const</span> <span class="keyword">char</span>* haystack, <span class="keyword">const</span> <span class="keyword">char</span>* needle){</div><div class="line">    <span class="keyword">int</span> hayLen = <span class="built_in">strlen</span>(haystack);</div><div class="line">    <span class="keyword">int</span> needLen = <span class="built_in">strlen</span>(needle);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;= hayLen-needLen; i++){</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p1 = haystack+i;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p2 = needle;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(*p1 && *p2 && *p1 == *p2){</div><div class="line">            p1++;</div><div class="line">            p2++;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p2 == <span class="string">'\0'</span>) <span class="keyword">return</span> <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(haystack+i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-validPlindrome" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -560,55 +607,6 @@
 <p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
 <p>Note: m and n will be at most 100.</p>
 <figure class="highlight"><pre><div class="line"><span class="comment">//dp 更合适</span></div><div class="line"><span class="keyword">int</span> uniquePaths(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">//dp f(m,n) = f(m,n-1) + f(m-1,n)</span></div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> || n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> &gt;</span>dp(m,<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>(n,<span class="number">0</span>));<span class="comment">//初始化</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)  dp[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)  dp[<span class="number">0</span>][i] = <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++){</div><div class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-palindrome" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/palindrome/" class="article-date">
-  	<time datetime="2014-09-21T22:03:38.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/palindrome/">Palindrome Partitioning</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
-<p>Return all possible palindrome partitioning of s.</p>
-<p>For example, given s = “aab”,<br>Return</p>
-<p>  [<br>    [“aa”,”b”],<br>    [“a”,”a”,”b”]<br>  ]</p>
-<figure class="highlight"><pre><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span> partition(<span class="built_in">string</span> s){</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>res;</div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>path;</div><div class="line">    </div><div class="line">    dfs(s,path,res);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">void</span> dfs(<span class="built_in">string</span> s, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span>& path, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> &gt;</span>& res){</div><div class="line">    <span class="keyword">if</span>(s.size() == <span class="number">0</span>){</div><div class="line">        res.push_back(path);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++){<span class="comment">//每个都可以当end</span></div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = i;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(left &lt; right){</div><div class="line">            <span class="keyword">if</span>(s[left] == s[right]){</div><div class="line">                left++;</div><div class="line">                right--;</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(left &gt;= right){<span class="comment">//有回文，前面</span></div><div class="line">            path.push_back(s.substr(<span class="number">0</span>,i+<span class="number">1</span>));<span class="comment">//i+1个字符</span></div><div class="line">            dfs(s.substr(i+<span class="number">1</span>),path,res);</div><div class="line">            path.pop_back();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       

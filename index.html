@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.33px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,52 @@
 	</div>
 </nav>
       
+  
+    <article id="post-maxpoints" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/30/maxpoints/" class="article-date">
+  	<time datetime="2014-09-30T02:46:35.000Z" itemprop="datePublished">9月 30 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/30/maxpoints/">Max Points on a Line</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
+<figure class="highlight"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Definition for a point.</div><div class="line"> * struct Point {</div><div class="line"> *     int x;</div><div class="line"> *     int y;</div><div class="line"> *     Point() : x(0), y(0) {}</div><div class="line"> *     Point(int a, int b) : x(a), y(b) {}</div><div class="line"> * };</div><div class="line"> */</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="keyword">int</span> maxPoints(vector&lt;Point&gt; &points) {</div><div class="line">    unordered_map&lt;<span class="keyword">double</span>,<span class="keyword">int</span>&gt;mp;<span class="comment">//斜率，个数</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;points.size(); i++){</div><div class="line">        mp.clear();</div><div class="line">        <span class="keyword">int</span> theSame = <span class="number">0</span>, vertical = <span class="number">0</span>, maxSlope = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;points.size(); j++){</div><div class="line">            <span class="keyword">if</span>(points[i].x == points[j].x){</div><div class="line">                <span class="keyword">if</span>(points[i].y == points[j].y){</div><div class="line">                    theSame++;<span class="comment">//同一个点,没有这个会差1</span></div><div class="line">                }</div><div class="line">                <span class="keyword">else</span>{<span class="comment">//垂直</span></div><div class="line">                    vertical++;</div><div class="line">                }</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                <span class="keyword">double</span> slope = (points[j].y-points[i].y)*<span class="number">1.0</span>/(points[j].x-points[i].x);</div><div class="line">                mp[slope]++;<span class="comment">//计数</span></div><div class="line">                maxSlope = max(maxSlope,mp[slope]);</div><div class="line">            }</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> maxSingle = max(maxSlope,vertical) + theSame;<span class="comment">//单点为基点，最多的点在直线上</span></div><div class="line">        res = max(maxSingle,res);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-divide" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -560,64 +606,6 @@
 <p>Note:<br>If there is no such window in S that covers all characters in T, return the emtpy string “”.</p>
 <p>If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.</p>
 <figure class="highlight"><pre><div class="line"><span class="comment">//e.g: DCBBBAABCAA T:ABC</span></div><div class="line"><span class="keyword">string</span> minWindow(<span class="keyword">string</span> S, <span class="keyword">string</span> T) {</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; isEle(<span class="number">256</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; eleCount(<span class="number">256</span>,<span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;T.<span class="keyword">size</span>(); i++){</div><div class="line">        isEle[T[i]]++;<span class="comment">//标志T元素是否存在</span></div><div class="line">        eleCount[T[i]]++;<span class="comment">//表示T元素个数</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> minLen = INT_MAX;</div><div class="line">    <span class="keyword">int</span> index = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> len = T.<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;<span class="comment">//从头开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> end=<span class="number">0</span>; end&lt;S.<span class="keyword">size</span>(); end++){</div><div class="line">        <span class="keyword">if</span>(isEle[S[end]] &gt; <span class="number">0</span>){</div><div class="line">            <span class="keyword">if</span>(eleCount[S[end]] &gt; <span class="number">0</span>) len--;</div><div class="line">            </div><div class="line">            eleCount[S[end]]--;<span class="comment">//无条件记录</span></div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(len == <span class="number">0</span>){<span class="comment">//包含所有T中字符串</span></div><div class="line">            <span class="keyword">while</span>(<span class="number">1</span>){</div><div class="line">                <span class="comment">//从start处开始收缩</span></div><div class="line">                <span class="keyword">if</span>(isEle[S[start]] &gt; <span class="number">0</span>){<span class="comment">//若T中字符存在，考虑重复字母，收缩范围</span></div><div class="line">                    <span class="keyword">if</span>(eleCount[S[start]] &lt; <span class="number">0</span>){<span class="comment">//</span></div><div class="line">                        eleCount[S[start]]++;</div><div class="line">                    }</div><div class="line">                    <span class="keyword">else</span>{</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    }</div><div class="line">                }</div><div class="line">                </div><div class="line">                start++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(end-start+<span class="number">1</span> &lt; minLen){</div><div class="line">                minLen = end-start+<span class="number">1</span>;</div><div class="line">                index = start;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> minLen == INT_MAX ? <span class="string">""</span> : S.substr(index,minLen);</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-mergeIntervals" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/29/mergeIntervals/" class="article-date">
-  	<time datetime="2014-09-29T07:37:12.000Z" itemprop="datePublished">9月 29 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/29/mergeIntervals/">Merge Intervals &amp;&amp; Insert Interval</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a collection of intervals, merge all overlapping intervals.</p>
-<p>For example,<br>Given [1,3],[2,6],[8,10],[15,18],<br>return [1,6],[8,10],[15,18].</p>
-<figure class="highlight"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Definition for an interval.</div><div class="line"> * struct Interval {</div><div class="line"> *     int start;</div><div class="line"> *     int end;</div><div class="line"> *     Interval() : start(0), end(0) {}</div><div class="line"> *     Interval(int s, int e) : start(s), end(e) {}</div><div class="line"> * };</div><div class="line"> */</div></pre></figure>
-
-
-
-<figure class="highlight"><pre><div class="line"><span class="comment">//这个排序是精髓</span></div><div class="line">bool cmp(<span class="type">Interval</span> <span class="type">A</span>, <span class="type">Interval</span> <span class="type">B</span>){</div><div class="line">    <span class="keyword">if</span>(<span class="type">A</span>.start != <span class="type">B</span>.start){</div><div class="line">        <span class="keyword">return</span> <span class="type">A</span>.start &lt;  <span class="type">B</span>.start;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="type">A</span>.end &lt; <span class="type">B</span>.end;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</div><div class="line">public:</div><div class="line">vector&lt;<span class="type">Interval</span>&gt; merge(vector&lt;<span class="type">Interval</span>&gt; &intervals) {</div><div class="line">    <span class="keyword">if</span>(intervals.size() == <span class="number">0</span> || intervals.size() == <span class="number">1</span>) <span class="keyword">return</span> intervals;</div><div class="line">    </div><div class="line">    <span class="built_in">sort</span>(intervals.begin(),intervals.end(),cmp);<span class="comment">//排序</span></div><div class="line">    vector&lt;<span class="type">Interval</span>&gt; res;</div><div class="line">    </div><div class="line">    int <span class="keyword">left</span> = intervals[<span class="number">0</span>].start, <span class="keyword">right</span> = intervals[<span class="number">0</span>].end;</div><div class="line">    <span class="keyword">for</span>(int i=<span class="number">1</span>; i&lt;intervals.size(); i++){</div><div class="line">        <span class="comment">//没有交集</span></div><div class="line">        <span class="keyword">if</span>(<span class="keyword">right</span> &lt; intervals[i].start){</div><div class="line">            res.push_back(<span class="type">Interval</span>(<span class="keyword">left</span>,<span class="keyword">right</span>));</div><div class="line"></div><div class="line">            <span class="keyword">left</span> = intervals[i].start;</div><div class="line">            <span class="keyword">right</span> = intervals[i].end;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{<span class="comment">//有交集</span></div><div class="line">            <span class="keyword">left</span> = <span class="built_in">min</span>(<span class="keyword">left</span>,intervals[i].start);</div><div class="line">            <span class="keyword">right</span> = <span class="built_in">max</span>(<span class="keyword">right</span>, intervals[i].end);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="comment">//最后一个别忘了</span></div><div class="line">    res.push_back(<span class="type">Interval</span>(<span class="keyword">left</span>,<span class="keyword">right</span>));</div><div class="line">  </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
-
-<p>Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).</p>
-<p>You may assume that the intervals were initially sorted according to their start times.</p>
-<p>Example 1:<br>Given intervals [1,3],[6,9], insert and merge [2,5] in as [1,5],[6,9].</p>
-<p>Example 2:<br>Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as [1,2],[3,10],[12,16].</p>
-<p>This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//加一行足够了</span></div><div class="line"><span class="stl_container"><span class="built_in">vector</span>&lt;Interval&gt;</span> insert(<span class="stl_container"><span class="built_in">vector</span>&lt;Interval&gt;</span> &intervals, Interval newInterval) {</div><div class="line">    intervals.push_back(newInterval);</div><div class="line">    <span class="keyword">return</span> merge(intervals);</div><div class="line">}</div></pre></figure>
 
 
       

@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Best Time to Buy and Sell Stock III | 码农求职记</title>
+  <title>Max Points on a Line | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Say you have an array for which the ith element is the price of a given stock on day i.
-Design an algorithm to find the maximum profit. You may complete at most two transactions.
-Note:You may not enga">
+  <meta name="description" content="Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+/** * Definition for a point. * struct Point { *     int x; *     int y; *     Point() : x(0), y(0)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Best Time to Buy and Sell Stock III">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/bestStock3/">
+<meta property="og:title" content="Max Points on a Line">
+<meta property="og:url" content="http://yoursite.com/2014/09/30/maxpoints/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Say you have an array for which the ith element is the price of a given stock on day i.
-Design an algorithm to find the maximum profit. You may complete at most two transactions.
-Note:You may not enga">
+<meta property="og:description" content="Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+/** * Definition for a point. * struct Point { *     int x; *     int y; *     Point() : x(0), y(0)">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Best Time to Buy and Sell Stock III">
-<meta name="twitter:description" content="Say you have an array for which the ith element is the price of a given stock on day i.
-Design an algorithm to find the maximum profit. You may complete at most two transactions.
-Note:You may not enga">
+<meta name="twitter:title" content="Max Points on a Line">
+<meta name="twitter:description" content="Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+/** * Definition for a point. * struct Point { *     int x; *     int y; *     Point() : x(0), y(0)">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -141,15 +138,15 @@ Note:You may not enga">
 		</header>				
 	</div>
 </nav>
-      <article id="post-bestStock3" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-maxpoints" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/23/bestStock3/" class="article-date">
-  	<time datetime="2014-09-23T15:49:21.000Z" itemprop="datePublished">9月 23 2014</time>
+      <a href="/2014/09/30/maxpoints/" class="article-date">
+  	<time datetime="2014-09-30T02:46:35.000Z" itemprop="datePublished">9月 30 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
 
     </div>
   
@@ -159,7 +156,7 @@ Note:You may not enga">
         
   
     <h1 class="article-title" itemprop="name">
-      Best Time to Buy and Sell Stock III
+      Max Points on a Line
     </h1>
   
 
@@ -167,10 +164,8 @@ Note:You may not enga">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
-<p>Note:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<figure class="highlight"><pre><div class="line">//不明白题意</div><div class="line"><span class="type">int</span> maxProfit(vector&lt;<span class="type">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span> (prices.size()&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">    <span class="type">int</span> len=prices.size(),<span class="literal">result</span>=<span class="number">0</span>;</div><div class="line">    <span class="type">int</span> low=prices[<span class="number">0</span>],high=prices[len-<span class="number">1</span>];</div><div class="line"></div><div class="line">    vector&lt;<span class="type">int</span>&gt; profits_history(len,<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++){</div><div class="line">        low=min(low,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,prices[i]-low);</div><div class="line">        profits_history[i]=<span class="literal">result</span>; </div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--){</div><div class="line">        high=max(high,prices[i]);</div><div class="line">        <span class="literal">result</span>=max(<span class="literal">result</span>,high-prices[i]+profits_history[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</div><div class="line">}</div></pre></figure>
+        <p>Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
+<figure class="highlight"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Definition for a point.</div><div class="line"> * struct Point {</div><div class="line"> *     int x;</div><div class="line"> *     int y;</div><div class="line"> *     Point() : x(0), y(0) {}</div><div class="line"> *     Point(int a, int b) : x(a), y(b) {}</div><div class="line"> * };</div><div class="line"> */</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="keyword">int</span> maxPoints(vector&lt;Point&gt; &points) {</div><div class="line">    unordered_map&lt;<span class="keyword">double</span>,<span class="keyword">int</span>&gt;mp;<span class="comment">//斜率，个数</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;points.size(); i++){</div><div class="line">        mp.clear();</div><div class="line">        <span class="keyword">int</span> theSame = <span class="number">0</span>, vertical = <span class="number">0</span>, maxSlope = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;points.size(); j++){</div><div class="line">            <span class="keyword">if</span>(points[i].x == points[j].x){</div><div class="line">                <span class="keyword">if</span>(points[i].y == points[j].y){</div><div class="line">                    theSame++;<span class="comment">//同一个点,没有这个会差1</span></div><div class="line">                }</div><div class="line">                <span class="keyword">else</span>{<span class="comment">//垂直</span></div><div class="line">                    vertical++;</div><div class="line">                }</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                <span class="keyword">double</span> slope = (points[j].y-points[i].y)*<span class="number">1.0</span>/(points[j].x-points[i].x);</div><div class="line">                mp[slope]++;<span class="comment">//计数</span></div><div class="line">                maxSlope = max(maxSlope,mp[slope]);</div><div class="line">            }</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> maxSingle = max(maxSlope,vertical) + theSame;<span class="comment">//单点为基点，最多的点在直线上</span></div><div class="line">        res = max(maxSingle,res);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -184,18 +179,9 @@ Note:You may not enga">
     
 <nav id="article-nav">
   
-    <a href="/2014/09/23/editDis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Edit Distance
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/23/maxRec/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Maximal Rectangle</div>
+    <a href="/2014/09/29/divide/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Divide Two Integers</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -224,7 +210,7 @@ Note:You may not enga">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="bestStock3" data-title="Best Time to Buy and Sell Stock III" data-url="http://yoursite.com/2014/09/23/bestStock3/"></div>
+	<div class="ds-thread" data-thread-key="maxpoints" data-title="Max Points on a Line" data-url="http://yoursite.com/2014/09/30/maxpoints/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

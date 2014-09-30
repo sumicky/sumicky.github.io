@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.57px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 17.14px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.33px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,54 @@
 	</div>
 </nav>
       
+  
+    <article id="post-countandsay" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/countandsay/" class="article-date">
+  	<time datetime="2014-09-21T22:27:51.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/countandsay/">Count and Say</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The count-and-say sequence is the sequence of integers beginning as follows:<br>1, 11, 21, 1211, 111221, …</p>
+<p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.<br>Given an integer n, generate the nth sequence.</p>
+<p>Note: The sequence of integers will be represented as a string.</p>
+<figure class="highlight"><pre><div class="line">string countAndSay(<span class="keyword">int</span> n) {</div><div class="line">    string cur = <span class="string">"1"</span>;</div><div class="line">    string nxt = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++){</div><div class="line">        nxt = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;cur.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">count</span> = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(j+<span class="number">1</span>&lt;cur.<span class="keyword">size</span>() && cur[j] == cur[j+<span class="number">1</span>]){</div><div class="line">                <span class="keyword">count</span>++;</div><div class="line">                j++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,<span class="keyword">count</span>+<span class="string">'0'</span>);</div><div class="line">            nxt.<span class="keyword">append</span>(<span class="number">1</span>,cur[j]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        cur = nxt;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cur;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-romantointerger" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -551,53 +599,6 @@
 <p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
 <p>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">int</span> atoi(const <span class="keyword">char</span> *<span class="keyword">str</span>) {</div><div class="line">    <span class="keyword">while</span>(*<span class="keyword">str</span> == <span class="string">' '</span>) <span class="keyword">str</span>++;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> symbol = <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(*<span class="keyword">str</span> == <span class="string">'-'</span>){</div><div class="line">        symbol = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(*<span class="keyword">str</span> == <span class="string">'+'</span>){</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> <span class="keyword">sum</span> = <span class="number">0</span>; </div><div class="line">    <span class="keyword">while</span>(*<span class="keyword">str</span> &gt;= <span class="string">'0'</span> && *<span class="keyword">str</span> &lt;= <span class="string">'9'</span>){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">sum</span> &gt; INT_MAX/<span class="number">10</span> || (<span class="keyword">sum</span> == INT_MAX/<span class="number">10</span> && (*<span class="keyword">str</span>-<span class="string">'0'</span>) &gt; INT_MAX%<span class="number">10</span>) )</div><div class="line">            <span class="keyword">return</span> symbol == -<span class="number">1</span> ? INT_MIN : INT_MAX;</div><div class="line">        <span class="keyword">sum</span> = <span class="keyword">sum</span>*<span class="number">10</span> + (*<span class="keyword">str</span> - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">str</span>++;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">sum</span>*symbol;</div><div class="line">    </div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-implementstr" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/22/implementstr/" class="article-date">
-  	<time datetime="2014-09-21T22:16:45.000Z" itemprop="datePublished">9月 22 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/22/implementstr/">Implement strStr()</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Implement strStr().</p>
-<p>Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//暴力法，复杂度O(M*N)</span></div><div class="line"><span class="keyword">char</span>* strStr(<span class="keyword">const</span> <span class="keyword">char</span>* haystack, <span class="keyword">const</span> <span class="keyword">char</span>* needle){</div><div class="line">    <span class="keyword">int</span> hayLen = <span class="built_in">strlen</span>(haystack);</div><div class="line">    <span class="keyword">int</span> needLen = <span class="built_in">strlen</span>(needle);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;= hayLen-needLen; i++){</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p1 = haystack+i;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* p2 = needle;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(*p1 && *p2 && *p1 == *p2){</div><div class="line">            p1++;</div><div class="line">            p2++;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(*p2 == <span class="string">'\0'</span>) <span class="keyword">return</span> <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(haystack+i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div></pre></figure>
 
 
       
