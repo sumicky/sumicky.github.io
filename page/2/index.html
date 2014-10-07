@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/C-基础知识/" style="font-size: 10.00px;">C++ 基础知识</a><a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-multiply" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/multiply/" class="article-date">
+  	<time datetime="2014-09-29T09:20:56.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/multiply/">Multiply Strings</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given two numbers represented as strings, return multiplication of the numbers as a string.</p>
+<p>Note: The numbers can be arbitrarily large and are non-negative.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> multiply(<span class="keyword">string</span> num1, <span class="keyword">string</span> num2) {</div><div class="line">    <span class="keyword">if</span>(num1 == <span class="string">"0"</span> || num2 == <span class="string">"0"</span> ) <span class="keyword">return</span> <span class="string">"0"</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">string</span> res;</div><div class="line">    res.append(num1.<span class="keyword">size</span>()+num2.<span class="keyword">size</span>(),<span class="string">'0'</span>);<span class="comment">//两数相乘不超过两者位数之和</span></div><div class="line">    </div><div class="line">    reverse(num1.begin(),num1.end());<span class="comment">//倒置</span></div><div class="line">    reverse(num2.begin(),num2.end());</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;num2.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;num1.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">int</span> tmp = (num2[i]-<span class="string">'0'</span>)<span class="variable">*(</span>num1[j]-<span class="string">'0'</span>) + ret + res[i+j]-<span class="string">'0'</span>;</div><div class="line">            res[i+j] = tmp<span class="variable">%10</span> + <span class="string">'0'</span>;</div><div class="line">            ret = tmp/<span class="number">10</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="comment">//是不会存在超出范围num1.size()+num2.size();</span></div><div class="line">        <span class="comment">//因为对于每一个res[i+num1.size()]，其初始值为0</span></div><div class="line">        res[i+num1.<span class="keyword">size</span>()] += ret<span class="variable">%10</span>;</div><div class="line">        ret = <span class="number">0</span>;</div><div class="line">        <span class="comment">/*</span></div><div class="line">        //approach 2</div><div class="line">        int temp = num1.size();</div><div class="line">        while(ret){</div><div class="line">            int cur = res[i+temp]-'0' + ret;//9+9=18</div><div class="line">            res[i+temp] = cur%10 + '0';</div><div class="line">            ret = cur/10;</div><div class="line">            temp++;</div><div class="line">        }</div><div class="line">        */</div><div class="line">  </div><div class="line">    }</div><div class="line"></div><div class="line">    reverse(res.begin(),res.end());</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(res[start] == <span class="string">'0'</span>) start++;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res.substr(start);</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-minimumwindow" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -593,56 +640,9 @@
 
 
   
-    <article id="post-best1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/24/best1/" class="article-date">
-  	<time datetime="2014-09-23T16:05:38.000Z" itemprop="datePublished">9月 24 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/24/best1/">Best Time to Buy and Sell Stock</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxProfit(<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span>(prices.<span class="keyword">size</span>() &lt; <span class="number">2</span>)  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> profit = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> curMin = prices[<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;prices.<span class="keyword">size</span>(); i++){</div><div class="line">        profit = <span class="keyword">max</span>(profit,prices[i]-curMin);</div><div class="line">        curMin = <span class="keyword">min</span>(curMin,prices[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> profit;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

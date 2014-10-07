@@ -3,23 +3,41 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Multiply Strings | 码农求职记</title>
+  <title>重载(overload)、覆盖(override)、隐藏(hide)的区别 | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given two numbers represented as strings, return multiplication of the numbers as a string.
-Note: The numbers can be arbitrarily large and are non-negative.
-string multiply(string num1, string num2) {">
+  <meta name="description" content="重载(overload)、覆盖(override)、隐藏(hide)的区别
+标签（空格分隔）： C++基础知识
+
+重载
+重载是指不同的函数使用相同的函数名，但是函数的参数个数，顺序或类型不同。重载函数不关注返回类型，在同一个类内，const函数与非const函数可以构成重载。
+覆盖
+覆盖是指在派生类中重新对基类中的虚函数重新实现，即函数名和参数名都一样，只是函数的实现体不一样。
+隐藏
+隐藏是指派生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multiply Strings">
-<meta property="og:url" content="http://yoursite.com/2014/09/29/multiply/">
+<meta property="og:title" content="重载(overload)、覆盖(override)、隐藏(hide)的区别">
+<meta property="og:url" content="http://yoursite.com/2014/10/07/overload/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given two numbers represented as strings, return multiplication of the numbers as a string.
-Note: The numbers can be arbitrarily large and are non-negative.
-string multiply(string num1, string num2) {">
+<meta property="og:description" content="重载(overload)、覆盖(override)、隐藏(hide)的区别
+标签（空格分隔）： C++基础知识
+
+重载
+重载是指不同的函数使用相同的函数名，但是函数的参数个数，顺序或类型不同。重载函数不关注返回类型，在同一个类内，const函数与非const函数可以构成重载。
+覆盖
+覆盖是指在派生类中重新对基类中的虚函数重新实现，即函数名和参数名都一样，只是函数的实现体不一样。
+隐藏
+隐藏是指派生">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Multiply Strings">
-<meta name="twitter:description" content="Given two numbers represented as strings, return multiplication of the numbers as a string.
-Note: The numbers can be arbitrarily large and are non-negative.
-string multiply(string num1, string num2) {">
+<meta name="twitter:title" content="重载(overload)、覆盖(override)、隐藏(hide)的区别">
+<meta name="twitter:description" content="重载(overload)、覆盖(override)、隐藏(hide)的区别
+标签（空格分隔）： C++基础知识
+
+重载
+重载是指不同的函数使用相同的函数名，但是函数的参数个数，顺序或类型不同。重载函数不关注返回类型，在同一个类内，const函数与非const函数可以构成重载。
+覆盖
+覆盖是指在派生类中重新对基类中的虚函数重新实现，即函数名和参数名都一样，只是函数的实现体不一样。
+隐藏
+隐藏是指派生">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -141,15 +159,15 @@ string multiply(string num1, string num2) {">
 		</header>				
 	</div>
 </nav>
-      <article id="post-multiply" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-overload" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/29/multiply/" class="article-date">
-  	<time datetime="2014-09-29T09:20:56.000Z" itemprop="datePublished">9月 29 2014</time>
+      <a href="/2014/10/07/overload/" class="article-date">
+  	<time datetime="2014-10-07T02:22:04.000Z" itemprop="datePublished">10月 7 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-基础知识/">C++ 基础知识</a></li></ul>
 
     </div>
   
@@ -159,7 +177,7 @@ string multiply(string num1, string num2) {">
         
   
     <h1 class="article-title" itemprop="name">
-      Multiply Strings
+      重载(overload)、覆盖(override)、隐藏(hide)的区别
     </h1>
   
 
@@ -167,10 +185,21 @@ string multiply(string num1, string num2) {">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given two numbers represented as strings, return multiplication of the numbers as a string.</p>
-<p>Note: The numbers can be arbitrarily large and are non-negative.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">string</span> multiply(<span class="keyword">string</span> num1, <span class="keyword">string</span> num2) {</div><div class="line">    <span class="keyword">if</span>(num1 == <span class="string">"0"</span> || num2 == <span class="string">"0"</span> ) <span class="keyword">return</span> <span class="string">"0"</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">string</span> res;</div><div class="line">    res.append(num1.<span class="keyword">size</span>()+num2.<span class="keyword">size</span>(),<span class="string">'0'</span>);<span class="comment">//两数相乘不超过两者位数之和</span></div><div class="line">    </div><div class="line">    reverse(num1.begin(),num1.end());<span class="comment">//倒置</span></div><div class="line">    reverse(num2.begin(),num2.end());</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;num2.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;num1.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">int</span> tmp = (num2[i]-<span class="string">'0'</span>)<span class="variable">*(</span>num1[j]-<span class="string">'0'</span>) + ret + res[i+j]-<span class="string">'0'</span>;</div><div class="line">            res[i+j] = tmp<span class="variable">%10</span> + <span class="string">'0'</span>;</div><div class="line">            ret = tmp/<span class="number">10</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="comment">//是不会存在超出范围num1.size()+num2.size();</span></div><div class="line">        <span class="comment">//因为对于每一个res[i+num1.size()]，其初始值为0</span></div><div class="line">        res[i+num1.<span class="keyword">size</span>()] += ret<span class="variable">%10</span>;</div><div class="line">        ret = <span class="number">0</span>;</div><div class="line">        <span class="comment">/*</span></div><div class="line">        //approach 2</div><div class="line">        int temp = num1.size();</div><div class="line">        while(ret){</div><div class="line">            int cur = res[i+temp]-'0' + ret;//9+9=18</div><div class="line">            res[i+temp] = cur%10 + '0';</div><div class="line">            ret = cur/10;</div><div class="line">            temp++;</div><div class="line">        }</div><div class="line">        */</div><div class="line">  </div><div class="line">    }</div><div class="line"></div><div class="line">    reverse(res.begin(),res.end());</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(res[start] == <span class="string">'0'</span>) start++;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res.substr(start);</div><div class="line">}</div></pre></figure>
-
+        <h1 id="重载(overload)、覆盖(override)、隐藏(hide)的区别">重载(overload)、覆盖(override)、隐藏(hide)的区别</h1>
+<p>标签（空格分隔）： C++基础知识</p>
+<hr>
+<h2 id="重载">重载</h2>
+<p>重载是指不同的函数使用相同的函数名，但是函数的参数个数，顺序或类型不同。重载函数不关注返回类型，在同一个类内，const函数与非const函数可以构成重载。</p>
+<h2 id="覆盖">覆盖</h2>
+<p>覆盖是指在派生类中重新对基类中的虚函数重新实现，即函数名和参数名都一样，只是函数的实现体不一样。</p>
+<h2 id="隐藏">隐藏</h2>
+<p>隐藏是指派生类中的函数把基类中相同名字的函数屏蔽掉了。</p>
+<p>成员函数被重载的特征<br>1.相同的范围（同一类中，如都在基类中）<br>2.函数名字相同<br>3.参数不同，包括顺序，个数，类型<br>4.virtual 关键字可有可无</p>
+<p>覆盖是指派生类函数覆盖基类函数，特征：<br>1.不同范围（派生类，基类）<br>2.函数名字相同<br>3.参数相同<br>4.基类函数必须具有virtual关键字</p>
+<p>隐藏是指派生类的函数屏蔽了与其同名的基类函数，规则：<br>1.如果派生类的函数与基类的函数同名，但是参数不同。此时，无论有无virtual关键字，基类的函数将被隐藏<br>2.如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有virtual关键字，此时，基类的函数将被隐藏</p>
+<p>相同的函数名的函数，在基类和派生类中的关系只能是覆盖或隐藏</p>
+<p>多态性：一个接口，多种方法，程序在运行时才决定调用的函数。<br>e.g:声明基类的指针，利用该指针指向任何一个子类对象，调用相应的虚函数，可以根据指向的子类的不同而实现不同的方法。</p>
+<p>多态性：<br>编译多态性：重载函数实现<br>运行多态性：虚函数实现</p>
 
       
     </div>
@@ -183,18 +212,9 @@ string multiply(string num1, string num2) {">
     
 <nav id="article-nav">
   
-    <a href="/2014/09/29/concater/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Substring with Concatenation of All Words
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/29/minimumwindow/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Minimum Window Substring</div>
+    <a href="/2014/10/07/product/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Maximum Product Subarray</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -223,7 +243,7 @@ string multiply(string num1, string num2) {">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="multiply" data-title="Multiply Strings" data-url="http://yoursite.com/2014/09/29/multiply/"></div>
+	<div class="ds-thread" data-thread-key="overload" data-title="重载(overload)、覆盖(override)、隐藏(hide)的区别" data-url="http://yoursite.com/2014/10/07/overload/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

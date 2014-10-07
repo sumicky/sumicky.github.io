@@ -87,7 +87,7 @@ For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the la
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
+					<a href="/tags/C-基础知识/" style="font-size: 10.00px;">C++ 基础知识</a><a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -168,6 +168,9 @@ For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the la
 <p>For example, given the array [2,3,-2,4],<br>the contiguous subarray [2,3] has the largest product = 6.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxProduct(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> res = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> maxProduct = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> minProduct = A[<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">if</span>(A[i] &gt;= <span class="number">0</span>){</div><div class="line">            maxProduct = <span class="built_in">max</span>(maxProduct*A[i],A[i]);</div><div class="line">            minProduct = <span class="built_in">min</span>(minProduct*A[i],A[i]);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> temp = maxProduct;</div><div class="line">            maxProduct = <span class="built_in">max</span>(minProduct*A[i],A[i]);</div><div class="line">            minProduct = <span class="built_in">min</span>(temp*A[i],A[i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        res = <span class="built_in">max</span>(res,maxProduct);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
+<p>//Approach 2:</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxProduct(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> res = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> maxProduct = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> minProduct = A[<span class="number">0</span>];</div><div class="line">    <span class="comment">//dp思想</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">int</span> temp = maxProduct;</div><div class="line">        <span class="comment">//A[i]&lt;0,minProduct*A[i]可能最大</span></div><div class="line">        maxProduct = <span class="built_in">max</span>(<span class="built_in">max</span>(maxProduct*A[i],A[i]),minProduct*A[i]);</div><div class="line">        minProduct = <span class="built_in">min</span>(<span class="built_in">min</span>(temp*A[i],A[i]),minProduct*A[i]);</div><div class="line">        </div><div class="line">        res = <span class="built_in">max</span>(maxProduct,res);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
 
       
     </div>
@@ -179,6 +182,15 @@ For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the la
   
     
 <nav id="article-nav">
+  
+    <a href="/2014/10/07/overload/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          重载(overload)、覆盖(override)、隐藏(hide)的区别
+        
+      </div>
+    </a>
   
   
     <a href="/2014/09/30/maxpoints/" id="article-nav-older" class="article-nav-link-wrap">
