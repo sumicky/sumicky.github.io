@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Longest Valid Parentheses | 码农求职记</title>
+  <title>Maximum Product Subarray | 码农求职记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a string containing ‘(‘ and ‘)’, find the length of longest valid (well-formed) parentheses substring.For “(()”, the longest valid parentheses substring is “()”, which has length = 2;Another exa">
+  <meta name="description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the largest produ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Longest Valid Parentheses">
-<meta property="og:url" content="http://yoursite.com/2014/09/22/longvalidparent/">
+<meta property="og:title" content="Maximum Product Subarray">
+<meta property="og:url" content="http://yoursite.com/2014/10/07/product/">
 <meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given a string containing ‘(‘ and ‘)’, find the length of longest valid (well-formed) parentheses substring.For “(()”, the longest valid parentheses substring is “()”, which has length = 2;Another exa">
+<meta property="og:description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the largest produ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Longest Valid Parentheses">
-<meta name="twitter:description" content="Given a string containing ‘(‘ and ‘)’, find the length of longest valid (well-formed) parentheses substring.For “(()”, the longest valid parentheses substring is “()”, which has length = 2;Another exa">
+<meta name="twitter:title" content="Maximum Product Subarray">
+<meta name="twitter:description" content="Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the largest produ">
 
   
     <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
@@ -135,15 +138,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-longvalidparent" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-product" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/09/22/longvalidparent/" class="article-date">
-  	<time datetime="2014-09-21T22:32:07.000Z" itemprop="datePublished">9月 22 2014</time>
+      <a href="/2014/10/07/product/" class="article-date">
+  	<time datetime="2014-10-07T01:43:45.000Z" itemprop="datePublished">10月 7 2014</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈和队列/">栈和队列</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
 
     </div>
   
@@ -153,7 +156,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Longest Valid Parentheses
+      Maximum Product Subarray
     </h1>
   
 
@@ -161,8 +164,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Given a string containing ‘(‘ and ‘)’, find the length of longest valid (well-formed) parentheses substring.<br>For “(()”, the longest valid parentheses substring is “()”, which has length = 2;<br>Another example is “)()())”, where the longest valid parentheses substring is “()()”, which has length = 4;</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> longestValidParentheses(string <span class="keyword">s</span>){</div><div class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</div><div class="line">    stack&lt;char&gt;st;</div><div class="line">    stack&lt;<span class="keyword">int</span>&gt;<span class="keyword">pos</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="keyword">s</span>.size(); i++){</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">s</span>[i] == <span class="string">'('</span>){</div><div class="line">            st.<span class="keyword">push</span>(<span class="keyword">s</span>[i]);</div><div class="line">            <span class="keyword">pos</span>.<span class="keyword">push</span>(i);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">if</span>(!st.empty() && st.top() == <span class="string">'('</span>){</div><div class="line">                st.<span class="keyword">pop</span>();</div><div class="line">                <span class="keyword">pos</span>.<span class="keyword">pop</span>();</div><div class="line">                <span class="keyword">int</span> p = st.empty() ? -<span class="number">1</span> : <span class="keyword">pos</span>.top();</div><div class="line">                maxLength = max(maxLength, i-p);</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                st.<span class="keyword">push</span>(<span class="keyword">s</span>[i]);</div><div class="line">                <span class="keyword">pos</span>.<span class="keyword">push</span>(i);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> maxLength;</div><div class="line">}</div></pre></figure>
+        <p>Find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p>For example, given the array [2,3,-2,4],<br>the contiguous subarray [2,3] has the largest product = 6.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxProduct(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> res = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> maxProduct = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> minProduct = A[<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">if</span>(A[i] &gt;= <span class="number">0</span>){</div><div class="line">            maxProduct = <span class="built_in">max</span>(maxProduct*A[i],A[i]);</div><div class="line">            minProduct = <span class="built_in">min</span>(minProduct*A[i],A[i]);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> temp = maxProduct;</div><div class="line">            maxProduct = <span class="built_in">max</span>(minProduct*A[i],A[i]);</div><div class="line">            minProduct = <span class="built_in">min</span>(temp*A[i],A[i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        res = <span class="built_in">max</span>(res,maxProduct);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
 
 
       
@@ -176,18 +180,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/22/largestRec/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Largest Rectangle in Histogram
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/22/lengthoflwt/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Length of Last Word</div>
+    <a href="/2014/09/30/maxpoints/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Max Points on a Line</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -216,7 +211,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="longvalidparent" data-title="Longest Valid Parentheses" data-url="http://yoursite.com/2014/09/22/longvalidparent/"></div>
+	<div class="ds-thread" data-thread-key="product" data-title="Maximum Product Subarray" data-url="http://yoursite.com/2014/10/07/product/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

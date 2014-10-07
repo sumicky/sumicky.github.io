@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.33px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,55 @@
 	</div>
 </nav>
       
+  
+    <article id="post-minimumwindow" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/29/minimumwindow/" class="article-date">
+  	<time datetime="2014-09-29T08:33:45.000Z" itemprop="datePublished">9月 29 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/29/minimumwindow/">Minimum Window Substring</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
+<p>For example,<br>S = “ADOBECODEBANC”<br>T = “ABC”<br>Minimum window is “BANC”.</p>
+<p>Note:<br>If there is no such window in S that covers all characters in T, return the emtpy string “”.</p>
+<p>If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//e.g: DCBBBAABCAA T:ABC</span></div><div class="line"><span class="keyword">string</span> minWindow(<span class="keyword">string</span> S, <span class="keyword">string</span> T) {</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; isEle(<span class="number">256</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; eleCount(<span class="number">256</span>,<span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;T.<span class="keyword">size</span>(); i++){</div><div class="line">        isEle[T[i]]++;<span class="comment">//标志T元素是否存在</span></div><div class="line">        eleCount[T[i]]++;<span class="comment">//表示T元素个数</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> minLen = INT_MAX;</div><div class="line">    <span class="keyword">int</span> index = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> len = T.<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;<span class="comment">//从头开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> end=<span class="number">0</span>; end&lt;S.<span class="keyword">size</span>(); end++){</div><div class="line">        <span class="keyword">if</span>(isEle[S[end]] &gt; <span class="number">0</span>){</div><div class="line">            <span class="keyword">if</span>(eleCount[S[end]] &gt; <span class="number">0</span>) len--;</div><div class="line">            </div><div class="line">            eleCount[S[end]]--;<span class="comment">//无条件记录</span></div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(len == <span class="number">0</span>){<span class="comment">//包含所有T中字符串</span></div><div class="line">            <span class="keyword">while</span>(<span class="number">1</span>){</div><div class="line">                <span class="comment">//从start处开始收缩</span></div><div class="line">                <span class="keyword">if</span>(isEle[S[start]] &gt; <span class="number">0</span>){<span class="comment">//若T中字符存在，考虑重复字母，收缩范围</span></div><div class="line">                    <span class="keyword">if</span>(eleCount[S[start]] &lt; <span class="number">0</span>){<span class="comment">//</span></div><div class="line">                        eleCount[S[start]]++;</div><div class="line">                    }</div><div class="line">                    <span class="keyword">else</span>{</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    }</div><div class="line">                }</div><div class="line">                </div><div class="line">                start++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(end-start+<span class="number">1</span> &lt; minLen){</div><div class="line">                minLen = end-start+<span class="number">1</span>;</div><div class="line">                index = start;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> minLen == INT_MAX ? <span class="string">""</span> : S.substr(index,minLen);</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-mergeIntervals" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -573,56 +622,6 @@
         <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
 <p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxProfit(<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &prices) {</div><div class="line">    <span class="keyword">if</span>(prices.<span class="keyword">size</span>() &lt; <span class="number">2</span>)  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> profit = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> curMin = prices[<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;prices.<span class="keyword">size</span>(); i++){</div><div class="line">        profit = <span class="keyword">max</span>(profit,prices[i]-curMin);</div><div class="line">        curMin = <span class="keyword">min</span>(curMin,prices[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> profit;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-jumpgame2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/24/jumpgame2/" class="article-date">
-  	<time datetime="2014-09-23T16:04:50.000Z" itemprop="datePublished">9月 24 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/24/jumpgame2/">Jump Game II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
-<p>Each element in the array represents your maximum jump length at that position.</p>
-<p>Your goal is to reach the last index in the minimum number of jumps.</p>
-<p>For example:<br>Given array A = [2,3,1,1,4]</p>
-<p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> jump(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//不满足要求</span></div><div class="line">  </div><div class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>, maxPos = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">if</span>(A[<span class="number">0</span>] &gt;= n-<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="comment">//若相等，说明到不了终点</span></div><div class="line">    <span class="keyword">while</span>(cur != maxPos){<span class="comment">//每一步都尝试走最大，并在区间内继续寻找，不漏过一个值</span></div><div class="line">       ret++;</div><div class="line">       <span class="keyword">int</span> temp = maxPos;</div><div class="line">       </div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=cur+<span class="number">1</span>; i&lt;=temp; i++){</div><div class="line">           <span class="keyword">if</span>(A[i]+i &gt;= maxPos){</div><div class="line">               maxPos = A[i] + i;</div><div class="line">               cur = i;</div><div class="line">           }</div><div class="line">           <span class="keyword">if</span>(maxPos &gt;= n-<span class="number">1</span>){</div><div class="line">               <span class="keyword">if</span>(cur == n-<span class="number">1</span>)<span class="keyword">return</span> ret;</div><div class="line">               <span class="keyword">else</span> <span class="keyword">return</span> ret+<span class="number">1</span>;</div><div class="line">           }</div><div class="line">       }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;<span class="comment">//到达不了终点</span></div><div class="line">}</div></pre></figure>
 
 
       

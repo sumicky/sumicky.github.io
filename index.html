@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.33px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,53 @@
 	</div>
 </nav>
       
+  
+    <article id="post-product" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/07/product/" class="article-date">
+  	<time datetime="2014-10-07T01:43:45.000Z" itemprop="datePublished">10月 7 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/07/product/">Maximum Product Subarray</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p>For example, given the array [2,3,-2,4],<br>the contiguous subarray [2,3] has the largest product = 6.</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> maxProduct(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">int</span> res = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> maxProduct = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> minProduct = A[<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++){</div><div class="line">        <span class="keyword">if</span>(A[i] &gt;= <span class="number">0</span>){</div><div class="line">            maxProduct = <span class="built_in">max</span>(maxProduct*A[i],A[i]);</div><div class="line">            minProduct = <span class="built_in">min</span>(minProduct*A[i],A[i]);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">int</span> temp = maxProduct;</div><div class="line">            maxProduct = <span class="built_in">max</span>(minProduct*A[i],A[i]);</div><div class="line">            minProduct = <span class="built_in">min</span>(temp*A[i],A[i]);</div><div class="line">        }</div><div class="line">        </div><div class="line">        res = <span class="built_in">max</span>(res,maxProduct);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-maxpoints" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -557,55 +604,6 @@
         <p>Given two numbers represented as strings, return multiplication of the numbers as a string.</p>
 <p>Note: The numbers can be arbitrarily large and are non-negative.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">string</span> multiply(<span class="keyword">string</span> num1, <span class="keyword">string</span> num2) {</div><div class="line">    <span class="keyword">if</span>(num1 == <span class="string">"0"</span> || num2 == <span class="string">"0"</span> ) <span class="keyword">return</span> <span class="string">"0"</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">string</span> res;</div><div class="line">    res.append(num1.<span class="keyword">size</span>()+num2.<span class="keyword">size</span>(),<span class="string">'0'</span>);<span class="comment">//两数相乘不超过两者位数之和</span></div><div class="line">    </div><div class="line">    reverse(num1.begin(),num1.end());<span class="comment">//倒置</span></div><div class="line">    reverse(num2.begin(),num2.end());</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;num2.<span class="keyword">size</span>(); i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;num1.<span class="keyword">size</span>(); j++){</div><div class="line">            <span class="keyword">int</span> tmp = (num2[i]-<span class="string">'0'</span>)<span class="variable">*(</span>num1[j]-<span class="string">'0'</span>) + ret + res[i+j]-<span class="string">'0'</span>;</div><div class="line">            res[i+j] = tmp<span class="variable">%10</span> + <span class="string">'0'</span>;</div><div class="line">            ret = tmp/<span class="number">10</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="comment">//是不会存在超出范围num1.size()+num2.size();</span></div><div class="line">        <span class="comment">//因为对于每一个res[i+num1.size()]，其初始值为0</span></div><div class="line">        res[i+num1.<span class="keyword">size</span>()] += ret<span class="variable">%10</span>;</div><div class="line">        ret = <span class="number">0</span>;</div><div class="line">        <span class="comment">/*</span></div><div class="line">        //approach 2</div><div class="line">        int temp = num1.size();</div><div class="line">        while(ret){</div><div class="line">            int cur = res[i+temp]-'0' + ret;//9+9=18</div><div class="line">            res[i+temp] = cur%10 + '0';</div><div class="line">            ret = cur/10;</div><div class="line">            temp++;</div><div class="line">        }</div><div class="line">        */</div><div class="line">  </div><div class="line">    }</div><div class="line"></div><div class="line">    reverse(res.begin(),res.end());</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(res[start] == <span class="string">'0'</span>) start++;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">return</span> res.substr(start);</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-minimumwindow" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/29/minimumwindow/" class="article-date">
-  	<time datetime="2014-09-29T08:33:45.000Z" itemprop="datePublished">9月 29 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节实现题/">细节实现题</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/29/minimumwindow/">Minimum Window Substring</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
-<p>For example,<br>S = “ADOBECODEBANC”<br>T = “ABC”<br>Minimum window is “BANC”.</p>
-<p>Note:<br>If there is no such window in S that covers all characters in T, return the emtpy string “”.</p>
-<p>If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.</p>
-<figure class="highlight"><pre><div class="line"><span class="comment">//e.g: DCBBBAABCAA T:ABC</span></div><div class="line"><span class="keyword">string</span> minWindow(<span class="keyword">string</span> S, <span class="keyword">string</span> T) {</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; isEle(<span class="number">256</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; eleCount(<span class="number">256</span>,<span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;T.<span class="keyword">size</span>(); i++){</div><div class="line">        isEle[T[i]]++;<span class="comment">//标志T元素是否存在</span></div><div class="line">        eleCount[T[i]]++;<span class="comment">//表示T元素个数</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> minLen = INT_MAX;</div><div class="line">    <span class="keyword">int</span> index = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> len = T.<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;<span class="comment">//从头开始</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> end=<span class="number">0</span>; end&lt;S.<span class="keyword">size</span>(); end++){</div><div class="line">        <span class="keyword">if</span>(isEle[S[end]] &gt; <span class="number">0</span>){</div><div class="line">            <span class="keyword">if</span>(eleCount[S[end]] &gt; <span class="number">0</span>) len--;</div><div class="line">            </div><div class="line">            eleCount[S[end]]--;<span class="comment">//无条件记录</span></div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(len == <span class="number">0</span>){<span class="comment">//包含所有T中字符串</span></div><div class="line">            <span class="keyword">while</span>(<span class="number">1</span>){</div><div class="line">                <span class="comment">//从start处开始收缩</span></div><div class="line">                <span class="keyword">if</span>(isEle[S[start]] &gt; <span class="number">0</span>){<span class="comment">//若T中字符存在，考虑重复字母，收缩范围</span></div><div class="line">                    <span class="keyword">if</span>(eleCount[S[start]] &lt; <span class="number">0</span>){<span class="comment">//</span></div><div class="line">                        eleCount[S[start]]++;</div><div class="line">                    }</div><div class="line">                    <span class="keyword">else</span>{</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    }</div><div class="line">                }</div><div class="line">                </div><div class="line">                start++;</div><div class="line">            }</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(end-start+<span class="number">1</span> &lt; minLen){</div><div class="line">                minLen = end-start+<span class="number">1</span>;</div><div class="line">                index = start;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> minLen == INT_MAX ? <span class="string">""</span> : S.substr(index,minLen);</div><div class="line">}</div></pre></figure>
 
 
       

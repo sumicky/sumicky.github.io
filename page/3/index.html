@@ -84,7 +84,7 @@
 			
 			<section class="second-part">
 				<div class="widget tagcloud">
-					<a href="/tags/分治法/" style="font-size: 11.67px;">分治法</a><a href="/tags/动态规划/" style="font-size: 18.33px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 15.00px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 13.33px;">查找</a><a href="/tags/栈和队列/" style="font-size: 13.33px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 16.67px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.33px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 15.00px;">贪心算法</a>
+					<a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
 				</div>
 			</section>
 			
@@ -136,6 +136,56 @@
 	</div>
 </nav>
       
+  
+    <article id="post-jumpgame2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/24/jumpgame2/" class="article-date">
+  	<time datetime="2014-09-23T16:04:50.000Z" itemprop="datePublished">9月 24 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/24/jumpgame2/">Jump Game II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
+<p>Each element in the array represents your maximum jump length at that position.</p>
+<p>Your goal is to reach the last index in the minimum number of jumps.</p>
+<p>For example:<br>Given array A = [2,3,1,1,4]</p>
+<p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> jump(<span class="keyword">int</span> A[], <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//不满足要求</span></div><div class="line">  </div><div class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>, maxPos = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">if</span>(A[<span class="number">0</span>] &gt;= n-<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="comment">//若相等，说明到不了终点</span></div><div class="line">    <span class="keyword">while</span>(cur != maxPos){<span class="comment">//每一步都尝试走最大，并在区间内继续寻找，不漏过一个值</span></div><div class="line">       ret++;</div><div class="line">       <span class="keyword">int</span> temp = maxPos;</div><div class="line">       </div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=cur+<span class="number">1</span>; i&lt;=temp; i++){</div><div class="line">           <span class="keyword">if</span>(A[i]+i &gt;= maxPos){</div><div class="line">               maxPos = A[i] + i;</div><div class="line">               cur = i;</div><div class="line">           }</div><div class="line">           <span class="keyword">if</span>(maxPos &gt;= n-<span class="number">1</span>){</div><div class="line">               <span class="keyword">if</span>(cur == n-<span class="number">1</span>)<span class="keyword">return</span> ret;</div><div class="line">               <span class="keyword">else</span> <span class="keyword">return</span> ret+<span class="number">1</span>;</div><div class="line">           }</div><div class="line">       }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;<span class="comment">//到达不了终点</span></div><div class="line">}</div></pre></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-jumpgame1" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -554,53 +604,6 @@
 <p>For example, given the following triangle<br>[<br>     [2],<br>    [3,4],<br>   [6,5,7],<br>  [4,1,8,3]<br>]<br>The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).</p>
 <p>Note:<br>Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</p>
 <figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minimumTotal(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &triangle) {</div><div class="line">    <span class="keyword">int</span> row = triangle.<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="comment">//dp[i]：第X层，到i叶子的最小路径</span></div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;dp(triangle[row-<span class="number">1</span>].<span class="keyword">size</span>(),<span class="number">0</span>);</div><div class="line">    dp[<span class="number">0</span>] = triangle[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=triangle[i].<span class="keyword">size</span>()-<span class="number">1</span>; j&gt;=<span class="number">0</span>; j--){</div><div class="line">            <span class="keyword">if</span>(j == triangle[i].<span class="keyword">size</span>()-<span class="number">1</span>){</div><div class="line">                dp[j] = dp[j-<span class="number">1</span>] + triangle[i][j];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j == <span class="number">0</span>){</div><div class="line">                dp[<span class="number">0</span>] = dp[<span class="number">0</span>]+triangle[i][<span class="number">0</span>];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                dp[j] = <span class="keyword">min</span>(dp[j],dp[j-<span class="number">1</span>])+triangle[i][j];</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> minimum = INT_MAX;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;dp.<span class="keyword">size</span>(); i++){</div><div class="line">        minimum = <span class="keyword">min</span>(minimum,dp[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> minimum;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-minimum" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/minimum/" class="article-date">
-  	<time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/23/minimum/">Minimum Path Sum</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
 
 
       
