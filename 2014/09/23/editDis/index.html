@@ -1,270 +1,370 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+  <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
+<meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-  <title>Edit Distance | 码农求职记</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
-You have the following 3 operations permitted on a word:
-a)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Edit Distance">
-<meta property="og:url" content="http://yoursite.com/2014/09/23/editDis/">
-<meta property="og:site_name" content="码农求职记">
-<meta property="og:description" content="Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
-You have the following 3 operations permitted on a word:
-a)">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Edit Distance">
-<meta name="twitter:description" content="Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
-You have the following 3 operations permitted on a word:
-a)">
+    <title>Edit Distance | 码农求职记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhang Yong">
+    
+    <meta name="description" content="Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
+You have ">
+    
+    
+    
+    
+    <link rel="alternate" href="atom.xml" title="码农求职记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/coney.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/coney.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-    <link rel="alternative" href="/atom.xml" title="码农求职记" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+     
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<div class="profilepic">
-			<img src="/img/me.png">
-		</div>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Zhang Yong</a></h1>
-		</hgroup>
-
+  <body>
+    <header>
+      <div>
 		
-		<p class="header-subtitle">Make things as simple as possible but not simpler.</p>
-		
-
-		
-			<div class="onoffswitch">
-			    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-			    <label class="onoffswitch-label" for="myonoffswitch">
-			        <span class="onoffswitch-inner"></span>
-			        <span class="onoffswitch-switch"></span>
-			    </label>
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="码农求职记">码农求职记</a></h1>
+				<a class="blog-motto">Make things as simple as possible but not simpler.</a>
 			</div>
-		
-
-		<div class="switch-area">
-			<section class="first-part">
-				<nav class="header-menu">
-					<ul>
-					
-						<li><a href="/">主页</a></li>
-			        
-						<li><a href="/archives">所有文章</a></li>
-			        
-						<li><a href="/tags/随笔">随笔</a></li>
-			        
-					</ul>
-				</nav>
-				<nav class="header-nav">
-					<div class="social">
-						
-							<a class="github" target="_blank" href="https://github.com/sumicky" title="github">github</a>
-				        
-							<a class="weibo" target="_blank" href="http://weibo.com/u/2868793152" title="weibo">weibo</a>
-				        
-							<a class="rss" target="_blank" href="/#" title="rss">rss</a>
-				        
-							<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
-				        
-					</div>
-				</nav>
-			</section>
-			
-			
-			<section class="second-part">
-				<div class="widget tagcloud">
-					<a href="/tags/C-基础知识/" style="font-size: 10.00px;">C++ 基础知识</a><a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
-				</div>
-			</section>
-			
-		</div>
-	</header>				
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay"></div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img src="/img/me.png">
-			</div>
-
-			<hgroup>
-			  <h1 class="header-author"><a href="/">Zhang Yong</a></h1>
-			</hgroup>
-			
-			<p class="header-subtitle">Make things as simple as possible but not simpler.</p>
-			
-			<nav class="header-menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
 				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-					<li><a href="/tags/随笔">随笔</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
 					
-						<a class="github" target="_blank" href="https://github.com/sumicky" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/u/2868793152" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
-			        
-						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
-</nav>
-      <article id="post-editDis" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/23/editDis/" class="article-date">
-  	<time datetime="2014-09-23T15:50:31.000Z" itemprop="datePublished">9月 23 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+                            </nav>			
+</div>
 
-    </div>
-  
-  <div class="article-inner">
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Edit Distance
-    </h1>
-  
-
-      </header>
+      <a href="/2014/09/23/editDis/" title="Edit Distance" itemprop="url">Edit Distance</a>
+  </h1>
+  <p class="article-author">By
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
+      <a href="http://yoursite.com" title="Zhang Yong">Zhang Yong</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-23T15:50:31.000Z" itemprop="datePublished">9月 23 2014</time>
+    更新日期:<time datetime="2014-09-23T15:50:59.000Z" itemprop="dateModified">9月 23 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
 <p>You have the following 3 operations permitted on a word:</p>
 <p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
 <figure class="highlight"><pre><div class="line">//dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]:表示A[0,i]和B[0,j]之间的最小编辑距离，</div><div class="line">//设A[0,i]形式str1c,B[0,j]形式str2d</div><div class="line">//1.c==d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>];</div><div class="line">//2.c != d</div><div class="line">//2.1: c替换成d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.2: append d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.3: delete d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j</span>] + 1;</div><div class="line">int minDistance(string word1, string word2) {</div><div class="line"><span class="code">    int len1 = word1.size();</span></div><div class="line"><span class="code">    int len2 = word2.size();</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    vector&lt;vector&lt;int&gt; &gt;dp(len1+1,vector&lt;int&gt;(len2+1,0));</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    //初始化</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        dp[i][0] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len2; i++){</span></div><div class="line"><span class="code">        dp[0][i] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    for(int i=1; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        for(int j=1; j&lt;=len2; j++){</span></div><div class="line"><span class="code">            if(word1[i-1] == word2[j-1]){</span></div><div class="line"><span class="code">                dp[i][j] = dp[i-1][j-1];</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">            else{</span></div><div class="line"><span class="code">                dp[i][j] = min(dp[i-1][j-1],min(dp[i][j-1],dp[i-1][j]))+1;</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">        }</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    return dp[len1][len2];</span></div><div class="line">}</div></pre></figure>
 
+  
+	</div>
+		<footer class="article-footer clearfix">
 
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/动态规划/">动态规划</a>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2014/09/23/distinctS/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Distinct Subsequences
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/09/23/bestStock3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Best Time to Buy and Sell Stock III</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/09/23/editDis/" data-title="Edit Distance | 码农求职记" data-tsina="1005055274569156" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/23/distinctS/" title="Distinct Subsequences">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Distinct Subsequences</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/23/bestStock3/"  title="Best Time to Buy and Sell Stock III">
+ <strong>NEXT:</strong><br/> 
+ <span>Best Time to Buy and Sell Stock III
+</span>
+</a>
+</div>
+
 </nav>
 
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
   
-</article>
+  </div>
 
-
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		<a href="http://weibo.com/coneylife" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/coneycode" target="_blank" title="github"></a>
+		
+		
+		
 	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
+</div>
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-基础知识/" title="C++ 基础知识">C++ 基础知识<sup>1</sup></a></li>
+		
+			<li><a href="/tags/分治法/" title="分治法">分治法<sup>2</sup></a></li>
+		
+			<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>12</sup></a></li>
+		
+			<li><a href="/tags/图/" title="图">图<sup>1</sup></a></li>
+		
+			<li><a href="/tags/字符串/" title="字符串">字符串<sup>15</sup></a></li>
+		
+			<li><a href="/tags/暴力枚举法/" title="暴力枚举法">暴力枚举法<sup>6</sup></a></li>
+		
+			<li><a href="/tags/查找/" title="查找">查找<sup>3</sup></a></li>
+		
+			<li><a href="/tags/栈和队列/" title="栈和队列">栈和队列<sup>3</sup></a></li>
+		
+			<li><a href="/tags/深度优先搜索/" title="深度优先搜索">深度优先搜索<sup>9</sup></a></li>
+		
+			<li><a href="/tags/细节实现题/" title="细节实现题">细节实现题<sup>13</sup></a></li>
+		
+			<li><a href="/tags/贪心算法/" title="贪心算法">贪心算法<sup>6</sup></a></li>
+		
+		</ul>
 </div>
 
 
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="editDis" data-title="Edit Distance" data-url="http://yoursite.com/2014/09/23/editDis/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://gengbiao.me" target="_blank" title="gengbiao">Coney's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
 </div>
 
 
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
 
-
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2014 Zhang Yong
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/C-基础知识/" style="font-size: 10.00px;">C++ 基础知识</a><a href="/tags/分治法/" style="font-size: 11.43px;">分治法</a><a href="/tags/动态规划/" style="font-size: 17.14px;">动态规划</a><a href="/tags/图/" style="font-size: 10.00px;">图</a><a href="/tags/字符串/" style="font-size: 20.00px;">字符串</a><a href="/tags/暴力枚举法/" style="font-size: 14.29px;">暴力枚举法</a><a href="/tags/查找/" style="font-size: 12.86px;">查找</a><a href="/tags/栈和队列/" style="font-size: 12.86px;">栈和队列</a><a href="/tags/深度优先搜索/" style="font-size: 15.71px;">深度优先搜索</a><a href="/tags/细节实现题/" style="font-size: 18.57px;">细节实现题</a><a href="/tags/贪心算法/" style="font-size: 14.29px;">贪心算法</a>
     </div>
   </div>
-</footer>
+
+
+</aside>
+</div>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
 
-  <script src="/js/main.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
-  </div>
-</body>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"coney"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-55273525-1', 'gengbiao.me');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
 </html>
