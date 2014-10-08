@@ -7,13 +7,13 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>Pow | 坚持，梦想</title>
+    <title>Minimum Depth of Binary Tree | 坚持，梦想</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhang Yong">
     
-    <meta name="description" content="Implement pow(x, n).
-double pow(double x, int n) {    double ans = 1.0;        bool flag = true;    if(n&amp;lt;0){        flag = false;        n = -n;   ">
+    <meta name="description" content="Given a binary tree, find its minimum depth.
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest l">
     
     
     
@@ -69,15 +69,15 @@ double pow(double x, int n) {    double ans = 1.0;        bool flag = true;    i
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/22/pow/" title="Pow" itemprop="url">Pow</a>
+      <a href="/2014/10/08/minimumdepth/" title="Minimum Depth of Binary Tree" itemprop="url">Minimum Depth of Binary Tree</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhang Yong">Zhang Yong</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-21T21:51:00.000Z" itemprop="datePublished">9月 22 2014</time>
-    更新日期:<time datetime="2014-09-21T21:52:34.000Z" itemprop="dateModified">9月 22 2014</time>
+    <time datetime="2014-10-08T08:15:30.000Z" itemprop="datePublished">10月 8 2014</time>
+    更新日期:<time datetime="2014-10-08T08:16:17.000Z" itemprop="dateModified">10月 8 2014</time>
     
   </p>
 </header>
@@ -89,8 +89,9 @@ double pow(double x, int n) {    double ans = 1.0;        bool flag = true;    i
 		
 		</div>
 		
-		<p>Implement pow(x, n).</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">double</span> <span class="built_in">pow</span>(<span class="keyword">double</span> x, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">double</span> ans = <span class="number">1.0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">bool</span> flag = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span>(n&lt;<span class="number">0</span>){</div><div class="line">        flag = <span class="literal">false</span>;</div><div class="line">        n = -n;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(n){</div><div class="line">        <span class="keyword">if</span>(n%<span class="number">2</span> != <span class="number">0</span>) ans *= x;</div><div class="line">        x *= x;</div><div class="line">        n /= <span class="number">2</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(!flag) <span class="keyword">return</span> <span class="number">1</span>/ans;</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">}</div></pre></figure>
+		<p>Given a binary tree, find its minimum depth.</p>
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//广度遍历</span></div><div class="line"><span class="keyword">int</span> minDepth(TreeNode *root) {</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">    queue&lt;TreeNode*&gt;qe; qe.<span class="keyword">push</span>(root);</div><div class="line">    queue&lt;<span class="keyword">int</span>&gt;depth; depth.<span class="keyword">push</span>(<span class="number">1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> cnt = INT_MAX;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(!qe.empty()){</div><div class="line">        root = qe.front(); qe.<span class="keyword">pop</span>();</div><div class="line">        cnt = depth.front(); depth.<span class="keyword">pop</span>();</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(root-&gt;left == <span class="keyword">NULL</span> && root-&gt;right == <span class="keyword">NULL</span>){</div><div class="line">            <span class="keyword">return</span> cnt;</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(root-&gt;left != <span class="keyword">NULL</span>){</div><div class="line">            qe.<span class="keyword">push</span>(root-&gt;left);</div><div class="line">            depth.<span class="keyword">push</span>(cnt+<span class="number">1</span>);</div><div class="line">        }</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(root-&gt;right != <span class="keyword">NULL</span>){</div><div class="line">            qe.<span class="keyword">push</span>(root-&gt;right);</div><div class="line">            depth.<span class="keyword">push</span>(cnt+<span class="number">1</span>);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cnt;</div><div class="line">}</div></pre></figure>
 
   
 	</div>
@@ -98,7 +99,7 @@ double pow(double x, int n) {    double ans = 1.0;        bool flag = true;    i
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/分治法/">分治法</a>
+  <span></span> <a href="/tags/二叉树/">二叉树</a>
   </div>
 
 
@@ -106,7 +107,7 @@ double pow(double x, int n) {    double ans = 1.0;        bool flag = true;    i
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/09/22/pow/" data-title="Pow | 坚持，梦想" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/10/08/minimumdepth/" data-title="Minimum Depth of Binary Tree | 坚持，梦想" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -116,13 +117,21 @@ double pow(double x, int n) {    double ans = 1.0;        bool flag = true;    i
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/09/22/sqrt/" title="Sqrt">
+ <a href="/2014/10/08/maxdepth/" title="Maximum Depth of Binary Tree">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Sqrt</span>
+  Maximum Depth of Binary Tree</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2014/10/08/convertList/"  title="Convert Sorted List to Binary Search Tree">
+ <strong>NEXT:</strong><br/> 
+ <span>Convert Sorted List to Binary Search Tree
+</span>
+</a>
+</div>
 
 </nav>
 
