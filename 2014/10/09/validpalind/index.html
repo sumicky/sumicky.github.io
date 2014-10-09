@@ -7,13 +7,12 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>Divide Two Integers | Yongzhang&#39;s Blog</title>
+    <title>Valid Palindrome | Yongzhang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhang Yong">
     
-    <meta name="description" content="Divide two integers without using multiplication, division and mod operator.
-int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MA">
+    <meta name="description" content="Valid Palindrome Total Accepted: 22190 Total Submissions: 96843 My SubmissionsGiven a string, determine if it is a palindrome, considering only alphan">
     
     
     
@@ -80,15 +79,15 @@ int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MA">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/29/divide/" title="Divide Two Integers" itemprop="url">Divide Two Integers</a>
+      <a href="/2014/10/09/validpalind/" title="Valid Palindrome" itemprop="url">Valid Palindrome</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhang Yong">Zhang Yong</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-29T13:49:41.000Z" itemprop="datePublished">9月 29 2014</time>
-    更新日期:<time datetime="2014-09-29T13:50:07.000Z" itemprop="dateModified">9月 29 2014</time>
+    <time datetime="2014-10-09T11:17:33.000Z" itemprop="datePublished">10月 9 2014</time>
+    更新日期:<time datetime="2014-10-09T11:18:53.000Z" itemprop="dateModified">10月 9 2014</time>
     
   </p>
 </header>
@@ -100,8 +99,11 @@ int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MA">
 		
 		</div>
 		
-		<p>Divide two integers without using multiplication, division and mod operator.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> divide(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor) {</div><div class="line">    <span class="keyword">if</span>(divisor == <span class="number">0</span>) <span class="keyword">return</span> INT_MAX;</div><div class="line">    </div><div class="line">    bool symbol = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">if</span>((dividend&gt;<span class="number">0</span> && divisor&lt;<span class="number">0</span>) || (dividend&lt;<span class="number">0</span> && divisor&gt;<span class="number">0</span>)){</div><div class="line">        symbol = <span class="keyword">false</span>;<span class="comment">//结果为负数</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> molecule = dividend;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> denominator = divisor;</div><div class="line">    <span class="comment">//如果改为abs，会超时</span></div><div class="line">    <span class="keyword">if</span>(molecule &lt; <span class="number">0</span>) molecule = -molecule;</div><div class="line">    <span class="keyword">if</span>(denominator &lt; <span class="number">0</span>) denominator = -denominator;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(molecule &lt; denominator || molecule == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(molecule &gt;= denominator){</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> tmp = denominator;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">count</span> = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(tmp + tmp &lt;= molecule){<span class="comment">//注意“=”</span></div><div class="line">            tmp &lt;&lt;= <span class="number">1</span>;</div><div class="line">            <span class="keyword">count</span> &lt;&lt;=<span class="number">1</span>;</div><div class="line">        }</div><div class="line">        </div><div class="line">        ret += <span class="keyword">count</span>;</div><div class="line">        molecule -= tmp;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(symbol) <span class="keyword">return</span> ret;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> -ret;</div><div class="line">}</div></pre></figure>
+		<p>Valid Palindrome Total Accepted: 22190 Total Submissions: 96843 My Submissions<br>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome.</p>
+<p>Note:<br>Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+<p>For the purpose of this problem, we define empty string as valid palindrome.</p>
+<figure class="highlight"><pre><div class="line"><span class="built_in">bool</span> isValid(<span class="built_in">char</span> c){</div><div class="line">    return (c &gt;= <span class="string">'a'</span> && c &lt;= <span class="string">'z'</span>) || (c &gt;= <span class="string">'0'</span> && c &lt;= <span class="string">'9'</span>);</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">bool</span> isPalindrome(<span class="built_in">string</span> s) {</div><div class="line">    transform(s.<span class="keyword">begin</span>(),s.<span class="keyword">end</span>(),s.<span class="keyword">begin</span>(),::tolower);</div><div class="line">    </div><div class="line">    <span class="built_in">int</span> beg = <span class="number">0</span>, <span class="keyword">end</span> = s.size()-<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(beg &lt;= <span class="keyword">end</span>){</div><div class="line">        <span class="keyword">if</span>(isValid(s[beg]) && isValid(s[<span class="keyword">end</span>])){</div><div class="line">            <span class="keyword">if</span>(s[beg] != s[<span class="keyword">end</span>]) return <span class="keyword">false</span>;</div><div class="line">            beg++;</div><div class="line">            <span class="keyword">end</span>--;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">if</span>(!isValid(s[beg])) beg++;</div><div class="line">            <span class="keyword">if</span>(!isValid(s[<span class="keyword">end</span>])) <span class="keyword">end</span>--;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    return <span class="keyword">true</span>;</div><div class="line">}</div></pre></figure>
 
   
 	</div>
@@ -109,7 +111,7 @@ int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MA">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/细节实现题/">细节实现题</a>
+  <span></span> <a href="/tags/字符串/">字符串</a>
   </div>
 
 
@@ -117,7 +119,7 @@ int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MA">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/09/29/divide/" data-title="Divide Two Integers | Yongzhang&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/10/09/validpalind/" data-title="Valid Palindrome | Yongzhang&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -126,19 +128,11 @@ int divide(int dividend, int divisor) {    if(divisor == 0) return INT_MA">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/09/30/maxpoints/" title="Max Points on a Line">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Max Points on a Line</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/09/29/zigzag/"  title="ZigZag Conversion">
+<a href="/2014/10/08/sumrooftoleaf/"  title="Sum Root to Leaf Numbers">
  <strong>NEXT:</strong><br/> 
- <span>ZigZag Conversion
+ <span>Sum Root to Leaf Numbers
 </span>
 </a>
 </div>
