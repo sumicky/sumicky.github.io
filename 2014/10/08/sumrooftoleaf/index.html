@@ -7,13 +7,13 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>Minimum Path Sum | Yongzhang&#39;s Blog</title>
+    <title>Sum Root to Leaf Numbers | Yongzhang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhang Yong">
     
-    <meta name="description" content="Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-">
+    <meta name="description" content="Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+An example is the root-to-leaf path 1-&amp;gt;2-&amp;gt;">
     
     
     
@@ -80,15 +80,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/23/minimum/" title="Minimum Path Sum" itemprop="url">Minimum Path Sum</a>
+      <a href="/2014/10/08/sumrooftoleaf/" title="Sum Root to Leaf Numbers" itemprop="url">Sum Root to Leaf Numbers</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhang Yong">Zhang Yong</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-23T14:33:01.000Z" itemprop="datePublished">9月 23 2014</time>
-    更新日期:<time datetime="2014-09-23T14:33:48.000Z" itemprop="dateModified">9月 23 2014</time>
+    <time datetime="2014-10-08T13:14:25.000Z" itemprop="datePublished">10月 8 2014</time>
+    更新日期:<time datetime="2014-10-08T13:15:55.000Z" itemprop="dateModified">10月 8 2014</time>
     
   </p>
 </header>
@@ -100,9 +100,15 @@
 		
 		</div>
 		
-		<p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
-<p>Note: You can only move either down or right at any point in time.</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">int</span> minPathSum(<span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &<span class="keyword">grid</span>) {</div><div class="line">    <span class="comment">//dp[i][j]：到达该点的最短路径</span></div><div class="line">    <span class="comment">//dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + a[i][j];</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">grid</span>.<span class="keyword">size</span>();</div><div class="line">    <span class="keyword">if</span>(row == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> column = <span class="keyword">grid</span>[<span class="number">0</span>].<span class="keyword">size</span>();</div><div class="line">    </div><div class="line">    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;dp(row,<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt;(column,<span class="number">0</span>));</div><div class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">grid</span>[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++) dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="keyword">grid</span>[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;column; i++) dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + <span class="keyword">grid</span>[<span class="number">0</span>][i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;column; j++){</div><div class="line">            dp[i][j] = <span class="keyword">min</span>(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]) + <span class="keyword">grid</span>[i][j];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> dp[row-<span class="number">1</span>][column-<span class="number">1</span>];</div><div class="line">}</div></pre></figure>
+		<p>Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.</p>
+<p>An example is the root-to-leaf path 1-&gt;2-&gt;3 which represents the number 123.</p>
+<p>Find the total sum of all root-to-leaf numbers.</p>
+<p>For example,</p>
+<figure class="highlight"><pre><div class="line"></div><div class="line">  1</div><div class="line"> / <span class="command">\</span></div><div class="line">2   3</div></pre></figure>
+
+<p>The root-to-leaf path 1-&gt;2 represents the number 12.<br>The root-to-leaf path 1-&gt;3 represents the number 13.</p>
+<p>Return the sum = 12 + 13 = 25.</p>
+<figure class="highlight"><pre><div class="line">int sumNumbers(TreeNode <span class="subst">*</span>root) {</div><div class="line">    int sumTotal <span class="subst">=</span> <span class="number">0</span>;</div><div class="line">    int <span class="keyword">sum</span> <span class="subst">=</span> <span class="number">0</span>;</div><div class="line">    dfs(root,<span class="keyword">sum</span>,sumTotal);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> sumTotal;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="literal">void</span> dfs(TreeNode<span class="subst">*</span> root, int <span class="keyword">sum</span>, int<span class="subst">&</span> sumTotal){</div><div class="line">    <span class="keyword">if</span>(root <span class="subst">==</span> <span class="built_in">NULL</span>) <span class="keyword">return</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">sum</span> <span class="subst">=</span> <span class="keyword">sum</span><span class="subst">*</span><span class="number">10</span> <span class="subst">+</span> root<span class="subst">-&gt;</span>val;<span class="comment">//先加上当前值</span></div><div class="line">    </div><div class="line">    <span class="comment">//到叶子节点</span></div><div class="line">    <span class="keyword">if</span>(root<span class="subst">-&gt;</span>left <span class="subst">==</span> <span class="built_in">NULL</span> <span class="subst">&&</span> root<span class="subst">-&gt;</span>right <span class="subst">==</span> <span class="built_in">NULL</span>){</div><div class="line">        sumTotal <span class="subst">+=</span> <span class="keyword">sum</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    dfs(root<span class="subst">-&gt;</span>left,<span class="keyword">sum</span>,sumTotal);</div><div class="line">    dfs(root<span class="subst">-&gt;</span>right,<span class="keyword">sum</span>,sumTotal);</div><div class="line">}</div></pre></figure>
 
   
 	</div>
@@ -110,7 +116,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/动态规划/">动态规划</a>
+  <span></span> <a href="/tags/二叉树/">二叉树</a>
   </div>
 
 
@@ -118,7 +124,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/09/23/minimum/" data-title="Minimum Path Sum | Yongzhang&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/10/08/sumrooftoleaf/" data-title="Sum Root to Leaf Numbers | Yongzhang&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -127,19 +133,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/09/23/triangle/" title="Triangle">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Triangle</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/09/23/interleaving/"  title="Interleaving String">
+<a href="/2014/10/08/maxdepth/"  title="Maximum Depth of Binary Tree">
  <strong>NEXT:</strong><br/> 
- <span>Interleaving String
+ <span>Maximum Depth of Binary Tree
 </span>
 </a>
 </div>
