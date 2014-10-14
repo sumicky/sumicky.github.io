@@ -1,0 +1,353 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+  <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
+<meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
+  
+    <title>Edit Distance | Yongzhang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhang Yong">
+    
+    <meta name="description" content="Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
+You have ">
+    
+    
+    
+    
+    <link rel="alternate" href="atom.xml" title="Yongzhang&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/coney.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/coney.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            var _bdId ='3F35d5e33f3bd94072baa4cd795b557b2f';
+             hm.src = "//hm.baidu.com/hm.js?" + _bdId;
+             var s = document.getElementsByTagName("script")[0]; 
+             s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+     
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Yongzhang&#39;s Blog">Yongzhang&#39;s Blog</a></h1>
+				<a class="blog-motto">Make things as simple as possible but not simpler.</a>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+                            </nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/23/editDis/" title="Edit Distance" itemprop="url">Edit Distance</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhang Yong">Zhang Yong</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-23T15:50:31.000Z" itemprop="datePublished">9月 23 2014</time>
+    更新日期:<time datetime="2014-09-23T15:50:59.000Z" itemprop="dateModified">9月 23 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
+<p>You have the following 3 operations permitted on a word:</p>
+<p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
+<figure class="highlight"><pre><div class="line">//dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]:表示A[0,i]和B[0,j]之间的最小编辑距离，</div><div class="line">//设A[0,i]形式str1c,B[0,j]形式str2d</div><div class="line">//1.c==d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>];</div><div class="line">//2.c != d</div><div class="line">//2.1: c替换成d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.2: append d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i</span>][<span class="link_reference">j-1</span>] + 1;</div><div class="line">//2.3: delete d, dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j</span>] + 1;</div><div class="line">int minDistance(string word1, string word2) {</div><div class="line"><span class="code">    int len1 = word1.size();</span></div><div class="line"><span class="code">    int len2 = word2.size();</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    vector&lt;vector&lt;int&gt; &gt;dp(len1+1,vector&lt;int&gt;(len2+1,0));</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    //初始化</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        dp[i][0] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    for(int i=0; i&lt;=len2; i++){</span></div><div class="line"><span class="code">        dp[0][i] = i;</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    for(int i=1; i&lt;=len1; i++){</span></div><div class="line"><span class="code">        for(int j=1; j&lt;=len2; j++){</span></div><div class="line"><span class="code">            if(word1[i-1] == word2[j-1]){</span></div><div class="line"><span class="code">                dp[i][j] = dp[i-1][j-1];</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">            else{</span></div><div class="line"><span class="code">                dp[i][j] = min(dp[i-1][j-1],min(dp[i][j-1],dp[i-1][j]))+1;</span></div><div class="line"><span class="code">            }</span></div><div class="line"><span class="code">        }</span></div><div class="line"><span class="code">    }</span></div><div class="line"><span class="code">    </span></div><div class="line"><span class="code">    return dp[len1][len2];</span></div><div class="line">}</div></pre></figure>
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/动态规划/">动态规划</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/09/23/editDis/" data-title="Edit Distance | Yongzhang&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/23/distinctS/" title="Distinct Subsequences">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Distinct Subsequences</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/23/bestStock3/"  title="Best Time to Buy and Sell Stock III">
+ <strong>NEXT:</strong><br/> 
+ <span>Best Time to Buy and Sell Stock III
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		<a href="http://weibo.com/ptsiona" target="_blank" title="weibo"></a>
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-基础知识/" title="C++ 基础知识">C++ 基础知识<sup>0</sup></a></li>
+		
+			<li><a href="/tags/二叉树/" title="二叉树">二叉树<sup>6</sup></a></li>
+		
+			<li><a href="/tags/分治法/" title="分治法">分治法<sup>2</sup></a></li>
+		
+			<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>12</sup></a></li>
+		
+			<li><a href="/tags/图/" title="图">图<sup>1</sup></a></li>
+		
+			<li><a href="/tags/字符串/" title="字符串">字符串<sup>14</sup></a></li>
+		
+			<li><a href="/tags/暴力枚举法/" title="暴力枚举法">暴力枚举法<sup>6</sup></a></li>
+		
+			<li><a href="/tags/查找/" title="查找">查找<sup>3</sup></a></li>
+		
+			<li><a href="/tags/栈和队列/" title="栈和队列">栈和队列<sup>3</sup></a></li>
+		
+			<li><a href="/tags/深度优先搜索/" title="深度优先搜索">深度优先搜索<sup>9</sup></a></li>
+		
+			<li><a href="/tags/细节实现题/" title="细节实现题">细节实现题<sup>13</sup></a></li>
+		
+			<li><a href="/tags/贪心算法/" title="贪心算法">贪心算法<sup>6</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"coney"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    var _bdId = '3F35d5e33f3bd94072baa4cd795b557b2f';
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F" + _bdId +"'  type='text/javascript'%3E%3C/script%3E"));
+
+
+
+
+  </body>
+</html>

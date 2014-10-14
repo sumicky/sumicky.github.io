@@ -1,0 +1,353 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+  <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
+<meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
+  
+    <title>N-Queens II | Yongzhang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhang Yong">
+    
+    <meta name="description" content="Follow up for N-Queens problem.
+Now, instead outputting board configurations, return the total number of distinct solutions.
+//代码跟上题基本完全一样int totalNQu">
+    
+    
+    
+    
+    <link rel="alternate" href="atom.xml" title="Yongzhang&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/coney.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/coney.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            var _bdId ='3F35d5e33f3bd94072baa4cd795b557b2f';
+             hm.src = "//hm.baidu.com/hm.js?" + _bdId;
+             var s = document.getElementsByTagName("script")[0]; 
+             s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+     
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Yongzhang&#39;s Blog">Yongzhang&#39;s Blog</a></h1>
+				<a class="blog-motto">Make things as simple as possible but not simpler.</a>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+                            </nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/22/queens2/" title="N-Queens II" itemprop="url">N-Queens II</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhang Yong">Zhang Yong</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-21T22:08:51.000Z" itemprop="datePublished">9月 22 2014</time>
+    更新日期:<time datetime="2014-09-21T22:09:42.000Z" itemprop="dateModified">9月 22 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<p>Follow up for N-Queens problem.</p>
+<p>Now, instead outputting board configurations, return the total number of distinct solutions.</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">//代码跟上题基本完全一样</span></div><div class="line"><span class="keyword">int</span> totalNQueens(<span class="keyword">int</span> n) {</div><div class="line">    </div><div class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x(n,<span class="number">0</span>);</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    dfs(<span class="number">0</span>,n,x,count);</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">bool</span> isValid(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x, <span class="keyword">int</span> row, <span class="keyword">int</span> col){<span class="comment">//判断点是否合法,与之前的比较即可0-row-1</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; i++){</div><div class="line">        <span class="keyword">int</span> prevRow = i, prevCol = x[i];</div><div class="line">        <span class="keyword">if</span>(prevCol == col) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同列</span></div><div class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(prevCol - col) == <span class="built_in">abs</span>(prevRow - row)) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//同对角线</span></div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//4个规则：不同行，同列</span></div><div class="line"><span class="comment">//depth：深度</span></div><div class="line"><span class="comment">//x[i]: 第i行皇后位置x[i]</span></div><div class="line"><span class="keyword">void</span> dfs(<span class="keyword">int</span> depth, <span class="keyword">int</span> maxDepth, <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> x,<span class="keyword">int</span>& count){</div><div class="line">    <span class="keyword">if</span>(depth == maxDepth){<span class="comment">//找到解</span></div><div class="line">        count++;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;maxDepth; i++){<span class="comment">//每个位置均尝试</span></div><div class="line">        <span class="keyword">if</span>(isValid(x,depth,i)){</div><div class="line">            x[depth] = i;</div><div class="line">            dfs(depth+<span class="number">1</span>,maxDepth,x,count);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/深度优先搜索/">深度优先搜索</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/09/22/queens2/" data-title="N-Queens II | Yongzhang&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/22/combinationSum/" title="Combination Sum">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Combination Sum</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/22/queens/"  title="N-Queens">
+ <strong>NEXT:</strong><br/> 
+ <span>N-Queens
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		<a href="http://weibo.com/ptsiona" target="_blank" title="weibo"></a>
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-基础知识/" title="C++ 基础知识">C++ 基础知识<sup>0</sup></a></li>
+		
+			<li><a href="/tags/二叉树/" title="二叉树">二叉树<sup>6</sup></a></li>
+		
+			<li><a href="/tags/分治法/" title="分治法">分治法<sup>2</sup></a></li>
+		
+			<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>12</sup></a></li>
+		
+			<li><a href="/tags/图/" title="图">图<sup>1</sup></a></li>
+		
+			<li><a href="/tags/字符串/" title="字符串">字符串<sup>14</sup></a></li>
+		
+			<li><a href="/tags/暴力枚举法/" title="暴力枚举法">暴力枚举法<sup>6</sup></a></li>
+		
+			<li><a href="/tags/查找/" title="查找">查找<sup>3</sup></a></li>
+		
+			<li><a href="/tags/栈和队列/" title="栈和队列">栈和队列<sup>3</sup></a></li>
+		
+			<li><a href="/tags/深度优先搜索/" title="深度优先搜索">深度优先搜索<sup>9</sup></a></li>
+		
+			<li><a href="/tags/细节实现题/" title="细节实现题">细节实现题<sup>13</sup></a></li>
+		
+			<li><a href="/tags/贪心算法/" title="贪心算法">贪心算法<sup>6</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"coney"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    var _bdId = '3F35d5e33f3bd94072baa4cd795b557b2f';
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F" + _bdId +"'  type='text/javascript'%3E%3C/script%3E"));
+
+
+
+
+  </body>
+</html>
